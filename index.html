@@ -1061,6 +1061,285 @@
     .fruit-animating {
       animation: fruitCelebrate 0.8s ease-in-out;
     }
+  
+    /* TACTILE GAME STAGES (COLD-PRESS & ARTISAN WOOD TEXTURES) */
+    .wood-board-stage {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      background: #fdfaf3;
+      background-image:
+        radial-gradient(ellipse at 50% 50%, rgba(217, 119, 6, 0.04) 0%, transparent 70%),
+        repeating-radial-gradient(circle at 20% 30%, transparent 0, transparent 28px, rgba(180, 83, 9, 0.03) 29px, transparent 31px);
+      border-radius: 28px;
+      border: 2px solid #e7ded0;
+      box-shadow: inset 0 3px 12px rgba(120, 53, 15, 0.05), 0 4px 16px rgba(0, 0, 0, 0.03);
+      margin: 10px 0;
+      padding: 16px 8px;
+      position: relative;
+    }
+
+    .artisan-tray {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      background: #fbf8f1;
+      border: 2px solid #eae2d3;
+      border-radius: 24px;
+      padding: 12px 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .pip-socket svg.socket-recess {
+      transition: opacity 0.3s ease;
+    }
+    .pip-socket .pip-animal-reveal {
+      position: absolute;
+      top: 6px;
+      width: 86px;
+      height: 86px;
+      display: none;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.16));
+    }
+
+    /* LOLA'S BERRY PICNIC MEADOW */
+    .meadow-picnic-stage {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      background: #f3f9f4;
+      background-image:
+        radial-gradient(#c7ebd3 1.2px, transparent 1.2px),
+        radial-gradient(#d6ecfa 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      border-radius: 28px;
+      border: 2px solid #daebd8;
+      box-shadow: inset 0 2px 14px rgba(16, 185, 129, 0.05);
+      margin: 10px 0;
+      padding: 14px 10px;
+      position: relative;
+    }
+
+    .wicker-picnic-basket {
+      position: relative;
+      width: 220px;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .wicker-picnic-basket:active {
+      transform: scale(0.96);
+    }
+    .basket-svg-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      filter: drop-shadow(0 8px 18px rgba(120, 53, 15, 0.22));
+    }
+    .basket-content-area {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+    }
+    .basket-berries-slot {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+    }
+    .basket-count-badge {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #78350f;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 3px 14px;
+      border-radius: 9999px;
+      border: 1.5px solid #fde68a;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .berry-tray-item {
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px;
+    }
+    .berry-tray-item:hover { transform: scale(1.12); }
+    .berry-tray-item:active { cursor: grabbing; transform: scale(1.22); }
+    .berry-tray-item svg {
+      width: 64px;
+      height: 64px;
+      filter: drop-shadow(0 6px 12px rgba(220, 38, 38, 0.25));
+    }
+
+    /* PENNY MUDDY PUDDLES STAGE */
+    .countryside-puddle-stage {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      background: #f2f8fc;
+      background-image:
+        linear-gradient(180deg, #e0f2fe 0%, #d1fae5 70%, #bbf7d0 100%);
+      border-radius: 28px;
+      border: 2px solid #d0e7f7;
+      box-shadow: inset 0 2px 14px rgba(56, 189, 248, 0.06);
+      margin: 10px 0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      padding-bottom: 8px;
+    }
+
+    .mud-puddle-container {
+      position: relative;
+      width: 290px;
+      height: 74px;
+      margin-bottom: -10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mud-puddle-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 4px 10px rgba(120, 53, 15, 0.28));
+    }
+    .puddle-ripple {
+      position: absolute;
+      border: 3px solid rgba(254, 240, 138, 0.7);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: rippleExpand 0.7s ease-out forwards;
+    }
+    @keyframes rippleExpand {
+      0% { width: 40px; height: 16px; opacity: 1; transform: scale(0.5); }
+      100% { width: 260px; height: 60px; opacity: 0; transform: scale(1.2); }
+    }
+
+    /* ANIMAL SOUNDS PORTRAITS */
+    .animal-gallery-grid {
+      flex: 1;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 10px 4px;
+      align-content: center;
+      background: #fbf7fb;
+      border-radius: 28px;
+      border: 2px solid #f1e2f1;
+      box-shadow: inset 0 2px 12px rgba(168, 85, 247, 0.04);
+      margin: 10px 0;
+    }
+
+    .animal-portrait-card {
+      background: #ffffff;
+      border: 2px solid #ebd5ea;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 8px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.08);
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+    }
+    .animal-portrait-card:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 22px rgba(168, 85, 247, 0.16);
+    }
+    .animal-portrait-card:active {
+      transform: scale(0.94);
+      box-shadow: 0 2px 8px rgba(168, 85, 247, 0.12);
+    }
+    .animal-portrait-card svg {
+      width: 86px;
+      height: 86px;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+    }
+    .animal-name {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #701a75;
+      margin-top: 6px;
+      letter-spacing: -0.01em;
+    }
+    .animal-call {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #a21caf;
+      margin-top: 1px;
+    }
+
+    /* MAGIC SCRIBBLES WATERCOLOR STUDIO */
+    .scribble-paper-stage {
+      flex: 1;
+      width: 100%;
+      background: #ffffff;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      border-radius: 28px;
+      border: 2px solid #e5def0;
+      box-shadow: inset 0 2px 14px rgba(147, 51, 234, 0.04), 0 4px 16px rgba(0, 0, 0, 0.03);
+      margin: 10px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .crayon-tool-btn {
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .crayon-tool-btn:hover { transform: scale(1.12); }
+    .crayon-tool-btn:active { transform: scale(0.92); }
+    .crayon-tool-btn.active-crayon {
+      transform: translateY(-5px) scale(1.15);
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.18));
+    }
+
   </style>
 </head>
 <body>
@@ -1359,7 +1638,7 @@
         </div>
 
         <!-- Flowers Stage -->
-        <div style="flex:1; width:100%; display:flex; justify-content:space-around; align-items:center; background:linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%); border-radius:24px; border:3px dashed #6ee7b7; margin:14px 0; position:relative;">
+        <div style="flex:1; width:100%; display:flex; justify-content:space-around; align-items:center; background:#f0fdf4; background-image:radial-gradient(#bbf7d0 1.2px, transparent 1.2px); background-size:20px 20px; border-radius:28px; border:2px solid #bbf7d0; box-shadow:inset 0 2px 14px rgba(16,185,129,0.06); margin:12px 0 10px; position:relative;">
           <!-- Red -->
           <div id="milo-target-red" data-color="red" onclick="handleFlowerClick('red')" class="milo-target" style="display:flex; flex-direction:column; align-items:center; width:110px; height:180px; justify-content:center; cursor:pointer;">
             <svg class="milo-bud" viewBox="0 0 80 80" style="width:90px; height:90px;">
@@ -1406,7 +1685,7 @@
         </div>
 
         <!-- Droplets Tray (Enlarged & Randomized) -->
-        <div id="milo-drops-tray" style="width:100%; display:flex; justify-content:space-around; align-items:center; background:#f8fafc; border:2px solid #e2e8f0; border-radius:24px; padding:14px 10px;">
+        <div id="milo-drops-tray" class="artisan-tray" style="background:#ffffff; border-color:#e2e8f0;">
           <!-- Red Drop -->
           <div id="milo-drop-red" data-color="red" class="milo-drop" style="width:96px; height:98px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:grab; touch-action:none;">
             <svg viewBox="0 0 70 70" style="width:86px; height:86px; filter:drop-shadow(0 4px 10px rgba(239,68,68,0.25));">
@@ -1463,7 +1742,7 @@
         </div>
 
         <!-- Drawing Canvas Stage -->
-        <div style="flex:1; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%); border-radius:28px; border:3px dashed #f59e0b; margin:10px 0; position:relative; overflow:hidden;">
+        <div style="flex:1; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#fffdf5; background-image:radial-gradient(#fed7aa 1.2px, transparent 1.2px); background-size:20px 20px; border-radius:28px; border:2px solid #fed7aa; box-shadow:inset 0 2px 14px rgba(245,158,11,0.06); margin:10px 0; position:relative; overflow:hidden;">
           
           <!-- Friendly Question Banner -->
           <div style="position:absolute; top:12px; background:rgba(255,255,255,0.92); padding:5px 16px; border-radius:9999px; border:2px solid #fcd34d; box-shadow:0 2px 8px rgba(180,83,9,0.08); z-index:10;">
@@ -1532,7 +1811,7 @@
         </div>
 
         <!-- Color Palette Tray (4 Chunky Color Pots - Enlarged & Randomized) -->
-        <div id="color-pots-tray" style="width:100%; display:flex; justify-content:space-around; align-items:center; background:#f8fafc; border:2px solid #e2e8f0; border-radius:24px; padding:12px 6px;">
+        <div id="color-pots-tray" class="artisan-tray" style="background:#ffffff; border-color:#e2e8f0;">
           <!-- Red Pot -->
           <div id="cpot-red" data-color="red" onclick="handleColorPotClick('red')" class="color-pot" style="display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:grab; touch-action:none;">
             <svg viewBox="0 0 76 76" style="width:74px; height:74px; filter:drop-shadow(0 4px 8px rgba(239,68,68,0.25));">
@@ -1670,60 +1949,144 @@
           </button>
         </div>
 
-        <!-- Tree Hollow Puzzle Board with Visible Shapes -->
-        <div style="flex:1; width:100%; display:flex; justify-content:space-evenly; align-items:center; background:linear-gradient(180deg, #fef3c7 0%, #fde68a 100%); border-radius:28px; border:3px dashed #f59e0b; margin:14px 0; padding:12px 6px;">
-          <!-- Circle Hollow -->
+        <!-- Tree Hollow Puzzle Board (Artisan Wood Grain Plank) -->
+        <div class="wood-board-stage">
+          <!-- Circle Hollow (Bunny's Den) -->
           <div id="pip-socket-circle" data-shape="circle" onclick="handleSocketClick('circle')" class="pip-socket" title="Circle hollow">
-            <svg viewBox="0 0 100 100" style="width:96px; height:96px;">
-              <circle cx="50" cy="50" r="44" fill="rgba(180, 83, 9, 0.15)" stroke="#b45309" stroke-width="4.5" stroke-dasharray="8,5"/>
-              <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(180, 83, 9, 0.3)" stroke-width="2.5" stroke-dasharray="4,4"/>
+            <svg viewBox="0 0 100 100" style="width:96px; height:96px;" class="socket-recess">
+              <defs>
+                <radialGradient id="hollowGradCircle" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#451a03" stop-opacity="0.25"/>
+                  <stop offset="70%" stop-color="#78350f" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#b45309" stop-opacity="0.32"/>
+                </radialGradient>
+              </defs>
+              <circle cx="50" cy="50" r="44" fill="url(#hollowGradCircle)" stroke="#92400e" stroke-width="3.5" stroke-dasharray="7 5"/>
+              <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(146, 64, 14, 0.28)" stroke-width="2" stroke-dasharray="4 4"/>
             </svg>
-            <span class="pip-animal">🐰</span>
+            <!-- Handcrafted Bunny Reveal -->
+            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal">
+              <ellipse cx="38" cy="22" rx="7" ry="20" fill="#fdf2e9" stroke="#d97706" stroke-width="2" transform="rotate(-10 38 22)"/>
+              <ellipse cx="38" cy="22" rx="3.5" ry="14" fill="#fbcfe8" transform="rotate(-10 38 22)"/>
+              <ellipse cx="62" cy="22" rx="7" ry="20" fill="#fdf2e9" stroke="#d97706" stroke-width="2" transform="rotate(10 62 22)"/>
+              <ellipse cx="62" cy="22" rx="3.5" ry="14" fill="#fbcfe8" transform="rotate(10 62 22)"/>
+              <circle cx="50" cy="56" r="26" fill="#fdf2e9" stroke="#d97706" stroke-width="2.5"/>
+              <circle cx="42" cy="50" r="3.2" fill="#3e2723"/><circle cx="43" cy="49" r="1.1" fill="#ffffff"/>
+              <circle cx="58" cy="50" r="3.2" fill="#3e2723"/><circle cx="59" cy="49" r="1.1" fill="#ffffff"/>
+              <polygon points="50,58 46,55 54,55" fill="#f472b6"/>
+              <path d="M46 61 Q50 65 54 61" stroke="#3e2723" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <circle cx="35" cy="57" r="4" fill="#fbcfe8" opacity="0.65"/>
+              <circle cx="65" cy="57" r="4" fill="#fbcfe8" opacity="0.65"/>
+            </svg>
             <span class="pip-label">Circle</span>
           </div>
 
-          <!-- Triangle Hollow -->
+          <!-- Triangle Hollow (Fox's Den) -->
           <div id="pip-socket-triangle" data-shape="triangle" onclick="handleSocketClick('triangle')" class="pip-socket" title="Triangle hollow">
-            <svg viewBox="0 0 100 100" style="width:96px; height:96px;">
-              <polygon points="50,10 12,86 88,86" fill="rgba(180, 83, 9, 0.15)" stroke="#b45309" stroke-width="4.5" stroke-dasharray="8,5" stroke-linejoin="round"/>
-              <polygon points="50,30 26,76 74,76" fill="none" stroke="rgba(180, 83, 9, 0.3)" stroke-width="2.5" stroke-dasharray="4,4" stroke-linejoin="round"/>
+            <svg viewBox="0 0 100 100" style="width:96px; height:96px;" class="socket-recess">
+              <defs>
+                <radialGradient id="hollowGradTri" cx="50%" cy="58%" r="50%">
+                  <stop offset="0%" stop-color="#451a03" stop-opacity="0.25"/>
+                  <stop offset="70%" stop-color="#78350f" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#b45309" stop-opacity="0.32"/>
+                </radialGradient>
+              </defs>
+              <polygon points="50,10 12,86 88,86" fill="url(#hollowGradTri)" stroke="#92400e" stroke-width="3.5" stroke-dasharray="7 5" stroke-linejoin="round"/>
+              <polygon points="50,30 26,76 74,76" fill="none" stroke="rgba(146, 64, 14, 0.28)" stroke-width="2" stroke-dasharray="4 4" stroke-linejoin="round"/>
             </svg>
-            <span class="pip-animal">🦊</span>
+            <!-- Handcrafted Fox Reveal -->
+            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal">
+              <polygon points="26,44 32,16 46,38" fill="#ea580c" stroke="#c2410c" stroke-width="2"/>
+              <polygon points="30,40 33,22 42,36" fill="#431407"/>
+              <polygon points="74,44 68,16 54,38" fill="#ea580c" stroke="#c2410c" stroke-width="2"/>
+              <polygon points="70,40 67,22 58,36" fill="#431407"/>
+              <polygon points="50,78 18,44 82,44" fill="#ea580c" stroke="#c2410c" stroke-width="2.5" stroke-linejoin="round"/>
+              <polygon points="50,78 20,44 38,58" fill="#fffbeb"/>
+              <polygon points="50,78 80,44 62,58" fill="#fffbeb"/>
+              <ellipse cx="38" cy="48" rx="3.5" ry="4" fill="#1c1917"/><circle cx="39" cy="46" r="1.2" fill="#ffffff"/>
+              <ellipse cx="62" cy="48" rx="3.5" ry="4" fill="#1c1917"/><circle cx="63" cy="46" r="1.2" fill="#ffffff"/>
+              <circle cx="50" cy="74" r="4.5" fill="#1c1917"/>
+            </svg>
             <span class="pip-label">Triangle</span>
           </div>
 
-          <!-- Square Hollow -->
+          <!-- Square Hollow (Owl's Nest) -->
           <div id="pip-socket-square" data-shape="square" onclick="handleSocketClick('square')" class="pip-socket" title="Square hollow">
-            <svg viewBox="0 0 100 100" style="width:96px; height:96px;">
-              <rect x="8" y="8" width="84" height="84" rx="18" fill="rgba(180, 83, 9, 0.15)" stroke="#b45309" stroke-width="4.5" stroke-dasharray="8,5"/>
-              <rect x="24" y="24" width="52" height="52" rx="12" fill="none" stroke="rgba(180, 83, 9, 0.3)" stroke-width="2.5" stroke-dasharray="4,4"/>
+            <svg viewBox="0 0 100 100" style="width:96px; height:96px;" class="socket-recess">
+              <defs>
+                <radialGradient id="hollowGradSq" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#451a03" stop-opacity="0.25"/>
+                  <stop offset="70%" stop-color="#78350f" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#b45309" stop-opacity="0.32"/>
+                </radialGradient>
+              </defs>
+              <rect x="8" y="8" width="84" height="84" rx="20" fill="url(#hollowGradSq)" stroke="#92400e" stroke-width="3.5" stroke-dasharray="7 5"/>
+              <rect x="24" y="24" width="52" height="52" rx="12" fill="none" stroke="rgba(146, 64, 14, 0.28)" stroke-width="2" stroke-dasharray="4 4"/>
             </svg>
-            <span class="pip-animal">🦉</span>
+            <!-- Handcrafted Owl Reveal -->
+            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal">
+              <ellipse cx="50" cy="54" rx="26" ry="30" fill="#78350f" stroke="#451a03" stroke-width="2.5"/>
+              <ellipse cx="50" cy="58" rx="16" ry="20" fill="#fef3c7"/>
+              <polygon points="28,32 36,16 42,32" fill="#78350f"/>
+              <polygon points="72,32 64,16 58,32" fill="#78350f"/>
+              <circle cx="39" cy="44" r="10" fill="#ffffff" stroke="#451a03" stroke-width="2"/>
+              <circle cx="39" cy="44" r="6" fill="#f59e0b"/><circle cx="39" cy="44" r="3.5" fill="#1c1917"/><circle cx="41" cy="42" r="1.3" fill="#ffffff"/>
+              <circle cx="61" cy="44" r="10" fill="#ffffff" stroke="#451a03" stroke-width="2"/>
+              <circle cx="61" cy="44" r="6" fill="#f59e0b"/><circle cx="61" cy="44" r="3.5" fill="#1c1917"/><circle cx="63" cy="42" r="1.3" fill="#ffffff"/>
+              <polygon points="50,56 46,49 54,49" fill="#f97316"/>
+            </svg>
             <span class="pip-label">Square</span>
           </div>
         </div>
 
-        <!-- Shape Tray -->
-        <div style="width:100%; display:flex; justify-content:space-evenly; align-items:center; background:#fefce8; border:2px solid #fef08a; border-radius:24px; padding:12px 6px;">
+        <!-- Heirloom Wood Shape Block Tray -->
+        <div class="artisan-tray">
           <div id="pip-block-circle" data-shape="circle" onclick="handleBlockClick('circle')" class="pip-block" title="Tap or drag circle">
-            <svg viewBox="0 0 88 88" style="width:80px; height:80px;">
-              <circle cx="44" cy="44" r="38" fill="#fbbf24" stroke="#d97706" stroke-width="4"/>
-              <circle cx="37" cy="40" r="4" fill="#92400e"/><circle cx="51" cy="40" r="4" fill="#92400e"/>
-              <path d="M37 49 Q44 56 51 49" stroke="#92400e" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <svg viewBox="0 0 88 88" style="width:82px; height:82px;">
+              <defs>
+                <radialGradient id="woodCircleGrad" cx="35%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#fde047"/>
+                  <stop offset="45%" stop-color="#fbbf24"/>
+                  <stop offset="85%" stop-color="#d97706"/>
+                  <stop offset="100%" stop-color="#b45309"/>
+                </radialGradient>
+              </defs>
+              <circle cx="44" cy="44" r="38" fill="url(#woodCircleGrad)" stroke="#b45309" stroke-width="3.5"/>
+              <path d="M22 36 C34 30 54 30 66 36" stroke="rgba(255,255,255,0.45)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <circle cx="36" cy="43" r="3.5" fill="#78350f"/><circle cx="52" cy="43" r="3.5" fill="#78350f"/>
+              <path d="M37 51 Q44 58 51 51" stroke="#78350f" stroke-width="3" stroke-linecap="round" fill="none"/>
             </svg>
           </div>
           <div id="pip-block-triangle" data-shape="triangle" onclick="handleBlockClick('triangle')" class="pip-block" title="Tap or drag triangle">
-            <svg viewBox="0 0 88 88" style="width:80px; height:80px;">
-              <polygon points="44,8 10,78 78,78" fill="#f97316" stroke="#c2410c" stroke-width="4" stroke-linejoin="round"/>
-              <circle cx="38" cy="48" r="4" fill="#9a3412"/><circle cx="50" cy="48" r="4" fill="#9a3412"/>
-              <path d="M39 57 Q44 63 49 57" stroke="#9a3412" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <svg viewBox="0 0 88 88" style="width:82px; height:82px;">
+              <defs>
+                <radialGradient id="woodTriGrad" cx="45%" cy="40%" r="65%">
+                  <stop offset="0%" stop-color="#fb923c"/>
+                  <stop offset="50%" stop-color="#f97316"/>
+                  <stop offset="85%" stop-color="#ea580c"/>
+                  <stop offset="100%" stop-color="#9a3412"/>
+                </radialGradient>
+              </defs>
+              <polygon points="44,8 10,78 78,78" fill="url(#woodTriGrad)" stroke="#9a3412" stroke-width="3.5" stroke-linejoin="round"/>
+              <path d="M32 66 C42 63 50 63 58 66" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <circle cx="38" cy="50" r="3.5" fill="#7c2d12"/><circle cx="50" cy="50" r="3.5" fill="#7c2d12"/>
+              <path d="M39 58 Q44 64 49 58" stroke="#7c2d12" stroke-width="3" stroke-linecap="round" fill="none"/>
             </svg>
           </div>
           <div id="pip-block-square" data-shape="square" onclick="handleBlockClick('square')" class="pip-block" title="Tap or drag square">
-            <svg viewBox="0 0 88 88" style="width:80px; height:80px;">
-              <rect x="8" y="8" width="72" height="72" rx="18" fill="#34d399" stroke="#059669" stroke-width="4"/>
-              <circle cx="37" cy="40" r="4" fill="#065f46"/><circle cx="51" cy="40" r="4" fill="#065f46"/>
-              <path d="M37 49 Q44 56 51 49" stroke="#065f46" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <svg viewBox="0 0 88 88" style="width:82px; height:82px;">
+              <defs>
+                <radialGradient id="woodSqGrad" cx="35%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#6ee7b7"/>
+                  <stop offset="45%" stop-color="#34d399"/>
+                  <stop offset="85%" stop-color="#059669"/>
+                  <stop offset="100%" stop-color="#064e3b"/>
+                </radialGradient>
+              </defs>
+              <rect x="8" y="8" width="72" height="72" rx="18" fill="url(#woodSqGrad)" stroke="#065f46" stroke-width="3.5"/>
+              <path d="M18 24 C34 20 54 20 70 24" stroke="rgba(255,255,255,0.45)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <circle cx="37" cy="43" r="3.5" fill="#064e3b"/><circle cx="51" cy="43" r="3.5" fill="#064e3b"/>
+              <path d="M37 51 Q44 58 51 51" stroke="#064e3b" stroke-width="3" stroke-linecap="round" fill="none"/>
             </svg>
           </div>
         </div>
@@ -1735,37 +2098,93 @@
           <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <h3 class="ios-view-title">Do the Maths</h3>
+          <h3 class="ios-view-title">Berry Picnic</h3>
           <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetLola" aria-label="Hold to Reset" title="Hold to Reset">
             <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
 
-        <!-- Picnic Riverbank Stage with 3 Number Plates -->
-        <div style="flex:1; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-around; background:linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%); border-radius:24px; border:3px dashed #60a5fa; margin:14px 0; padding:12px; position:relative;">
-          
-          <!-- Lola Mascot Prompt -->
-          <div style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.85); padding:6px 16px; border-radius:9999px; border:2px solid #93c5fd;">
-            <span style="font-size:1.6rem;">🦦</span>
-            <span id="lola-speech" style="font-size:0.9rem; font-weight:800; color:#1e40af;">Count the berries into Lola’s basket!</span>
+        <!-- Picnic Meadow Stage -->
+        <div class="meadow-picnic-stage">
+          <!-- Lola Otter Mascot Prompt -->
+          <div style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.92); padding:6px 18px; border-radius:9999px; border:1.5px solid #d1fae5; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <svg viewBox="0 0 50 50" style="width:36px; height:36px; flex-shrink:0;">
+              <circle cx="14" cy="18" r="6" fill="#92400e"/>
+              <circle cx="36" cy="18" r="6" fill="#92400e"/>
+              <ellipse cx="25" cy="27" rx="17" ry="15" fill="#b45309"/>
+              <ellipse cx="25" cy="30" rx="10" ry="8" fill="#fef3c7"/>
+              <circle cx="19" cy="24" r="2.5" fill="#1f2937"/><circle cx="19.5" cy="23" r="0.8" fill="#ffffff"/>
+              <circle cx="31" cy="24" r="2.5" fill="#1f2937"/><circle cx="31.5" cy="23" r="0.8" fill="#ffffff"/>
+              <ellipse cx="25" cy="28" rx="3.5" ry="2.2" fill="#1f2937"/>
+              <path d="M22 31 Q25 34 28 31" stroke="#92400e" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span id="lola-speech" style="font-size:0.92rem; font-weight:800; color:#065f46; letter-spacing:-0.01em;">Count 3 sweet berries into Lola’s basket!</span>
           </div>
 
-          <!-- The Big Picnic Basket Target -->
-          <div id="lola-basket" onclick="tapAddBerry()" style="width:200px; height:120px; background:#b45309; border:4px solid #78350f; border-radius:28px 28px 50px 50px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(180,83,9,0.25); cursor:pointer; position:relative;">
-            <div style="width:120px; height:14px; background:#78350f; border-radius:6px; position:absolute; top:-10px;"></div>
-            <div id="basket-berries" style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center; padding:8px;"></div>
-            <span id="basket-count" style="font-size:1.5rem; font-weight:900; color:#ffffff; text-shadow:0 2px 4px rgba(0,0,0,0.3);">0 / 3</span>
+          <!-- The Handcrafted Woven Wicker Basket -->
+          <div id="lola-basket" onclick="tapAddBerry()" class="wicker-picnic-basket" title="Tap or drop berries here">
+            <svg viewBox="0 0 220 140" class="basket-svg-container">
+              <path d="M50 70 C50 14 170 14 170 70" stroke="#78350f" stroke-width="8" stroke-linecap="round" fill="none"/>
+              <path d="M50 70 C50 14 170 14 170 70" stroke="#b45309" stroke-width="4" stroke-dasharray="8 6" stroke-linecap="round" fill="none"/>
+              <path d="M30 68 Q110 82 190 68 L182 82 Q110 94 38 82 Z" fill="#fee2e2"/>
+              <path d="M30 68 Q110 82 190 68 L182 82 Q110 94 38 82 Z" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="6 6"/>
+              <path d="M28 72 L44 126 C46 132 54 136 62 136 L158 136 C166 136 174 132 176 126 L192 72 Z" fill="#b45309" stroke="#78350f" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M34 86 Q110 98 186 86 M38 102 Q110 114 182 102 M42 118 Q110 130 178 118" stroke="#78350f" stroke-width="2.5" fill="none"/>
+              <path d="M60 76 L66 132 M85 78 L90 134 M110 79 L110 135 M135 78 L130 134 M160 76 L154 132" stroke="rgba(120,53,15,0.35)" stroke-width="2.5" stroke-dasharray="5 5" fill="none"/>
+              <rect x="22" y="66" width="176" height="12" rx="6" fill="#d97706" stroke="#78350f" stroke-width="3"/>
+            </svg>
+            <div class="basket-content-area">
+              <div id="basket-berries" class="basket-berries-slot"></div>
+              <span id="basket-count" class="basket-count-badge">0 / 3</span>
+            </div>
           </div>
 
-          <div style="font-size:0.85rem; font-weight:800; color:#1e3a8a;">Tap the berry below to count! 🍓</div>
+          <div style="font-size:0.86rem; font-weight:800; color:#065f46; letter-spacing:-0.01em;">Tap or drag a fresh berry into the basket!</div>
         </div>
 
-        <!-- Berry Tray -->
-        <div style="width:100%; display:flex; justify-content:center; align-items:center; background:#eff6ff; border:2px solid #bfdbfe; border-radius:24px; padding:12px;">
-          <div onclick="tapAddBerry()" style="cursor:pointer; display:flex; align-items:center; gap:12px; background:#ffffff; padding:8px 24px; border-radius:9999px; border:3px solid #f87171; box-shadow:0 4px 12px rgba(239,68,68,0.2);" class="active:scale-95 transition-transform">
-            <span style="font-size:2.4rem;">🍓</span>
-            <span style="font-size:1.1rem; font-weight:900; color:#b91c1c;">Tap Berry!</span>
+        <!-- Fresh Plump Berry Tray -->
+        <div class="artisan-tray" style="background:#f0fdf4; border-color:#bbf7d0;">
+          <div id="lola-tray-berry-1" onclick="tapAddBerry()" class="berry-tray-item" title="Berry 1">
+            <svg viewBox="0 0 60 60">
+              <defs>
+                <radialGradient id="berryGrad1" cx="35%" cy="35%" r="65%">
+                  <stop offset="0%" stop-color="#ff4d6d"/>
+                  <stop offset="50%" stop-color="#e11d48"/>
+                  <stop offset="85%" stop-color="#9f1239"/>
+                  <stop offset="100%" stop-color="#4c0519"/>
+                </radialGradient>
+              </defs>
+              <path d="M30 12 C24 4 18 10 26 15 C18 18 22 24 28 18 C30 25 36 24 33 18 C39 22 43 16 35 15 C41 11 36 5 30 12 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.5"/>
+              <circle cx="30" cy="13" r="2.5" fill="#15803d"/>
+              <path d="M30 15 C18 15 12 25 14 38 C16 48 24 55 30 57 C36 55 44 48 46 38 C48 25 42 15 30 15 Z" fill="url(#berryGrad1)" stroke="#991b1b" stroke-width="2"/>
+              <ellipse cx="23" cy="26" rx="6" ry="11" fill="rgba(255,255,255,0.75)" transform="rotate(-25 23 26)"/>
+              <ellipse cx="24" cy="24" rx="2.5" ry="5" fill="#ffffff" transform="rotate(-25 24 24)"/>
+              <circle cx="30" cy="30" r="1.2" fill="#fef08a"/><circle cx="36" cy="34" r="1.2" fill="#fef08a"/>
+              <circle cx="24" cy="38" r="1.2" fill="#fef08a"/><circle cx="30" cy="44" r="1.2" fill="#fef08a"/>
+            </svg>
+          </div>
+          <div id="lola-tray-berry-2" onclick="tapAddBerry()" class="berry-tray-item" title="Berry 2">
+            <svg viewBox="0 0 60 60">
+              <path d="M30 12 C24 4 18 10 26 15 C18 18 22 24 28 18 C30 25 36 24 33 18 C39 22 43 16 35 15 C41 11 36 5 30 12 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.5"/>
+              <circle cx="30" cy="13" r="2.5" fill="#15803d"/>
+              <path d="M30 15 C18 15 12 25 14 38 C16 48 24 55 30 57 C36 55 44 48 46 38 C48 25 42 15 30 15 Z" fill="url(#berryGrad1)" stroke="#991b1b" stroke-width="2"/>
+              <ellipse cx="23" cy="26" rx="6" ry="11" fill="rgba(255,255,255,0.75)" transform="rotate(-25 23 26)"/>
+              <ellipse cx="24" cy="24" rx="2.5" ry="5" fill="#ffffff" transform="rotate(-25 24 24)"/>
+              <circle cx="30" cy="30" r="1.2" fill="#fef08a"/><circle cx="36" cy="34" r="1.2" fill="#fef08a"/>
+              <circle cx="24" cy="38" r="1.2" fill="#fef08a"/><circle cx="30" cy="44" r="1.2" fill="#fef08a"/>
+            </svg>
+          </div>
+          <div id="lola-tray-berry-3" onclick="tapAddBerry()" class="berry-tray-item" title="Berry 3">
+            <svg viewBox="0 0 60 60">
+              <path d="M30 12 C24 4 18 10 26 15 C18 18 22 24 28 18 C30 25 36 24 33 18 C39 22 43 16 35 15 C41 11 36 5 30 12 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.5"/>
+              <circle cx="30" cy="13" r="2.5" fill="#15803d"/>
+              <path d="M30 15 C18 15 12 25 14 38 C16 48 24 55 30 57 C36 55 44 48 46 38 C48 25 42 15 30 15 Z" fill="url(#berryGrad1)" stroke="#991b1b" stroke-width="2"/>
+              <ellipse cx="23" cy="26" rx="6" ry="11" fill="rgba(255,255,255,0.75)" transform="rotate(-25 23 26)"/>
+              <ellipse cx="24" cy="24" rx="2.5" ry="5" fill="#ffffff" transform="rotate(-25 24 24)"/>
+              <circle cx="30" cy="30" r="1.2" fill="#fef08a"/><circle cx="36" cy="34" r="1.2" fill="#fef08a"/>
+              <circle cx="24" cy="38" r="1.2" fill="#fef08a"/><circle cx="30" cy="44" r="1.2" fill="#fef08a"/>
+            </svg>
           </div>
         </div>
       </section>
@@ -1786,7 +2205,7 @@
           </button>
         </div>
 
-        <div id="penny-stage" onclick="jumpPenny(event)" style="flex:1; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; background:linear-gradient(180deg, #bae6fd 0%, #a7f3d0 100%); border-radius:24px; border:3px dashed #38bdf8; margin:14px 0; position:relative; overflow:hidden; cursor:pointer;">
+        <div id="penny-stage" onclick="jumpPenny(event)" class="countryside-puddle-stage">
           <div id="penny-splatters" style="position:absolute; inset:0; pointer-events:none;"></div>
 
           <!-- Penny -->
@@ -1811,33 +2230,54 @@
                 <path d="M58 108 L72 108 L72 118 L78 118 C78 122 60 122 58 120 Z" fill="#facc15" stroke="#ca8a04" stroke-width="2.5"/>
               </g>
             </svg>
-            <div id="penny-drop-zone" onclick="applyBootsDirectly()" style="position:absolute; bottom:-6px; left:8px; right:8px; height:38px; border:3px dashed #facc15; border-radius:16px; cursor:pointer;"></div>
+            <div id="penny-drop-zone" onclick="applyBootsDirectly()" style="position:absolute; bottom:-6px; left:8px; right:8px; height:38px; border:2px dashed #facc15; border-radius:16px; cursor:pointer;"></div>
           </div>
 
-          <!-- Mud Puddle -->
-          <div id="penny-puddle" style="width:280px; height:60px; background:#78350f; border-radius:50%; border:4px solid #92400e; margin-bottom:-14px; display:flex; align-items:center; justify-content:center;">
-            <span id="penny-tap-label" style="display:none; font-size:0.85rem; font-weight:900; color:#fde68a;">TAP TO JUMP! 💦</span>
+          <!-- Liquid Wet Mud Puddle -->
+          <div id="penny-puddle" class="mud-puddle-container" onclick="jumpPenny(event)">
+            <svg viewBox="0 0 290 74" class="mud-puddle-svg">
+              <defs>
+                <radialGradient id="mudGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#54260a"/>
+                  <stop offset="65%" stop-color="#3b1704"/>
+                  <stop offset="100%" stop-color="#240c02"/>
+                </radialGradient>
+                <linearGradient id="puddleSheen" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="rgba(186, 230, 253, 0.3)"/>
+                  <stop offset="45%" stop-color="rgba(255, 255, 255, 0.6)"/>
+                  <stop offset="65%" stop-color="rgba(186, 230, 253, 0.25)"/>
+                  <stop offset="100%" stop-color="transparent"/>
+                </linearGradient>
+              </defs>
+              <path d="M14 38 C14 18 70 8 145 8 C220 8 276 18 276 38 C276 58 215 68 145 68 C75 68 14 58 14 38 Z" fill="#78350f" opacity="0.4" transform="translate(0, 3)"/>
+              <path d="M12 36 C10 16 68 6 145 6 C222 6 278 16 278 36 C278 56 218 66 145 66 C72 66 14 56 12 36 Z" fill="url(#mudGrad)" stroke="#451a03" stroke-width="2.5"/>
+              <path d="M38 30 C55 18 120 14 190 18 C240 21 254 32 235 38 C200 42 140 38 80 40 C48 41 32 36 38 30 Z" fill="url(#puddleSheen)"/>
+              <ellipse cx="80" cy="24" rx="28" ry="6" fill="rgba(255, 255, 255, 0.55)"/>
+            </svg>
+            <span id="penny-tap-label" style="position:absolute; display:none; font-size:0.85rem; font-weight:900; color:#fde68a; text-shadow:0 1px 3px rgba(0,0,0,0.6); pointer-events:none; letter-spacing:0.03em;">TAP TO JUMP! 💦</span>
           </div>
         </div>
 
-        <div id="penny-tray" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:#fdf2f8; border:2px solid #fbcfe8; border-radius:24px; padding:12px 20px;">
+        <div id="penny-tray" class="artisan-tray" style="background:#fdf2f8; border-color:#fbcfe8; justify-content:space-between; padding:12px 20px;">
           <div id="penny-drag-boots" onclick="applyBootsDirectly()" style="cursor:grab; touch-action:none;">
-            <svg viewBox="0 0 80 50" style="width:84px; height:52px;">
+            <svg viewBox="0 0 80 50" style="width:84px; height:52px; filter:drop-shadow(0 4px 10px rgba(234,179,8,0.28));">
               <path d="M10 6 L26 6 L26 24 L36 26 C38 36 14 40 10 34 Z" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
+              <path d="M14 10 L22 10 L22 22 L14 22 Z" fill="rgba(255,255,255,0.4)"/>
               <path d="M44 6 L60 6 L60 24 L70 26 C72 36 48 40 44 34 Z" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
+              <path d="M48 10 L56 10 L56 22 L48 22 Z" fill="rgba(255,255,255,0.4)"/>
             </svg>
           </div>
-          <span style="font-size:0.95rem; font-weight:800; color:#db2777;">Drag or tap boots to wear!</span>
+          <span style="font-size:0.95rem; font-weight:800; color:#be185d;">Drag or tap boots to wear!</span>
         </div>
 
-        <div id="penny-progress" style="width:100%; display:none; justify-content:space-between; align-items:center; background:#ecfdf5; border:2px solid #a7f3d0; border-radius:24px; padding:12px 20px;">
+        <div id="penny-progress" class="artisan-tray" style="display:none; justify-content:space-between; background:#ecfdf5; border-color:#a7f3d0; padding:12px 20px;">
           <span style="font-size:0.95rem; font-weight:800; color:#065f46;">Splashes:</span>
           <div style="display:flex; gap:10px;" id="penny-dots">
-            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1;"></div>
-            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1;"></div>
-            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1;"></div>
-            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1;"></div>
-            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1;"></div>
+            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1; transition:all 0.3s;"></div>
+            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1; transition:all 0.3s;"></div>
+            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1; transition:all 0.3s;"></div>
+            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1; transition:all 0.3s;"></div>
+            <div class="pdot" style="width:18px; height:18px; border-radius:50%; background:#cbd5e1; transition:all 0.3s;"></div>
           </div>
           <span style="font-size:0.85rem; font-weight:800; color:#059669;">5 to Giggle!</span>
         </div>
@@ -1856,35 +2296,82 @@
           </button>
         </div>
 
-        <div style="flex:1; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:12px 6px; align-content:center; background:linear-gradient(180deg, #fdf4ff 0%, #fae8ff 100%); border-radius:24px; border:3px dashed #d8b4fe; margin:14px 0;">
-          <!-- Dog -->
-          <div onclick="tapAnimal('dog', 392, 'Woof! Woof!', '🐶')" style="background:#ffffff; border:3px solid #fbcfe8; border-radius:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px 8px; cursor:pointer; box-shadow:0 6px 16px rgba(192,38,211,0.12);" class="active:scale-95">
-            <span style="font-size:3.8rem; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1));">🐶</span>
-            <span style="font-size:1rem; font-weight:900; color:#86198f; margin-top:6px;">Puppy</span>
-            <span style="font-size:0.75rem; font-weight:700; color:#c026d3;">"Woof Woof!"</span>
+        <div class="animal-gallery-grid">
+          <!-- Dog Card -->
+          <div onclick="tapAnimal('dog', 392, 'Woof! Woof!', 'dog')" class="animal-portrait-card">
+            <svg viewBox="0 0 100 100">
+              <ellipse cx="28" cy="38" rx="10" ry="22" fill="#b45309" transform="rotate(-15 28 38)"/>
+              <ellipse cx="72" cy="38" rx="10" ry="22" fill="#b45309" transform="rotate(15 72 38)"/>
+              <ellipse cx="50" cy="56" rx="30" ry="26" fill="#fde68a" stroke="#d97706" stroke-width="2.5"/>
+              <ellipse cx="50" cy="62" rx="18" ry="14" fill="#ffffff"/>
+              <circle cx="38" cy="50" r="3.5" fill="#1f2937"/><circle cx="39" cy="49" r="1.2" fill="#ffffff"/>
+              <circle cx="62" cy="50" r="3.5" fill="#1f2937"/><circle cx="63" cy="49" r="1.2" fill="#ffffff"/>
+              <ellipse cx="50" cy="58" rx="5" ry="3.5" fill="#1f2937"/>
+              <path d="M45 64 Q50 69 55 64" stroke="#1f2937" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M48 66 C48 72 52 72 52 66 Z" fill="#f43f5e"/>
+            </svg>
+            <span class="animal-name">Puppy</span>
+            <span class="animal-call">"Woof Woof!"</span>
           </div>
-          <!-- Cat -->
-          <div onclick="tapAnimal('cat', 523.25, 'Meow! Meow!', '🐱')" style="background:#ffffff; border:3px solid #fbcfe8; border-radius:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px 8px; cursor:pointer; box-shadow:0 6px 16px rgba(192,38,211,0.12);" class="active:scale-95">
-            <span style="font-size:3.8rem; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1));">🐱</span>
-            <span style="font-size:1rem; font-weight:900; color:#86198f; margin-top:6px;">Kitty</span>
-            <span style="font-size:0.75rem; font-weight:700; color:#c026d3;">"Meow Meow!"</span>
+
+          <!-- Cat Card -->
+          <div onclick="tapAnimal('cat', 523.25, 'Meow! Meow!', 'cat')" class="animal-portrait-card">
+            <svg viewBox="0 0 100 100">
+              <polygon points="24,44 28,14 48,36" fill="#fb923c" stroke="#ea580c" stroke-width="2"/>
+              <polygon points="28,40 31,20 44,34" fill="#fbcfe8"/>
+              <polygon points="76,44 72,14 52,36" fill="#fb923c" stroke="#ea580c" stroke-width="2"/>
+              <polygon points="72,40 69,20 56,34" fill="#fbcfe8"/>
+              <circle cx="50" cy="56" r="28" fill="#fed7aa" stroke="#ea580c" stroke-width="2.5"/>
+              <ellipse cx="38" cy="50" rx="4" ry="4.5" fill="#047857"/><circle cx="38" cy="50" r="2.5" fill="#064e3b"/><circle cx="39" cy="48" r="1.2" fill="#ffffff"/>
+              <ellipse cx="62" cy="50" rx="4" ry="4.5" fill="#047857"/><circle cx="62" cy="50" r="2.5" fill="#064e3b"/><circle cx="63" cy="48" r="1.2" fill="#ffffff"/>
+              <polygon points="50,58 46,54 54,54" fill="#f472b6"/>
+              <path d="M46 62 Q50 66 54 62" stroke="#7c2d12" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <line x1="22" y1="56" x2="36" y2="58" stroke="#7c2d12" stroke-width="1.8"/>
+              <line x1="22" y1="62" x2="36" y2="61" stroke="#7c2d12" stroke-width="1.8"/>
+              <line x1="78" y1="56" x2="64" y2="58" stroke="#7c2d12" stroke-width="1.8"/>
+              <line x1="78" y1="62" x2="64" y2="61" stroke="#7c2d12" stroke-width="1.8"/>
+            </svg>
+            <span class="animal-name">Kitty</span>
+            <span class="animal-call">"Meow Meow!"</span>
           </div>
-          <!-- Frog -->
-          <div onclick="tapAnimal('frog', 261.63, 'Ribbit! Ribbit!', '🐸')" style="background:#ffffff; border:3px solid #fbcfe8; border-radius:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px 8px; cursor:pointer; box-shadow:0 6px 16px rgba(192,38,211,0.12);" class="active:scale-95">
-            <span style="font-size:3.8rem; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1));">🐸</span>
-            <span style="font-size:1rem; font-weight:900; color:#86198f; margin-top:6px;">Froggy</span>
-            <span style="font-size:0.75rem; font-weight:700; color:#c026d3;">"Ribbit Ribbit!"</span>
+
+          <!-- Frog Card -->
+          <div onclick="tapAnimal('frog', 261.63, 'Ribbit! Ribbit!', 'frog')" class="animal-portrait-card">
+            <svg viewBox="0 0 100 100">
+              <circle cx="34" cy="38" r="12" fill="#22c55e" stroke="#15803d" stroke-width="2.5"/>
+              <circle cx="34" cy="38" r="7" fill="#ffffff"/><circle cx="34" cy="38" r="4" fill="#0f172a"/><circle cx="36" cy="36" r="1.5" fill="#ffffff"/>
+              <circle cx="66" cy="38" r="12" fill="#22c55e" stroke="#15803d" stroke-width="2.5"/>
+              <circle cx="66" cy="38" r="7" fill="#ffffff"/><circle cx="66" cy="38" r="4" fill="#0f172a"/><circle cx="68" cy="36" r="1.5" fill="#ffffff"/>
+              <ellipse cx="50" cy="58" rx="34" ry="24" fill="#4ade80" stroke="#15803d" stroke-width="2.5"/>
+              <ellipse cx="50" cy="64" rx="20" ry="12" fill="#fef08a"/>
+              <path d="M34 56 Q50 68 66 56" stroke="#15803d" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <circle cx="28" cy="58" r="4.5" fill="#f472b6" opacity="0.6"/>
+              <circle cx="72" cy="58" r="4.5" fill="#f472b6" opacity="0.6"/>
+            </svg>
+            <span class="animal-name">Froggy</span>
+            <span class="animal-call">"Ribbit Ribbit!"</span>
           </div>
-          <!-- Chick -->
-          <div onclick="tapAnimal('chick', 659.25, 'Cheep! Cheep!', '🐥')" style="background:#ffffff; border:3px solid #fbcfe8; border-radius:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px 8px; cursor:pointer; box-shadow:0 6px 16px rgba(192,38,211,0.12);" class="active:scale-95">
-            <span style="font-size:3.8rem; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1));">🐥</span>
-            <span style="font-size:1rem; font-weight:900; color:#86198f; margin-top:6px;">Chick</span>
-            <span style="font-size:0.75rem; font-weight:700; color:#c026d3;">"Cheep Cheep!"</span>
+
+          <!-- Chick Card -->
+          <div onclick="tapAnimal('chick', 659.25, 'Cheep! Cheep!', 'chick')" class="animal-portrait-card">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="54" r="28" fill="#fde047" stroke="#ca8a04" stroke-width="2.5"/>
+              <path d="M22 54 Q14 58 22 66" stroke="#ca8a04" stroke-width="2.5" fill="#fef08a"/>
+              <path d="M78 54 Q86 58 78 66" stroke="#ca8a04" stroke-width="2.5" fill="#fef08a"/>
+              <circle cx="41" cy="46" r="3.5" fill="#1f2937"/><circle cx="42" cy="45" r="1.2" fill="#ffffff"/>
+              <circle cx="59" cy="46" r="3.5" fill="#1f2937"/><circle cx="60" cy="45" r="1.2" fill="#ffffff"/>
+              <polygon points="50,56 43,50 57,50" fill="#f97316" stroke="#c2410c" stroke-width="1.5"/>
+              <circle cx="33" cy="53" r="4" fill="#fda4af" opacity="0.7"/>
+              <circle cx="67" cy="53" r="4" fill="#fda4af" opacity="0.7"/>
+              <path d="M50 26 Q52 18 48 14" stroke="#ca8a04" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="animal-name">Chick</span>
+            <span class="animal-call">"Cheep Cheep!"</span>
           </div>
         </div>
 
-        <div style="width:100%; text-align:center; background:#fdf2f8; border:2px solid #fbcfe8; border-radius:20px; padding:10px;">
-          <span id="animal-speech" style="font-size:0.95rem; font-weight:800; color:#9d174d;">Tap an animal to hear them sing!</span>
+        <div class="artisan-tray" style="background:#fdf2f8; border-color:#fbcfe8; text-align:center; padding:10px 16px; justify-content:center;">
+          <span id="animal-speech" style="font-size:0.95rem; font-weight:800; color:#831843;">Tap an animal to hear them sing!</span>
         </div>
       </section>
 
@@ -1901,25 +2388,80 @@
           </button>
         </div>
 
-        <div style="flex:1; width:100%; background:#ffffff; border-radius:24px; border:3px dashed #c084fc; margin:12px 0; position:relative; overflow:hidden;">
+        <!-- 100% Watercolor Paper Canvas -->
+        <div class="scribble-paper-stage">
           <canvas id="scribbleCanvas" style="width:100%; height:100%; display:block; touch-action:none;"></canvas>
-          <div id="scribble-hint" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; color:#a855f7; font-size:1.1rem; font-weight:800; opacity:0.6;">
-            ✨ Touch & Scribble Anywhere! ✨
+          <div id="scribble-hint" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; color:#9333ea; font-size:1.05rem; font-weight:800; opacity:0.6; letter-spacing:0.02em;">
+            Touch & Scribble Anywhere
           </div>
         </div>
 
-        <!-- Color Crayons Tray -->
-        <div style="width:100%; display:flex; justify-content:space-around; align-items:center; background:#faf5ff; border:2px solid #e9d5ff; border-radius:24px; padding:10px 14px;">
-          <button onclick="setScribbleColor('rainbow')" style="border:none; background:linear-gradient(90deg, #ef4444, #f59e0b, #10b981, #3b82f6); color:#fff; font-size:0.85rem; font-weight:900; padding:8px 14px; border-radius:9999px; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.15);">🌈 Rainbow</button>
-          <button onclick="setScribbleColor('#ef4444')" style="border:none; width:36px; height:36px; border-radius:50%; background:#ef4444; cursor:pointer; box-shadow:0 3px 8px rgba(239,68,68,0.3);"></button>
-          <button onclick="setScribbleColor('#f59e0b')" style="border:none; width:36px; height:36px; border-radius:50%; background:#f59e0b; cursor:pointer; box-shadow:0 3px 8px rgba(245,158,11,0.3);"></button>
-          <button onclick="setScribbleColor('#10b981')" style="border:none; width:36px; height:36px; border-radius:50%; background:#10b981; cursor:pointer; box-shadow:0 3px 8px rgba(16,185,129,0.3);"></button>
-          <button onclick="setScribbleColor('#3b82f6')" style="border:none; width:36px; height:36px; border-radius:50%; background:#3b82f6; cursor:pointer; box-shadow:0 3px 8px rgba(59,130,246,0.3);"></button>
-          <button onclick="addSparkleStar()" style="border:none; background:#fef08a; font-size:1.3rem; padding:4px 10px; border-radius:9999px; cursor:pointer;" title="Stamp Star">⭐</button>
+        <!-- Artist Wax Crayons Tray -->
+        <div class="artisan-tray" style="background:#faf5ff; border-color:#e9d5ff; padding:10px 12px; justify-content:space-around;">
+          <!-- Rainbow Crayon -->
+          <button onclick="setScribbleColor('rainbow')" id="crayon-rainbow" class="crayon-tool-btn active-crayon" title="Rainbow Crayon">
+            <svg viewBox="0 0 36 50" style="width:34px; height:46px;">
+              <defs>
+                <linearGradient id="rbCrayon" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ef4444"/>
+                  <stop offset="25%" stop-color="#f59e0b"/>
+                  <stop offset="50%" stop-color="#10b981"/>
+                  <stop offset="75%" stop-color="#3b82f6"/>
+                  <stop offset="100%" stop-color="#8b5cf6"/>
+                </linearGradient>
+              </defs>
+              <polygon points="18,2 8,14 28,14" fill="url(#rbCrayon)"/>
+              <rect x="8" y="14" width="20" height="32" rx="3" fill="url(#rbCrayon)" stroke="#7c3aed" stroke-width="1.5"/>
+              <rect x="9" y="22" width="18" height="14" rx="2" fill="#ffffff" opacity="0.85"/>
+              <line x1="12" y1="29" x2="24" y2="29" stroke="#7c3aed" stroke-width="2"/>
+            </svg>
+          </button>
+          <!-- Red Crayon -->
+          <button onclick="setScribbleColor('#ef4444')" id="crayon-red" class="crayon-tool-btn" title="Red Crayon">
+            <svg viewBox="0 0 36 50" style="width:34px; height:46px;">
+              <polygon points="18,2 8,14 28,14" fill="#ef4444"/>
+              <rect x="8" y="14" width="20" height="32" rx="3" fill="#ef4444" stroke="#dc2626" stroke-width="1.5"/>
+              <rect x="9" y="22" width="18" height="14" rx="2" fill="#fee2e2"/>
+              <line x1="12" y1="29" x2="24" y2="29" stroke="#b91c1c" stroke-width="2"/>
+            </svg>
+          </button>
+          <!-- Yellow Crayon -->
+          <button onclick="setScribbleColor('#f59e0b')" id="crayon-yellow" class="crayon-tool-btn" title="Yellow Crayon">
+            <svg viewBox="0 0 36 50" style="width:34px; height:46px;">
+              <polygon points="18,2 8,14 28,14" fill="#f59e0b"/>
+              <rect x="8" y="14" width="20" height="32" rx="3" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"/>
+              <rect x="9" y="22" width="18" height="14" rx="2" fill="#fef3c7"/>
+              <line x1="12" y1="29" x2="24" y2="29" stroke="#b45309" stroke-width="2"/>
+            </svg>
+          </button>
+          <!-- Green Crayon -->
+          <button onclick="setScribbleColor('#10b981')" id="crayon-green" class="crayon-tool-btn" title="Green Crayon">
+            <svg viewBox="0 0 36 50" style="width:34px; height:46px;">
+              <polygon points="18,2 8,14 28,14" fill="#10b981"/>
+              <rect x="8" y="14" width="20" height="32" rx="3" fill="#10b981" stroke="#059669" stroke-width="1.5"/>
+              <rect x="9" y="22" width="18" height="14" rx="2" fill="#d1fae5"/>
+              <line x1="12" y1="29" x2="24" y2="29" stroke="#047857" stroke-width="2"/>
+            </svg>
+          </button>
+          <!-- Blue Crayon -->
+          <button onclick="setScribbleColor('#3b82f6')" id="crayon-blue" class="crayon-tool-btn" title="Blue Crayon">
+            <svg viewBox="0 0 36 50" style="width:34px; height:46px;">
+              <polygon points="18,2 8,14 28,14" fill="#3b82f6"/>
+              <rect x="8" y="14" width="20" height="32" rx="3" fill="#3b82f6" stroke="#2563eb" stroke-width="1.5"/>
+              <rect x="9" y="22" width="18" height="14" rx="2" fill="#dbeafe"/>
+              <line x1="12" y1="29" x2="24" y2="29" stroke="#1d4ed8" stroke-width="2"/>
+            </svg>
+          </button>
+          <!-- Star Tool Button -->
+          <button onclick="addSparkleStar()" class="crayon-tool-btn" title="Golden Star Stamp" style="margin-left:4px;">
+            <svg viewBox="0 0 44 44" style="width:38px; height:38px; filter:drop-shadow(0 4px 8px rgba(245,158,11,0.35));">
+              <polygon points="22,2 26,16 40,16 29,25 33,39 22,30 11,39 15,25 4,16 18,16" fill="#facc15" stroke="#d97706" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle cx="22" cy="22" r="5" fill="#fffbeb"/>
+            </svg>
+          </button>
         </div>
       </section>
-
-    </main>
+</main>
 
     <!-- UNMISSABLE TODDLER APPRAISAL MODAL -->
     <div id="levelAppraisalModal">
@@ -3644,6 +4186,98 @@
       }
     }
 
+    // --- FOLEY ACOUSTIC SYNTHESIS FOR TODDLER WORLDS ---
+    function playBerryPlop(count) {
+      initAudio();
+      if (!audioCtx) return;
+      try {
+        playWaterPlop(1.1 + count * 0.15, 0.22);
+        setTimeout(() => playNote(523.25 + count * 85, 0.35, 'sine'), 40);
+      } catch (e) {}
+    }
+
+    function playMudSplash() {
+      initAudio();
+      if (!audioCtx) return;
+      try {
+        playWaterPlop(0.72, 0.32);
+        setTimeout(() => playWaterPlop(1.25, 0.18), 50);
+        playWetPaperWash(0.12);
+        playSnort();
+      } catch (e) {}
+    }
+
+    function playAnimalVoice(name) {
+      initAudio();
+      if (!audioCtx) return;
+      try {
+        const now = audioCtx.currentTime;
+        if (name === 'dog') {
+          // Playful dog bark (dual downward pitch glide)
+          [0, 0.16].forEach((delay) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(360, now + delay);
+            osc.frequency.exponentialRampToValueAtTime(140, now + delay + 0.12);
+            gain.gain.setValueAtTime(0.25, now + delay);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.14);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(now + delay); osc.stop(now + delay + 0.15);
+          });
+          playNote(440, 0.4, 'sine');
+        } else if (name === 'cat') {
+          // Sweet melodic meow glide
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(420, now);
+          osc.frequency.linearRampToValueAtTime(680, now + 0.18);
+          osc.frequency.exponentialRampToValueAtTime(460, now + 0.42);
+          gain.gain.setValueAtTime(0.001, now);
+          gain.gain.linearRampToValueAtTime(0.24, now + 0.1);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          osc.start(now); osc.stop(now + 0.46);
+          playNote(659.25, 0.45, 'sine');
+        } else if (name === 'frog') {
+          // Resonant throaty ribbit with AM flutter
+          const osc = audioCtx.createOscillator();
+          const mod = audioCtx.createOscillator();
+          const modGain = audioCtx.createGain();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(160, now);
+          osc.frequency.linearRampToValueAtTime(210, now + 0.12);
+          osc.frequency.linearRampToValueAtTime(130, now + 0.28);
+          mod.frequency.setValueAtTime(48, now);
+          modGain.gain.setValueAtTime(40, now);
+          mod.connect(osc.frequency);
+          gain.gain.setValueAtTime(0.22, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          mod.start(now); osc.start(now);
+          mod.stop(now + 0.3); osc.stop(now + 0.3);
+          playNote(329.63, 0.35, 'triangle');
+        } else if (name === 'chick') {
+          // High sweet dual chirp
+          [0, 0.13].forEach((delay) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(1800, now + delay);
+            osc.frequency.exponentialRampToValueAtTime(2600, now + delay + 0.05);
+            osc.frequency.exponentialRampToValueAtTime(1900, now + delay + 0.1);
+            gain.gain.setValueAtTime(0.18, now + delay);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.11);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(now + delay); osc.stop(now + delay + 0.12);
+          });
+          playNote(783.99, 0.38, 'sine');
+        }
+      } catch (e) {}
+    }
+
     // --- GAME 2: PIP (SHAPES & PUZZLES) ---
     let pipSolved = 0;
     const pipBlocks = document.querySelectorAll('.pip-block');
@@ -3719,7 +4353,6 @@
       });
       const endDrag = (e) => {
         if (!active) return; active = false; block.releasePointerCapture(e.pointerId);
-        const bRect = block.getBoundingClientRect();
         let matched = false;
 
         // If toddler tapped without dragging far, snap immediately
@@ -3728,6 +4361,7 @@
           return;
         }
 
+        const bRect = block.getBoundingClientRect();
         pipSockets.forEach(socket => {
           const sRect = socket.getBoundingClientRect();
           const overlap = !(bRect.right < sRect.left - 25 || bRect.left > sRect.right + 25 || bRect.bottom < sRect.top - 25 || bRect.top > sRect.bottom + 25);
@@ -3767,21 +4401,39 @@
     let lolaBerries = 0;
     const maxLolaBerries = 3;
 
+    function createBerryBasketSvg() {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'pop-in';
+      wrapper.innerHTML = `<svg viewBox="0 0 60 60" style="width:44px; height:44px; filter:drop-shadow(0 4px 8px rgba(185,28,28,0.3));">
+        <path d="M30 12 C24 4 18 10 26 15 C18 18 22 24 28 18 C30 25 36 24 33 18 C39 22 43 16 35 15 C41 11 36 5 30 12 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.5"/>
+        <circle cx="30" cy="13" r="2.5" fill="#15803d"/>
+        <path d="M30 15 C18 15 12 25 14 38 C16 48 24 55 30 57 C36 55 44 48 46 38 C48 25 42 15 30 15 Z" fill="#e11d48" stroke="#991b1b" stroke-width="2"/>
+        <ellipse cx="23" cy="26" rx="6" ry="11" fill="rgba(255,255,255,0.75)" transform="rotate(-25 23 26)"/>
+        <ellipse cx="24" cy="24" rx="2.5" ry="5" fill="#ffffff" transform="rotate(-25 24 24)"/>
+      </svg>`;
+      return wrapper;
+    }
+
     function tapAddBerry() {
       if (lolaBerries >= maxLolaBerries) return;
       lolaBerries++;
-      playNote(400 + lolaBerries * 100, 0.3, 'sine');
+      playBerryPlop(lolaBerries);
 
-      const countLabels = ["One! 🍓", "Two! 🍓🍓", "Three! 🍓🍓🍓"];
+      const countLabels = ["One sweet berry! 🍓", "Two sweet berries! 🍓🍓", "Three! Picnic time! 🧺"];
       document.getElementById('lola-speech').textContent = countLabels[lolaBerries - 1];
       document.getElementById('basket-count').textContent = `${lolaBerries} / 3`;
 
+      // Hide corresponding tray berry
+      const trayBerry = document.getElementById(`lola-tray-berry-${lolaBerries}`);
+      if (trayBerry) {
+        trayBerry.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        trayBerry.style.transform = 'scale(0)';
+        trayBerry.style.opacity = '0.3';
+        trayBerry.style.pointerEvents = 'none';
+      }
+
       // Add visual berry to basket
-      const berryElem = document.createElement('span');
-      berryElem.textContent = '🍓';
-      berryElem.style.fontSize = '1.8rem';
-      berryElem.className = 'pop-in';
-      document.getElementById('basket-berries').appendChild(berryElem);
+      document.getElementById('basket-berries').appendChild(createBerryBasketSvg());
 
       speakPraise(String(lolaBerries));
 
@@ -3799,11 +4451,58 @@
       }
     }
 
+    // Pointer drag support for tray berries
+    [1, 2, 3].forEach(num => {
+      const el = document.getElementById(`lola-tray-berry-${num}`);
+      if (!el) return;
+      let active = false, startX, startY, moved = false;
+      el.addEventListener('pointerdown', (e) => {
+        initAudio(); active = true; moved = false; el.setPointerCapture(e.pointerId);
+        startX = e.clientX; startY = e.clientY;
+        el.style.transition = 'none'; el.style.zIndex = '50';
+        playWaterPlop(1.4, 0.12);
+      });
+      el.addEventListener('pointermove', (e) => {
+        if (!active) return;
+        const dx = e.clientX - startX; const dy = e.clientY - startY;
+        if (Math.hypot(dx, dy) > 8) moved = true;
+        el.style.transform = `translate(${dx}px, ${dy}px) scale(1.2)`;
+      });
+      const endDrag = (e) => {
+        if (!active) return; active = false; el.releasePointerCapture(e.pointerId);
+        if (!moved) {
+          tapAddBerry();
+          return;
+        }
+        const bRect = el.getBoundingClientRect();
+        const basket = document.getElementById('lola-basket');
+        const kRect = basket ? basket.getBoundingClientRect() : null;
+        const overlap = kRect && !(bRect.right < kRect.left - 20 || bRect.left > kRect.right + 20 || bRect.bottom < kRect.top - 20 || bRect.top > kRect.bottom + 20);
+        if (overlap) {
+          tapAddBerry();
+        } else {
+          el.style.transition = 'transform 0.3s ease';
+          el.style.transform = 'translate(0, 0) scale(1)';
+        }
+      };
+      el.addEventListener('pointerup', endDrag);
+      el.addEventListener('pointercancel', endDrag);
+    });
+
     function resetLola() {
       lolaBerries = 0;
       document.getElementById('basket-berries').innerHTML = '';
       document.getElementById('basket-count').textContent = '0 / 3';
-      document.getElementById('lola-speech').textContent = "Count the berries into Lola’s basket!";
+      document.getElementById('lola-speech').textContent = "Count 3 sweet berries into Lola’s basket!";
+      [1, 2, 3].forEach(num => {
+        const el = document.getElementById(`lola-tray-berry-${num}`);
+        if (el) {
+          el.style.transition = 'all 0.3s ease';
+          el.style.transform = 'translate(0, 0) scale(1)';
+          el.style.opacity = '1';
+          el.style.pointerEvents = 'auto';
+        }
+      });
     }
 
     // --- GAME 4: PENNY (PRETEND PLAY & ROUTINES) ---
@@ -3816,8 +4515,8 @@
     function applyBootsDirectly() {
       if (pennyHasBoots) return;
       pennyHasBoots = true;
-      playSnort();
-      playNote(587, 0.3);
+      playWoodClack(1.35);
+      setTimeout(() => playNote(587.33, 0.35, 'sine'), 40);
       document.getElementById('penny-bare-legs').style.display = 'none';
       document.getElementById('penny-boots').style.display = 'block';
       dropZone.style.display = 'none';
@@ -3833,6 +4532,7 @@
       initAudio(); activeB = true; dragBoots.setPointerCapture(e.pointerId);
       bx = e.clientX; by = e.clientY;
       dragBoots.style.transition = 'none'; dragBoots.style.zIndex = '50';
+      playWaterPlop(1.4, 0.14);
     });
     dragBoots.addEventListener('pointermove', (e) => {
       if (!activeB) return;
@@ -3853,11 +4553,24 @@
     dragBoots.addEventListener('pointerup', releaseBoots);
     dragBoots.addEventListener('pointercancel', releaseBoots);
 
+    function triggerPuddleRipple() {
+      const puddle = document.getElementById('penny-puddle');
+      if (!puddle) return;
+      const rip = document.createElement('div');
+      rip.className = 'puddle-ripple';
+      rip.style.left = '50%';
+      rip.style.top = '50%';
+      rip.style.transform = 'translate(-50%, -50%)';
+      puddle.appendChild(rip);
+      setTimeout(() => rip.remove(), 720);
+    }
+
     function jumpPenny(e) {
       if (!pennyHasBoots || pennyJumps >= maxPennyJumps) return;
       pennyJumps++;
-      playSnort();
-      playNote(260, 0.2, 'triangle');
+      playMudSplash();
+      triggerPuddleRipple();
+
       const char = document.getElementById('penny-character');
       char.classList.remove('jump-anim');
       void char.offsetWidth;
@@ -3870,18 +4583,18 @@
       }
 
       const splatters = document.getElementById('penny-splatters');
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 9; i++) {
         const drop = document.createElement('div');
         drop.className = 'splash-drop';
         drop.style.position = 'absolute';
         drop.style.bottom = '45px';
         drop.style.left = '50%';
-        drop.style.width = '16px';
-        drop.style.height = '16px';
+        drop.style.width = `${14 + Math.random() * 8}px`;
+        drop.style.height = `${14 + Math.random() * 8}px`;
         drop.style.borderRadius = '50%';
-        drop.style.background = '#78350f';
-        const dx = (Math.random() - 0.5) * 180;
-        const dy = -(Math.random() * 90 + 35);
+        drop.style.background = Math.random() > 0.4 ? '#54260a' : '#78350f';
+        const dx = (Math.random() - 0.5) * 200;
+        const dy = -(Math.random() * 100 + 40);
         drop.style.setProperty('--dx', `${dx}px`);
         drop.style.setProperty('--dy', `${dy}px`);
         splatters.appendChild(drop);
@@ -3890,7 +4603,6 @@
 
       if (pennyJumps === maxPennyJumps) {
         setTimeout(() => {
-          playSnort();
           showLevelAppraisal('penny', 'Splash Champion! 💦', 'Penny had so much fun jumping in the muddy puddles!', '🐷', 'home', 'Splash champion! You did it!');
         }, 400);
       }
@@ -3918,13 +4630,12 @@
 
     // --- GAME 5: ANIMAL SOUNDS ---
     let animalsTapped = new Set();
-    function tapAnimal(name, freq, soundText, emoji) {
+    function tapAnimal(name, freq, soundText, kind) {
       initAudio();
       animalsTapped.add(name);
-      playNote(freq, 0.4, 'sine');
-      setTimeout(() => playNote(freq * 1.25, 0.35, 'triangle'), 100);
+      playAnimalVoice(name);
 
-      document.getElementById('animal-speech').textContent = `${emoji} ${name.toUpperCase()}: ${soundText}`;
+      document.getElementById('animal-speech').textContent = `${name.toUpperCase()}: ${soundText}`;
       speakPraise(`${name} says ${soundText}`);
 
       if (animalsTapped.size === 4) {
@@ -3939,10 +4650,12 @@
       document.getElementById('animal-speech').textContent = 'Tap an animal to hear them sing!';
     }
 
-    // --- GAME 6: MAGIC SCRIBBLES ---
+    // --- GAME 6: MAGIC SCRIBBLES (WATERCOLOR STUDIO) ---
     let scribbleColor = 'rainbow';
     let scribbleHue = 0;
-    let scribbleCanvas, scribbleCtx, isDrawing = false;
+    let scribbleCanvas, scribbleCtx;
+    const scribblePointers = new Map();
+    let lastWashAudioTime = 0;
 
     function initScribble() {
       scribbleCanvas = document.getElementById('scribbleCanvas');
@@ -3953,7 +4666,6 @@
       scribbleCtx = scribbleCanvas.getContext('2d');
       scribbleCtx.lineCap = 'round';
       scribbleCtx.lineJoin = 'round';
-      scribbleCtx.lineWidth = 14;
 
       const getPos = (e) => {
         const r = scribbleCanvas.getBoundingClientRect();
@@ -3962,35 +4674,62 @@
 
       scribbleCanvas.addEventListener('pointerdown', (e) => {
         initAudio();
-        isDrawing = true;
         scribbleCanvas.setPointerCapture(e.pointerId);
         document.getElementById('scribble-hint').style.display = 'none';
         const pos = getPos(e);
-        scribbleCtx.beginPath();
-        scribbleCtx.moveTo(pos.x, pos.y);
-        playNote(400 + Math.random() * 200, 0.15, 'sine');
+        scribblePointers.set(e.pointerId, {
+          x: pos.x,
+          y: pos.y,
+          lastX: pos.x,
+          lastY: pos.y,
+          lastTime: Date.now()
+        });
+
+        playWetPaperWash(0.08);
+        playWaterPlop(1.4, 0.1);
       });
 
       scribbleCanvas.addEventListener('pointermove', (e) => {
-        if (!isDrawing) return;
+        const pt = scribblePointers.get(e.pointerId);
+        if (!pt) return;
         const pos = getPos(e);
+        const now = Date.now();
+        const dt = Math.max(1, now - pt.lastTime);
+        const dist = Math.hypot(pos.x - pt.lastX, pos.y - pt.lastY);
+        const speed = dist / dt;
+
+        // Dynamic fluid watercolor stroke width: 14 to 26
+        const strokeWidth = Math.max(12, Math.min(26, 26 - speed * 4));
+
+        scribbleCtx.beginPath();
+        scribbleCtx.moveTo(pt.lastX, pt.lastY);
+        scribbleCtx.lineTo(pos.x, pos.y);
+        scribbleCtx.lineWidth = strokeWidth;
+
         if (scribbleColor === 'rainbow') {
-          scribbleHue = (scribbleHue + 5) % 360;
-          scribbleCtx.strokeStyle = `hsl(${scribbleHue}, 90%, 55%)`;
-          scribbleCtx.shadowColor = `hsl(${scribbleHue}, 90%, 65%)`;
-          scribbleCtx.shadowBlur = 10;
+          scribbleHue = (scribbleHue + 4) % 360;
+          scribbleCtx.strokeStyle = `hsla(${scribbleHue}, 90%, 55%, 0.85)`;
+          scribbleCtx.shadowColor = `hsla(${scribbleHue}, 90%, 65%, 0.4)`;
+          scribbleCtx.shadowBlur = 8;
         } else {
           scribbleCtx.strokeStyle = scribbleColor;
           scribbleCtx.shadowColor = scribbleColor;
-          scribbleCtx.shadowBlur = 8;
+          scribbleCtx.shadowBlur = 6;
         }
-        scribbleCtx.lineTo(pos.x, pos.y);
         scribbleCtx.stroke();
+
+        pt.lastX = pos.x;
+        pt.lastY = pos.y;
+        pt.lastTime = now;
+
+        if (now - lastWashAudioTime > 420) {
+          lastWashAudioTime = now;
+          playWetPaperWash(0.05);
+        }
       });
 
       const endDraw = (e) => {
-        if (!isDrawing) return;
-        isDrawing = false;
+        scribblePointers.delete(e.pointerId);
         try { scribbleCanvas.releasePointerCapture(e.pointerId); } catch(err) {}
       };
       scribbleCanvas.addEventListener('pointerup', endDraw);
@@ -3999,24 +4738,59 @@
 
     function setScribbleColor(color) {
       scribbleColor = color;
-      playNote(523.25, 0.2);
+      playWaterPlop(1.5, 0.14);
+      document.querySelectorAll('.crayon-tool-btn').forEach(btn => btn.classList.remove('active-crayon'));
+      const activeBtn = color === 'rainbow' ? document.getElementById('crayon-rainbow') :
+        color === '#ef4444' ? document.getElementById('crayon-red') :
+        color === '#f59e0b' ? document.getElementById('crayon-yellow') :
+        color === '#10b981' ? document.getElementById('crayon-green') :
+        color === '#3b82f6' ? document.getElementById('crayon-blue') : null;
+      if (activeBtn) activeBtn.classList.add('active-crayon');
     }
 
     function clearScribbleCanvas() {
       if (!scribbleCanvas || !scribbleCtx) return;
       scribbleCtx.clearRect(0, 0, scribbleCanvas.width, scribbleCanvas.height);
       document.getElementById('scribble-hint').style.display = 'flex';
-      playNote(220, 0.25, 'triangle');
+      playWaterPlop(0.85, 0.28);
+      playWetPaperWash(0.12);
     }
 
     function addSparkleStar() {
       if (!scribbleCanvas || !scribbleCtx) return;
       document.getElementById('scribble-hint').style.display = 'none';
-      const x = Math.random() * (scribbleCanvas.width - 60) + 30;
-      const y = Math.random() * (scribbleCanvas.height - 60) + 30;
-      scribbleCtx.font = '36px sans-serif';
-      scribbleCtx.fillText('⭐', x, y);
-      playNote(659.25, 0.35);
+      const cx = Math.random() * (scribbleCanvas.width - 80) + 40;
+      const cy = Math.random() * (scribbleCanvas.height - 80) + 40;
+      const spikes = 5, outerR = 24, innerR = 11;
+      let rot = Math.PI / 2 * 3;
+      let step = Math.PI / spikes;
+
+      scribbleCtx.save();
+      scribbleCtx.beginPath();
+      scribbleCtx.moveTo(cx, cy - outerR);
+      for (let i = 0; i < spikes; i++) {
+        let x = cx + Math.cos(rot) * outerR;
+        let y = cy + Math.sin(rot) * outerR;
+        scribbleCtx.lineTo(x, y);
+        rot += step;
+        x = cx + Math.cos(rot) * innerR;
+        y = cy + Math.sin(rot) * innerR;
+        scribbleCtx.lineTo(x, y);
+        rot += step;
+      }
+      scribbleCtx.lineTo(cx, cy - outerR);
+      scribbleCtx.closePath();
+      scribbleCtx.fillStyle = '#facc15';
+      scribbleCtx.shadowColor = '#f59e0b';
+      scribbleCtx.shadowBlur = 12;
+      scribbleCtx.fill();
+      scribbleCtx.strokeStyle = '#d97706';
+      scribbleCtx.lineWidth = 2.5;
+      scribbleCtx.stroke();
+      scribbleCtx.restore();
+
+      playNote(783.99, 0.45, 'sine');
+      setTimeout(() => playNote(1046.50, 0.45, 'sine'), 80);
       triggerConfetti();
     }
 
