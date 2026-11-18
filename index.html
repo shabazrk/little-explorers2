@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Little Explorers" />
-  <meta id="meta-theme-color" name="theme-color" content="#38bdf8" />
+  <meta id="meta-theme-color" name="theme-color" content="#fcfbf8" />
   
   <!-- Cache-Busting so GitHub Pages always gets latest updates immediately -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -190,7 +190,7 @@
       box-shadow: none;
     }
 
-    /* HOMEPAGE 2-COLUMN WIREFRAME VIEW */
+    /* HOMEPAGE 2-COLUMN TACTILE WATERCOLOR STUDIO VIEW */
     #view-home {
       display: flex;
       flex-direction: column;
@@ -200,37 +200,37 @@
       touch-action: pan-y;
       -webkit-overflow-scrolling: touch;
       padding:
-        max(22px, calc(env(safe-area-inset-top) + 12px))
-        max(16px, env(safe-area-inset-right))
-        max(26px, env(safe-area-inset-bottom))
-        max(16px, env(safe-area-inset-left));
-      background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+        max(24px, calc(env(safe-area-inset-top) + 14px))
+        max(18px, env(safe-area-inset-right))
+        max(28px, env(safe-area-inset-bottom))
+        max(18px, env(safe-area-inset-left));
+      background-color: #fcfbf8;
+      background-image:
+        radial-gradient(circle at 10% 8%, rgba(254, 215, 170, 0.32) 0%, transparent 42%),
+        radial-gradient(circle at 92% 14%, rgba(186, 230, 253, 0.34) 0%, transparent 44%),
+        radial-gradient(circle at 85% 92%, rgba(233, 213, 255, 0.30) 0%, transparent 45%),
+        radial-gradient(circle at 12% 88%, rgba(187, 247, 208, 0.28) 0%, transparent 42%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     }
     #view-home::-webkit-scrollbar { display: none; }
 
     .home-header-banner {
       width: 100%;
       text-align: center;
-      margin-bottom: 14px;
-      color: #ffffff;
+      margin-bottom: 20px;
+      color: #0f172a;
     }
     .home-header-banner h2 {
-      font-size: 1.45rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      text-shadow: 0 2px 8px rgba(2, 132, 199, 0.45);
-    }
-    .home-header-banner p {
-      font-size: 0.85rem;
-      font-weight: 700;
-      opacity: 0.95;
-      text-shadow: 0 1px 4px rgba(2, 132, 199, 0.3);
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #1e293b;
     }
 
     .wireframe-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px 14px;
+      gap: 20px 16px;
       width: 100%;
       max-width: 440px;
       margin: 0 auto;
@@ -243,59 +243,92 @@
       cursor: pointer;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .wireframe-card:hover {
-      transform: translateY(-4px) scale(1.03);
+      transform: translateY(-4px) scale(1.02);
     }
     .wireframe-card:active {
-      transform: scale(0.94);
+      transform: scale(0.95);
     }
 
     .wireframe-box {
       width: 100%;
       aspect-ratio: 1 / 1;
-      border-radius: 26px;
-      background: #f8fafc;
-      border: 3px solid #ffffff;
-      box-shadow: 0 8px 20px rgba(3, 105, 161, 0.28), 0 2px 6px rgba(0,0,0,0.06);
+      border-radius: 30px;
+      background: #ffffff;
+      border: 1.5px solid rgba(15, 23, 42, 0.06);
+      box-shadow:
+        0 14px 30px -8px rgba(15, 23, 42, 0.10),
+        0 4px 10px -2px rgba(15, 23, 42, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
-      transition: all 0.25s ease;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
     }
     .wireframe-card:hover .wireframe-box {
-      box-shadow: 0 12px 28px rgba(3, 105, 161, 0.38);
-      border-color: #fef08a;
+      box-shadow:
+        0 18px 36px -8px rgba(15, 23, 42, 0.15),
+        0 6px 14px -2px rgba(15, 23, 42, 0.07);
+      border-color: rgba(15, 23, 42, 0.12);
     }
 
     .wireframe-label {
-      margin-top: 8px;
+      margin-top: 9px;
       width: 100%;
-      background: #ffffff;
-      color: #0369a1;
-      font-size: 0.85rem;
-      font-weight: 800;
-      padding: 6px 10px;
-      border-radius: 9999px;
-      border: 2px solid #bae6fd;
+      color: #1e293b;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 2px 6px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.15);
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      transition: all 0.2s ease;
-    }
-    .wireframe-card:hover .wireframe-label {
-      background: #fef3c7;
-      color: #92400e;
-      border-color: #fcd34d;
     }
 
-    /* INSIDE COLOR WIDGET - LEVEL SELECTION VIEW */
+    /* Mini Translucent Liquid Droplets for Home & Level Badges */
+    .mini-droplet-cluster {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mini-drop {
+      position: absolute;
+      border-radius: 51% 49% 48% 52% / 48% 52% 49% 51%;
+      box-shadow:
+        0 6px 11px -2px rgba(0, 0, 0, 0.36),
+        inset 0 -6px 9px -2px rgba(0, 0, 0, 0.45),
+        inset 2px 3px 6px rgba(255, 255, 255, 0.45);
+    }
+    .mini-drop::before {
+      content: '';
+      position: absolute;
+      top: 12%;
+      left: 30%;
+      width: 30%;
+      height: 14%;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.94);
+      transform: rotate(-12deg);
+    }
+    .mini-drop-red {
+      background: radial-gradient(circle at 38% 34%, rgba(240, 12, 18, 0.74) 0%, rgba(190, 0, 8, 0.88) 58%, rgba(92, 0, 4, 0.96) 100%);
+    }
+    .mini-drop-yellow {
+      background: radial-gradient(circle at 38% 34%, rgba(252, 226, 0, 0.68) 0%, rgba(212, 168, 0, 0.85) 58%, rgba(102, 72, 0, 0.95) 100%);
+    }
+    .mini-drop-blue {
+      background: radial-gradient(circle at 38% 34%, rgba(10, 108, 255, 0.74) 0%, rgba(0, 56, 212, 0.88) 58%, rgba(4, 20, 96, 0.96) 100%);
+    }
+
+    /* INSIDE COLOR WIDGET - CLEAN WATERCOLOR LEVEL SELECTION VIEW */
     #view-color-levels {
       display: flex;
       flex-direction: column;
@@ -303,29 +336,33 @@
       overflow-y: auto;
       touch-action: pan-y;
       -webkit-overflow-scrolling: touch;
-      padding: 16px 14px 20px;
-      background: linear-gradient(180deg, #fef8ee 0%, #fef3c7 100%);
+      background-color: #fcfbf8;
+      background-image:
+        radial-gradient(circle at 12% 10%, rgba(254, 215, 170, 0.28) 0%, transparent 45%),
+        radial-gradient(circle at 88% 88%, rgba(233, 213, 255, 0.28) 0%, transparent 45%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     }
     #view-color-levels::-webkit-scrollbar { display: none; }
 
     .color-level-widget {
-      background: #ffffff;
-      border: 3px solid #fde68a;
-      border-radius: 26px;
-      padding: 16px;
-      margin-bottom: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1.5px solid rgba(15, 23, 42, 0.06);
+      border-radius: 28px;
+      padding: 16px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(180, 83, 9, 0.08);
-      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow:
+        0 10px 26px -6px rgba(15, 23, 42, 0.09),
+        0 2px 8px -2px rgba(15, 23, 42, 0.04);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.22s ease;
     }
     .color-level-widget:hover {
-      border-color: #f59e0b;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.18);
+      transform: translateY(-2px) scale(1.015);
+      box-shadow: 0 14px 32px -6px rgba(15, 23, 42, 0.14);
     }
     .color-level-widget:active {
       transform: scale(0.97);
@@ -334,43 +371,62 @@
     .level-left-content {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       flex: 1;
     }
     .level-avatar-box {
-      width: 64px;
-      height: 64px;
-      border-radius: 20px;
+      width: 70px;
+      height: 70px;
+      border-radius: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
       flex-shrink: 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 4px 12px rgba(15, 23, 42, 0.06);
     }
     .level-details {
       display: flex;
       flex-direction: column;
-      gap: 2px;
-    }
-    .level-pill-badge {
-      font-size: 0.65rem;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 9999px;
-      align-self: flex-start;
-      margin-bottom: 2px;
+      gap: 5px;
     }
     .level-details h4 {
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: #78350f;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
       line-height: 1.2;
     }
-    .level-details p {
-      font-size: 0.8rem;
-      color: #92400e;
-      font-weight: 600;
+    .level-chevron {
+      width: 22px;
+      height: 22px;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+    .level-chevron svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* Subtle Color Swatch Indicator for Free-Practice Color Mixing Lab (No Stars) */
+    .practice-swatches {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 3px;
+    }
+    .practice-swatch-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      box-shadow: inset 0 -2px 3px rgba(0,0,0,0.28), 0 1px 3px rgba(0,0,0,0.16);
     }
 
     /* STAR RATINGS: GREY INITIALLY, GLOWING GOLD ON COMPLETION */
@@ -972,7 +1028,7 @@
     <!-- Main Edge-to-Edge Stage (No Web Nav Bar Chrome) -->
     <main>
 
-      <!-- HOMEPAGE 2-COLUMN WIREFRAME WIDGETS (EXACT FORMAT FROM WIREFRAME) -->
+      <!-- HOMEPAGE 2-COLUMN TACTILE WATERCOLOR STUDIO WIDGETS -->
       <section id="view-home" class="game-view active">
         
         <div class="home-header-banner">
@@ -980,122 +1036,167 @@
         </div>
 
         <div class="wireframe-grid">
-          <!-- Widget 1: Play with Colours -->
+          <!-- Widget 1: Play with Colours (Real Glossy Liquid Watercolor Droplets) -->
           <div class="wireframe-card" onclick="switchGame('colors')">
-            <div class="wireframe-box" style="background: linear-gradient(135deg, #fee2e2 0%, #fef3c7 100%);">
-              <svg viewBox="0 0 100 100" style="width: 82%; height: 82%;">
-                <!-- Bear Milo -->
-                <circle cx="34" cy="46" r="22" fill="#b45309"/>
-                <circle cx="20" cy="30" r="8" fill="#b45309"/><circle cx="20" cy="30" r="4.5" fill="#fde68a"/>
-                <circle cx="48" cy="30" r="8" fill="#b45309"/><circle cx="48" cy="30" r="4.5" fill="#fde68a"/>
-                <ellipse cx="34" cy="52" rx="10" ry="7" fill="#fde68a"/>
-                <circle cx="34" cy="48" r="3" fill="#78350f"/>
-                <circle cx="28" cy="42" r="2.5" fill="#ffffff"/><circle cx="40" cy="42" r="2.5" fill="#ffffff"/>
-                <!-- Flower -->
-                <circle cx="70" cy="36" r="6" fill="#f43f5e"/><circle cx="82" cy="42" r="6" fill="#f43f5e"/>
-                <circle cx="82" cy="56" r="6" fill="#f43f5e"/><circle cx="70" cy="62" r="6" fill="#f43f5e"/>
-                <circle cx="58" cy="56" r="6" fill="#f43f5e"/><circle cx="58" cy="42" r="6" fill="#f43f5e"/>
-                <circle cx="70" cy="49" r="8" fill="#fde047"/>
-                <!-- Apple -->
-                <circle cx="68" cy="76" r="14" fill="#ef4444"/>
-                <path d="M68 62 C68 56 73 53 76 52" stroke="#78350f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                <path d="M70 58 C78 54 80 60 76 62 Z" fill="#22c55e"/>
-              </svg>
+            <div class="wireframe-box" style="background: radial-gradient(circle at 30% 25%, #fff7ed 0%, #ffffff 70%);">
+              <div class="mini-droplet-cluster">
+                <div class="mini-drop mini-drop-red" style="width:52px; height:52px; top:20%; left:18%;"></div>
+                <div class="mini-drop mini-drop-yellow" style="width:50px; height:50px; top:24%; right:17%;"></div>
+                <div class="mini-drop mini-drop-blue" style="width:52px; height:52px; bottom:16%; left:34%;"></div>
+              </div>
             </div>
             <div class="wireframe-label">Play with Colours</div>
           </div>
 
-          <!-- Widget 2: Do the maths -->
+          <!-- Widget 2: Do the Maths (Painterly Berries 1, 2, 3) -->
           <div class="wireframe-card" onclick="switchGame('lola')">
-            <div class="wireframe-box" style="background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%);">
-              <svg viewBox="0 0 100 100" style="width: 82%; height: 82%;">
-                <!-- Otter Lola -->
-                <circle cx="36" cy="44" r="22" fill="#a16207"/>
-                <circle cx="20" cy="32" r="6" fill="#a16207"/><circle cx="52" cy="32" r="6" fill="#a16207"/>
-                <ellipse cx="36" cy="50" rx="11" ry="8" fill="#fef08a"/>
-                <ellipse cx="36" cy="46" rx="4" ry="2.5" fill="#451a03"/>
-                <circle cx="29" cy="40" r="2.5" fill="#451a03"/><circle cx="43" cy="40" r="2.5" fill="#451a03"/>
-                <!-- Strawberries 1, 2, 3 -->
-                <circle cx="74" cy="32" r="10" fill="#ef4444"/><circle cx="74" cy="32" r="7" fill="#f87171"/>
-                <text x="74" y="36" font-size="10" font-weight="900" fill="#ffffff" text-anchor="middle">1</text>
-                <circle cx="62" cy="56" r="10" fill="#ef4444"/><circle cx="62" cy="56" r="7" fill="#f87171"/>
-                <text x="62" y="60" font-size="10" font-weight="900" fill="#ffffff" text-anchor="middle">2</text>
-                <circle cx="78" cy="72" r="10" fill="#ef4444"/><circle cx="78" cy="72" r="7" fill="#f87171"/>
-                <text x="78" y="76" font-size="10" font-weight="900" fill="#ffffff" text-anchor="middle">3</text>
+            <div class="wireframe-box" style="background: radial-gradient(circle at 75% 25%, #eff6ff 0%, #ffffff 72%);">
+              <svg viewBox="0 0 120 120" style="width: 84%; height: 84%;">
+                <defs>
+                  <radialGradient id="berryG" cx="35%" cy="30%" r="65%">
+                    <stop offset="0%" stop-color="#ff6b6b"/>
+                    <stop offset="55%" stop-color="#e11d48"/>
+                    <stop offset="100%" stop-color="#881337"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="62" cy="64" r="44" fill="#dbeafe" opacity="0.55"/>
+                <!-- Berry 1 -->
+                <g transform="translate(36, 40)">
+                  <circle cx="0" cy="4" r="18" fill="rgba(136,19,55,0.18)"/>
+                  <circle cx="0" cy="0" r="18" fill="url(#berryG)"/>
+                  <ellipse cx="-6" cy="-7" rx="5" ry="2.5" fill="rgba(255,255,255,0.65)" transform="rotate(-25 -6 -7)"/>
+                  <path d="M-5 -16 Q0 -23 5 -16 Q0 -13 -5 -16 Z" fill="#16a34a"/>
+                  <text x="0" y="6" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+                </g>
+                <!-- Berry 2 -->
+                <g transform="translate(82, 46)">
+                  <circle cx="0" cy="4" r="18" fill="rgba(136,19,55,0.18)"/>
+                  <circle cx="0" cy="0" r="18" fill="url(#berryG)"/>
+                  <ellipse cx="-6" cy="-7" rx="5" ry="2.5" fill="rgba(255,255,255,0.65)" transform="rotate(-25 -6 -7)"/>
+                  <path d="M-5 -16 Q0 -23 5 -16 Q0 -13 -5 -16 Z" fill="#16a34a"/>
+                  <text x="0" y="6" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+                </g>
+                <!-- Berry 3 -->
+                <g transform="translate(58, 84)">
+                  <circle cx="0" cy="4" r="19" fill="rgba(136,19,55,0.18)"/>
+                  <circle cx="0" cy="0" r="19" fill="url(#berryG)"/>
+                  <ellipse cx="-6" cy="-7" rx="5" ry="2.5" fill="rgba(255,255,255,0.65)" transform="rotate(-25 -6 -7)"/>
+                  <path d="M-5 -17 Q0 -24 5 -17 Q0 -14 -5 -17 Z" fill="#16a34a"/>
+                  <text x="0" y="6" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+                </g>
               </svg>
             </div>
-            <div class="wireframe-label">Do the maths</div>
+            <div class="wireframe-label">Do the Maths</div>
           </div>
 
-          <!-- Widget 3: Find Shapes -->
+          <!-- Widget 3: Find Shapes (Tactile Painted Wooden Blocks) -->
           <div class="wireframe-card" onclick="switchGame('pip')">
-            <div class="wireframe-box" style="background: linear-gradient(135deg, #fefce8 0%, #fed7aa 100%);">
-              <svg viewBox="0 0 100 100" style="width: 82%; height: 82%;">
-                <!-- Bird Pip -->
-                <circle cx="35" cy="40" r="18" fill="#38bdf8"/>
-                <polygon points="18,40 10,43 18,46" fill="#f59e0b"/>
-                <circle cx="30" cy="36" r="3" fill="#0f172a"/>
-                <!-- Wooden Shapes -->
-                <circle cx="68" cy="32" r="13" fill="#fbbf24" stroke="#d97706" stroke-width="2.5"/>
-                <polygon points="70,50 56,76 84,76" fill="#f97316" stroke="#c2410c" stroke-width="2.5" stroke-linejoin="round"/>
-                <rect x="22" y="64" width="22" height="22" rx="6" fill="#34d399" stroke="#059669" stroke-width="2.5"/>
+            <div class="wireframe-box" style="background: radial-gradient(circle at 25% 75%, #fefce8 0%, #ffffff 72%);">
+              <svg viewBox="0 0 120 120" style="width: 84%; height: 84%;">
+                <defs>
+                  <linearGradient id="woodSun" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fde047"/>
+                    <stop offset="100%" stop-color="#d97706"/>
+                  </linearGradient>
+                  <linearGradient id="woodCoral" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fb923c"/>
+                    <stop offset="100%" stop-color="#c2410c"/>
+                  </linearGradient>
+                  <linearGradient id="woodSage" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#34d399"/>
+                    <stop offset="100%" stop-color="#047857"/>
+                  </linearGradient>
+                </defs>
+                <!-- Circle Block -->
+                <circle cx="40" cy="44" r="22" fill="rgba(180,83,9,0.16)" transform="translate(0,4)"/>
+                <circle cx="40" cy="44" r="22" fill="url(#woodSun)"/>
+                <ellipse cx="33" cy="34" rx="7" ry="3.5" fill="rgba(255,255,255,0.55)" transform="rotate(-25 33 34)"/>
+                <!-- Triangle Block -->
+                <polygon points="82,24 58,68 106,68" fill="rgba(194,65,12,0.16)" transform="translate(0,4)" stroke-linejoin="round"/>
+                <polygon points="82,24 58,68 106,68" fill="url(#woodCoral)" stroke="url(#woodCoral)" stroke-width="5" stroke-linejoin="round"/>
+                <!-- Square Block -->
+                <rect x="34" y="68" width="40" height="40" rx="11" fill="rgba(4,120,87,0.16)" transform="translate(0,4)"/>
+                <rect x="34" y="68" width="40" height="40" rx="11" fill="url(#woodSage)"/>
+                <rect x="40" y="73" width="14" height="5" rx="2.5" fill="rgba(255,255,255,0.45)"/>
               </svg>
             </div>
             <div class="wireframe-label">Find Shapes</div>
           </div>
 
-          <!-- Widget 4: Muddy Puddles -->
+          <!-- Widget 4: Muddy Puddles (Glossy Yellow Rain Boots & Watercolor Splash) -->
           <div class="wireframe-card" onclick="switchGame('penny')">
-            <div class="wireframe-box" style="background: linear-gradient(135deg, #bae6fd 0%, #a7f3d0 100%);">
-              <svg viewBox="0 0 100 100" style="width: 82%; height: 82%;">
-                <!-- Penny Pig -->
-                <circle cx="48" cy="36" r="22" fill="#f472b6"/>
-                <ellipse cx="34" cy="20" rx="5" ry="9" fill="#f472b6"/><ellipse cx="62" cy="20" rx="5" ry="9" fill="#f472b6"/>
-                <ellipse cx="48" cy="40" rx="9" ry="6" fill="#fb7185"/>
-                <circle cx="45" cy="40" r="2" fill="#881337"/><circle cx="51" cy="40" r="2" fill="#881337"/>
-                <circle cx="42" cy="30" r="2.5" fill="#1e293b"/><circle cx="54" cy="30" r="2.5" fill="#1e293b"/>
-                <!-- Boots & Puddle Splash -->
-                <ellipse cx="50" cy="80" rx="34" ry="10" fill="#78350f"/>
-                <path d="M40 70 L40 82 L47 82" stroke="#facc15" stroke-width="5" stroke-linecap="round"/>
-                <path d="M56 70 L56 82 L63 82" stroke="#facc15" stroke-width="5" stroke-linecap="round"/>
-                <circle cx="28" cy="74" r="3" fill="#78350f"/><circle cx="72" cy="74" r="3" fill="#78350f"/>
+            <div class="wireframe-box" style="background: radial-gradient(circle at 50% 25%, #e0f2fe 0%, #ffffff 72%);">
+              <svg viewBox="0 0 120 120" style="width: 84%; height: 84%;">
+                <defs>
+                  <linearGradient id="bootY" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef08a"/>
+                    <stop offset="55%" stop-color="#facc15"/>
+                    <stop offset="100%" stop-color="#ca8a04"/>
+                  </linearGradient>
+                  <radialGradient id="mudG" cx="45%" cy="40%" r="60%">
+                    <stop offset="0%" stop-color="#a16207"/>
+                    <stop offset="100%" stop-color="#451a03"/>
+                  </radialGradient>
+                </defs>
+                <!-- Soft puddle shadow & liquid mud -->
+                <ellipse cx="60" cy="88" rx="44" ry="15" fill="#d97706" opacity="0.22"/>
+                <ellipse cx="60" cy="86" rx="38" ry="12" fill="url(#mudG)"/>
+                <!-- Splash drops -->
+                <circle cx="24" cy="70" r="4.5" fill="#92400e" opacity="0.75"/>
+                <circle cx="96" cy="68" r="5" fill="#92400e" opacity="0.75"/>
+                <circle cx="32" cy="56" r="3" fill="#b45309" opacity="0.65"/>
+                <circle cx="88" cy="54" r="3.2" fill="#b45309" opacity="0.65"/>
+                <!-- Pair of glossy yellow rain boots -->
+                <path d="M35 32 L53 32 L53 72 L62 75 C64 83 36 85 33 78 Z" fill="url(#bootY)" stroke="#a16207" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M62 28 L80 28 L80 68 L89 71 C91 79 63 81 60 74 Z" fill="url(#bootY)" stroke="#a16207" stroke-width="2" stroke-linejoin="round"/>
+                <line x1="40" y1="40" x2="40" y2="62" stroke="rgba(255,255,255,0.65)" stroke-width="3" stroke-linecap="round"/>
+                <line x1="67" y1="36" x2="67" y2="58" stroke="rgba(255,255,255,0.65)" stroke-width="3" stroke-linecap="round"/>
               </svg>
             </div>
             <div class="wireframe-label">Muddy Puddles</div>
           </div>
 
-          <!-- Widget 5: Animal Sounds -->
+          <!-- Widget 5: Animal Sounds (Warm Storybook Puppy & Watercolor Soundwaves) -->
           <div class="wireframe-card" onclick="switchGame('animals')">
-            <div class="wireframe-box" style="background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 100%);">
-              <svg viewBox="0 0 100 100" style="width: 82%; height: 82%;">
-                <!-- Puppy Dog -->
-                <circle cx="40" cy="50" r="22" fill="#d97706"/>
-                <ellipse cx="20" cy="46" rx="6" ry="12" fill="#92400e"/>
-                <ellipse cx="60" cy="46" rx="6" ry="12" fill="#92400e"/>
-                <ellipse cx="40" cy="56" rx="8" ry="6" fill="#fef3c7"/>
-                <circle cx="40" cy="53" r="3" fill="#451a03"/>
-                <circle cx="34" cy="45" r="2.5" fill="#1e293b"/><circle cx="46" cy="45" r="2.5" fill="#1e293b"/>
-                <!-- Musical Notes -->
-                <text x="68" y="32" font-size="20" fill="#ec4899">♪</text>
-                <text x="78" y="52" font-size="16" fill="#8b5cf6">♫</text>
-                <text x="24" y="28" font-size="16" fill="#3b82f6">♪</text>
+            <div class="wireframe-box" style="background: radial-gradient(circle at 75% 75%, #fdf2f8 0%, #ffffff 72%);">
+              <svg viewBox="0 0 120 120" style="width: 84%; height: 84%;">
+                <defs>
+                  <radialGradient id="pupFur" cx="40%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#b45309"/>
+                  </radialGradient>
+                </defs>
+                <!-- Graceful watercolor soundwave arcs -->
+                <path d="M84 36 Q96 48 84 60" stroke="#ec4899" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.72"/>
+                <path d="M94 28 Q110 48 94 68" stroke="#a855f7" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.52"/>
+                <!-- Storybook Puppy -->
+                <ellipse cx="30" cy="60" rx="11" ry="20" fill="#78350f" transform="rotate(14 30 60)"/>
+                <ellipse cx="76" cy="60" rx="11" ry="20" fill="#78350f" transform="rotate(-14 76 60)"/>
+                <circle cx="53" cy="62" r="27" fill="url(#pupFur)"/>
+                <ellipse cx="53" cy="71" rx="13" ry="10" fill="#fef3c7"/>
+                <ellipse cx="53" cy="66" rx="5.5" ry="4" fill="#451a03"/>
+                <circle cx="43" cy="56" r="3.6" fill="#1e293b"/>
+                <circle cx="44" cy="55" r="1.2" fill="#ffffff"/>
+                <circle cx="63" cy="56" r="3.6" fill="#1e293b"/>
+                <circle cx="64" cy="55" r="1.2" fill="#ffffff"/>
+                <path d="M47 74 Q53 80 59 74" stroke="#78350f" stroke-width="2.8" stroke-linecap="round" fill="none"/>
               </svg>
             </div>
             <div class="wireframe-label">Animal Sounds</div>
           </div>
 
-          <!-- Widget 6: Magic Scribbles -->
+          <!-- Widget 6: Magic Scribbles (Translucent Watercolor Brush Ribbon + Hand-Drawn Stars) -->
           <div class="wireframe-card" onclick="switchGame('scribble')">
-            <div class="wireframe-box" style="background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%);">
-              <svg viewBox="0 0 100 100" style="width: 82%; height: 82%;">
-                <!-- Rainbow Swirl Arc -->
-                <path d="M20 74 C26 40 50 32 80 42" stroke="#ef4444" stroke-width="4" stroke-linecap="round" fill="none"/>
-                <path d="M24 78 C30 46 52 38 82 48" stroke="#facc15" stroke-width="4" stroke-linecap="round" fill="none"/>
-                <path d="M28 82 C34 52 54 44 84 54" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" fill="none"/>
-                <!-- Magic Stars -->
-                <text x="24" y="36" font-size="18" fill="#eab308">✨</text>
-                <text x="64" y="30" font-size="20" fill="#a855f7">🌟</text>
-                <text x="70" y="80" font-size="16" fill="#ec4899">✨</text>
+            <div class="wireframe-box" style="background: radial-gradient(circle at 25% 25%, #faf5ff 0%, #ffffff 72%);">
+              <svg viewBox="0 0 120 120" style="width: 84%; height: 84%;">
+                <!-- Layered translucent watercolor brush strokes -->
+                <path d="M18 84 C28 38 64 26 102 44" stroke="#ef4444" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.72"/>
+                <path d="M22 92 C34 48 68 38 104 56" stroke="#facc15" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.78"/>
+                <path d="M26 100 C40 60 72 50 104 68" stroke="#3b82f6" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.72"/>
+                <!-- Custom hand-drawn 4-point watercolor sparkles (no emoji) -->
+                <path d="M30 28 L33 36 L41 39 L33 42 L30 50 L27 42 L19 39 L27 36 Z" fill="#f59e0b"/>
+                <path d="M84 18 L86 24 L92 26 L86 28 L84 34 L82 28 L76 26 L82 24 Z" fill="#a855f7"/>
+                <path d="M88 82 L90 87 L95 89 L90 91 L88 96 L86 91 L81 89 L86 87 Z" fill="#ec4899"/>
               </svg>
             </div>
             <div class="wireframe-label">Magic Scribbles</div>
@@ -1104,7 +1205,7 @@
 
       </section>
 
-      <!-- LEVEL SELECTION INSIDE PLAY WITH COLOURS WIDGET -->
+      <!-- LEVEL SELECTION INSIDE PLAY WITH COLOURS WIDGET (COHESIVE WATERCOLOR CARDS, ZERO EMOJIS) -->
       <section id="view-color-levels" class="game-view" style="justify-content:flex-start;">
         <div class="ios-top-bar">
           <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
@@ -1114,15 +1215,23 @@
           <div></div>
         </div>
 
-        <div style="width:100%; display:flex; flex-direction:column; gap:12px; margin-top:8px;">
-          <!-- Level 1 Widget Card -->
+        <div style="width:100%; max-width:460px; display:flex; flex-direction:column; gap:14px; margin:10px auto 0;">
+          <!-- Level 1: Flower Garden -->
           <div class="color-level-widget" onclick="switchGame('milo')">
             <div class="level-left-content">
-              <div class="level-avatar-box" style="background:#fee2e2; border:2px solid #fca5a5;">🌸</div>
+              <div class="level-avatar-box" style="background: radial-gradient(circle at 30% 30%, #fff1f2 0%, #ffe4e6 100%);">
+                <svg viewBox="0 0 70 70" style="width:54px; height:54px;">
+                  <circle cx="35" cy="19" r="11" fill="#fb7185" opacity="0.88"/>
+                  <circle cx="51" cy="31" r="11" fill="#f43f5e" opacity="0.88"/>
+                  <circle cx="45" cy="49" r="11" fill="#fb7185" opacity="0.88"/>
+                  <circle cx="25" cy="49" r="11" fill="#f43f5e" opacity="0.88"/>
+                  <circle cx="19" cy="31" r="11" fill="#fb7185" opacity="0.88"/>
+                  <circle cx="35" cy="35" r="12" fill="#facc15"/>
+                  <ellipse cx="32" cy="31" rx="4" ry="2.2" fill="rgba(255,255,255,0.65)" transform="rotate(-25 32 31)"/>
+                </svg>
+              </div>
               <div class="level-details">
-                <span class="level-pill-badge" style="background:#fde68a; color:#92400e;">LEVEL 1</span>
                 <h4>Flower Garden</h4>
-                <p>Match dew drops to bloom flowers</p>
                 <div class="level-stars" id="stars-milo">
                   <span class="star-slot star-grey">★</span>
                   <span class="star-slot star-grey">★</span>
@@ -1130,17 +1239,31 @@
                 </div>
               </div>
             </div>
-            <button class="widget-play-btn" style="padding:10px 18px; font-size:0.85rem;">Play ➔</button>
+            <div class="level-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
           </div>
 
-          <!-- Level 2 Widget Card -->
+          <!-- Level 2: Fruit & Veggie Colors -->
           <div class="color-level-widget" onclick="switchGame('color-fruits')">
             <div class="level-left-content">
-              <div class="level-avatar-box" style="background:#fef3c7; border:2px solid #fcd34d;">🍎</div>
+              <div class="level-avatar-box" style="background: radial-gradient(circle at 30% 30%, #fefce8 0%, #fef3c7 100%);">
+                <svg viewBox="0 0 70 70" style="width:54px; height:54px;">
+                  <defs>
+                    <radialGradient id="appleCardG" cx="35%" cy="32%" r="65%">
+                      <stop offset="0%" stop-color="#ff6b6b"/>
+                      <stop offset="55%" stop-color="#dc2626"/>
+                      <stop offset="100%" stop-color="#7f1d1d"/>
+                    </radialGradient>
+                  </defs>
+                  <path d="M35 20 C22 18 14 29 16 42 C18 54 27 60 35 58 C43 60 52 54 54 42 C56 29 48 18 35 20 Z" fill="url(#appleCardG)"/>
+                  <ellipse cx="26" cy="30" rx="5" ry="3" fill="rgba(255,255,255,0.55)" transform="rotate(-30 26 30)"/>
+                  <path d="M35 20 Q36 12 41 10" stroke="#78350f" stroke-width="3" stroke-linecap="round" fill="none"/>
+                  <path d="M37 15 C46 10 50 18 43 21 Z" fill="#16a34a"/>
+                </svg>
+              </div>
               <div class="level-details">
-                <span class="level-pill-badge" style="background:#bbf7d0; color:#166534;">LEVEL 2</span>
-                <h4>Fruit & Veggie Colors</h4>
-                <p>Color the apple, banana & broccoli</p>
+                <h4>Fruit & Veggie</h4>
                 <div class="level-stars" id="stars-color-fruits">
                   <span class="star-slot star-grey">★</span>
                   <span class="star-slot star-grey">★</span>
@@ -1148,23 +1271,35 @@
                 </div>
               </div>
             </div>
-            <button class="widget-play-btn" style="padding:10px 18px; font-size:0.85rem;">Play ➔</button>
+            <div class="level-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
           </div>
 
-          <!-- Level 3 Widget Card (Practice & Exploration Lab) -->
+          <!-- Level 3: Color Mixing Lab (Real Mini Translucent Liquid Droplets, No Stars) -->
           <div class="color-level-widget" onclick="switchGame('color-mixer')">
             <div class="level-left-content">
-              <div class="level-avatar-box" style="background:#f3e8ff; border:2px solid #d8b4fe;">🧪</div>
+              <div class="level-avatar-box" style="background: #ffffff;">
+                <div class="mini-droplet-cluster">
+                  <div class="mini-drop mini-drop-red" style="width:32px; height:32px; top:14px; left:10px;"></div>
+                  <div class="mini-drop mini-drop-yellow" style="width:32px; height:32px; bottom:12px; right:10px;"></div>
+                </div>
+              </div>
               <div class="level-details">
-                <span class="level-pill-badge" style="background:#e0e7ff; color:#3730a3;">PRACTICE LAB</span>
                 <h4>Color Mixing Lab</h4>
-                <p>Drag any color into another to mix magic!</p>
-                <div style="font-size:0.8rem; font-weight:800; color:#7e22ce; margin-top:3px;">
-                  ✨ Free Practice • No Stars
+                <div class="practice-swatches">
+                  <span class="practice-swatch-dot" style="background:#dc000c;"></span>
+                  <span class="practice-swatch-dot" style="background:#f0c800;"></span>
+                  <span class="practice-swatch-dot" style="background:#0055ff;"></span>
+                  <span class="practice-swatch-dot" style="background:#ff6600;"></span>
+                  <span class="practice-swatch-dot" style="background:#009624;"></span>
+                  <span class="practice-swatch-dot" style="background:#8c1aff;"></span>
                 </div>
               </div>
             </div>
-            <button class="widget-play-btn" style="padding:10px 18px; font-size:0.85rem;">Play ➔</button>
+            <div class="level-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
           </div>
         </div>
       </section>
@@ -1901,7 +2036,7 @@
       // Blend iOS status bar / theme-color seamlessly with active canvas
       const themeMeta = document.getElementById('meta-theme-color');
       if (themeMeta) {
-        themeMeta.setAttribute('content', gameId === 'home' ? '#38bdf8' : '#ffffff');
+        themeMeta.setAttribute('content', (gameId === 'home' || gameId === 'color-levels') ? '#fcfbf8' : '#ffffff');
       }
 
       if (gameId === 'color-levels') updateAllLevelStarsUI();
