@@ -609,15 +609,14 @@
     .color-playground-canvas {
       flex: 1;
       width: 100%;
-      background-color: #fcfbf9;
+      background-color: #f9f8f5;
       background-image:
-        radial-gradient(rgba(0, 0, 0, 0.022) 1px, transparent 0),
-        radial-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 0);
-      background-size: 16px 16px;
-      background-position: 0 0, 8px 8px;
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E"),
+        radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 0);
+      background-size: 120px 120px, 18px 18px;
       border-radius: 28px;
-      border: 2.5px solid #e7e5e0;
-      box-shadow: inset 0 2px 18px rgba(0, 0, 0, 0.045);
+      border: 2.5px solid #e5e2dc;
+      box-shadow: inset 0 2px 18px rgba(0, 0, 0, 0.05);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -696,105 +695,144 @@
       100% { transform: scale(1.16); }
     }
 
-    /* Realistic 3D Translucent Round Water Paint Droplets on Paper */
+    /* Realistic Translucent Glassy Liquid Water Paint Droplets on Paper */
     .water-droplet {
       position: relative;
-      width: clamp(92px, 24vw, 118px);
-      height: clamp(92px, 24vw, 118px);
-      border-radius: 50% 49% 51% 49% / 49% 51% 49% 51%;
-      background: radial-gradient(circle at 38% 34%, var(--drop-core) 0%, var(--drop-mid) 54%, var(--drop-edge) 88%, var(--drop-dark) 100%);
+      width: clamp(94px, 24.5vw, 120px);
+      height: clamp(94px, 24.5vw, 120px);
+      border-radius: 51% 49% 49% 51% / 48% 52% 49% 51%;
+      background:
+        radial-gradient(ellipse 58% 54% at 68% 66%, var(--drop-glow) 0%, transparent 66%),
+        radial-gradient(circle at 42% 38%, var(--drop-core) 0%, var(--drop-mid) 56%, var(--drop-edge) 85%, var(--drop-dark) 100%);
+      backdrop-filter: blur(0.8px) saturate(1.25);
+      -webkit-backdrop-filter: blur(0.8px) saturate(1.25);
+      border: 1px solid var(--drop-border);
       box-shadow:
-        0 10px 16px -4px rgba(0, 0, 0, 0.38),
-        0 4px 10px -1px var(--drop-shadow),
-        inset 0 -9px 14px rgba(0, 0, 0, 0.45),
-        inset 0 4px 10px rgba(255, 255, 255, 0.32),
-        inset -7px -5px 12px var(--drop-rim);
-      transition: transform 0.2s ease;
+        0 8px 13px -3px rgba(0, 0, 0, 0.34),
+        0 4px 12px 0px var(--drop-shadow),
+        inset 0 -8px 12px -2px var(--drop-meniscus),
+        inset 4px 5px 10px -3px rgba(0, 0, 0, 0.24),
+        inset -6px -4px 11px var(--drop-rim),
+        inset 0 2px 5px rgba(255, 255, 255, 0.45);
+      transition: transform 0.2s ease, background 0.35s ease, box-shadow 0.35s ease;
     }
-    /* Curved glossy ring-light specular highlight on top of liquid dome */
+    /* Crisp hollow white ring-light specular reflection on liquid dome */
     .water-droplet::before {
       content: '';
       position: absolute;
-      top: 11%;
-      left: 29%;
+      top: 10%;
+      left: 33%;
       width: 28%;
-      height: 14%;
+      height: 13%;
       border-radius: 50%;
-      border: 3.5px solid rgba(255, 255, 255, 0.92);
-      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.04) 70%);
-      transform: rotate(-14deg);
-      filter: blur(0.35px);
+      border: 3px solid rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.08);
+      transform: rotate(-10deg);
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.65);
     }
-    /* Luminous refracted caustic light arc on lower-right curve */
+    /* Luminous refracted caustic light crescent along right/lower-right curve */
     .water-droplet::after {
       content: '';
       position: absolute;
-      bottom: 9%;
-      right: 10%;
-      width: 58%;
-      height: 58%;
+      top: 15%;
+      right: 8%;
+      width: 66%;
+      height: 70%;
       border-radius: 50%;
-      border-right: 4.5px solid var(--drop-caustic);
-      border-bottom: 3.5px solid var(--drop-caustic);
-      border-top: 3px solid transparent;
-      border-left: 3px solid transparent;
-      filter: blur(2.2px);
-      opacity: 0.88;
+      border-right: 4px solid var(--drop-caustic);
+      border-bottom: 2.5px solid var(--drop-caustic);
+      border-top: 2px solid transparent;
+      border-left: 2px solid transparent;
+      filter: blur(1.4px);
+      opacity: 0.95;
+    }
+
+    /* Fluid liquid surface-tension slosh while dragging */
+    .canvas-paint-blob.dragging .water-droplet {
+      animation: liquidDragWobble 0.42s ease-in-out infinite alternate;
+    }
+    @keyframes liquidDragWobble {
+      0%   { border-radius: 54% 46% 48% 52% / 46% 54% 48% 52%; }
+      100% { border-radius: 46% 54% 52% 48% / 54% 46% 52% 48%; }
     }
 
     .droplet-red {
-      --drop-core: rgba(255, 62, 42, 0.85);
-      --drop-mid: rgba(218, 18, 14, 0.93);
-      --drop-edge: rgba(142, 6, 6, 0.98);
-      --drop-dark: #450303;
-      --drop-rim: rgba(255, 115, 85, 0.72);
-      --drop-caustic: rgba(255, 165, 125, 0.88);
-      --drop-shadow: rgba(153, 27, 27, 0.45);
+      border-radius: 51% 49% 48% 52% / 48% 52% 49% 51%;
+      --drop-core: rgba(245, 38, 22, 0.56);
+      --drop-mid: rgba(215, 16, 10, 0.72);
+      --drop-edge: rgba(155, 8, 6, 0.86);
+      --drop-dark: rgba(82, 4, 4, 0.92);
+      --drop-glow: rgba(255, 118, 72, 0.62);
+      --drop-rim: rgba(255, 120, 82, 0.78);
+      --drop-caustic: rgba(255, 175, 130, 0.94);
+      --drop-meniscus: rgba(70, 2, 2, 0.75);
+      --drop-border: rgba(130, 10, 10, 0.35);
+      --drop-shadow: rgba(190, 24, 24, 0.34);
     }
     .droplet-yellow {
-      --drop-core: rgba(254, 240, 82, 0.76);
-      --drop-mid: rgba(220, 182, 12, 0.9);
-      --drop-edge: rgba(148, 110, 6, 0.96);
-      --drop-dark: #4f3702;
-      --drop-rim: rgba(255, 248, 148, 0.85);
-      --drop-caustic: rgba(255, 254, 175, 0.96);
-      --drop-shadow: rgba(161, 98, 7, 0.42);
+      border-radius: 48% 52% 51% 49% / 52% 48% 50% 50%;
+      --drop-core: rgba(242, 224, 48, 0.44);
+      --drop-mid: rgba(212, 182, 8, 0.64);
+      --drop-edge: rgba(152, 122, 4, 0.82);
+      --drop-dark: rgba(88, 66, 2, 0.9);
+      --drop-glow: rgba(255, 252, 140, 0.78);
+      --drop-rim: rgba(255, 250, 135, 0.88);
+      --drop-caustic: rgba(255, 255, 190, 0.98);
+      --drop-meniscus: rgba(92, 68, 2, 0.72);
+      --drop-border: rgba(145, 112, 6, 0.34);
+      --drop-shadow: rgba(185, 135, 8, 0.32);
     }
     .droplet-blue {
-      --drop-core: rgba(68, 154, 255, 0.82);
-      --drop-mid: rgba(24, 92, 228, 0.92);
-      --drop-edge: rgba(14, 46, 142, 0.98);
-      --drop-dark: #091a52;
-      --drop-rim: rgba(125, 195, 255, 0.78);
-      --drop-caustic: rgba(168, 222, 255, 0.92);
-      --drop-shadow: rgba(30, 58, 138, 0.45);
+      border-radius: 52% 48% 49% 51% / 49% 51% 52% 48%;
+      --drop-core: rgba(48, 138, 255, 0.52);
+      --drop-mid: rgba(18, 86, 224, 0.7);
+      --drop-edge: rgba(10, 44, 148, 0.86);
+      --drop-dark: rgba(6, 22, 82, 0.92);
+      --drop-glow: rgba(125, 204, 255, 0.65);
+      --drop-rim: rgba(135, 208, 255, 0.82);
+      --drop-caustic: rgba(185, 232, 255, 0.95);
+      --drop-meniscus: rgba(8, 24, 88, 0.75);
+      --drop-border: rgba(16, 52, 150, 0.35);
+      --drop-shadow: rgba(29, 78, 216, 0.34);
     }
     .droplet-orange {
-      --drop-core: rgba(255, 152, 48, 0.84);
-      --drop-mid: rgba(232, 92, 10, 0.93);
-      --drop-edge: rgba(152, 46, 5, 0.98);
-      --drop-dark: #571802;
-      --drop-rim: rgba(255, 192, 108, 0.78);
-      --drop-caustic: rgba(255, 218, 142, 0.92);
-      --drop-shadow: rgba(154, 52, 18, 0.45);
+      border-radius: 49% 51% 52% 48% / 51% 49% 48% 52%;
+      --drop-core: rgba(255, 142, 34, 0.52);
+      --drop-mid: rgba(232, 88, 8, 0.7);
+      --drop-edge: rgba(162, 46, 4, 0.85);
+      --drop-dark: rgba(88, 22, 2, 0.92);
+      --drop-glow: rgba(255, 205, 110, 0.68);
+      --drop-rim: rgba(255, 198, 108, 0.82);
+      --drop-caustic: rgba(255, 228, 155, 0.95);
+      --drop-meniscus: rgba(94, 26, 2, 0.74);
+      --drop-border: rgba(155, 50, 6, 0.35);
+      --drop-shadow: rgba(217, 78, 12, 0.34);
     }
     .droplet-green {
-      --drop-core: rgba(26, 182, 66, 0.82);
-      --drop-mid: rgba(10, 124, 34, 0.94);
-      --drop-edge: rgba(4, 68, 16, 0.98);
-      --drop-dark: #02280a;
-      --drop-rim: rgba(98, 238, 128, 0.82);
-      --drop-caustic: rgba(138, 255, 152, 0.94);
-      --drop-shadow: rgba(20, 83, 45, 0.48);
+      border-radius: 50% 50% 48% 52% / 53% 47% 51% 49%;
+      --drop-core: rgba(18, 165, 52, 0.54);
+      --drop-mid: rgba(8, 118, 28, 0.74);
+      --drop-edge: rgba(4, 68, 14, 0.88);
+      --drop-dark: rgba(2, 36, 8, 0.94);
+      --drop-glow: rgba(98, 245, 124, 0.62);
+      --drop-rim: rgba(90, 242, 120, 0.82);
+      --drop-caustic: rgba(155, 255, 168, 0.96);
+      --drop-meniscus: rgba(2, 38, 8, 0.78);
+      --drop-border: rgba(6, 76, 18, 0.36);
+      --drop-shadow: rgba(16, 112, 36, 0.36);
     }
     .droplet-purple {
-      --drop-core: rgba(188, 98, 255, 0.82);
-      --drop-mid: rgba(124, 32, 204, 0.93);
-      --drop-edge: rgba(72, 12, 132, 0.98);
-      --drop-dark: #28034c;
-      --drop-rim: rgba(220, 165, 255, 0.78);
-      --drop-caustic: rgba(238, 198, 255, 0.92);
-      --drop-shadow: rgba(88, 28, 135, 0.45);
+      border-radius: 48% 52% 50% 50% / 48% 52% 49% 51%;
+      --drop-core: rgba(176, 82, 255, 0.52);
+      --drop-mid: rgba(118, 28, 198, 0.72);
+      --drop-edge: rgba(68, 10, 128, 0.86);
+      --drop-dark: rgba(36, 4, 72, 0.92);
+      --drop-glow: rgba(220, 168, 255, 0.62);
+      --drop-rim: rgba(218, 162, 255, 0.8);
+      --drop-caustic: rgba(242, 206, 255, 0.94);
+      --drop-meniscus: rgba(42, 4, 82, 0.76);
+      --drop-border: rgba(78, 16, 140, 0.35);
+      --drop-shadow: rgba(126, 34, 206, 0.34);
     }
 
     /* WATERCOLOR SPLASH OVERLAY */
@@ -2542,18 +2580,21 @@
       if (!dropletEl || !hex) return;
       const { r, g, b } = hexToRgb(hex);
       const clamp = (v) => Math.max(0, Math.min(255, Math.round(v)));
-      dropletEl.style.setProperty('--drop-core', `rgba(${clamp(r + 42)}, ${clamp(g + 42)}, ${clamp(b + 42)}, 0.84)`);
-      dropletEl.style.setProperty('--drop-mid', `rgba(${r}, ${g}, ${b}, 0.93)`);
-      dropletEl.style.setProperty('--drop-edge', `rgba(${clamp(r * 0.6)}, ${clamp(g * 0.6)}, ${clamp(b * 0.6)}, 0.98)`);
-      dropletEl.style.setProperty('--drop-dark', `rgb(${clamp(r * 0.25)}, ${clamp(g * 0.25)}, ${clamp(b * 0.25)})`);
-      dropletEl.style.setProperty('--drop-rim', `rgba(${clamp(r + 65)}, ${clamp(g + 65)}, ${clamp(b + 65)}, 0.8)`);
-      dropletEl.style.setProperty('--drop-caustic', `rgba(${clamp(r + 105)}, ${clamp(g + 105)}, ${clamp(b + 105)}, 0.92)`);
-      dropletEl.style.setProperty('--drop-shadow', `rgba(${clamp(r * 0.58)}, ${clamp(g * 0.58)}, ${clamp(b * 0.58)}, 0.45)`);
+      dropletEl.style.setProperty('--drop-core', `rgba(${clamp(r + 25)}, ${clamp(g + 25)}, ${clamp(b + 25)}, 0.50)`);
+      dropletEl.style.setProperty('--drop-mid', `rgba(${r}, ${g}, ${b}, 0.70)`);
+      dropletEl.style.setProperty('--drop-edge', `rgba(${clamp(r * 0.65)}, ${clamp(g * 0.65)}, ${clamp(b * 0.65)}, 0.85)`);
+      dropletEl.style.setProperty('--drop-dark', `rgba(${clamp(r * 0.34)}, ${clamp(g * 0.34)}, ${clamp(b * 0.34)}, 0.92)`);
+      dropletEl.style.setProperty('--drop-glow', `rgba(${clamp(r + 75)}, ${clamp(g + 75)}, ${clamp(b + 75)}, 0.68)`);
+      dropletEl.style.setProperty('--drop-rim', `rgba(${clamp(r + 75)}, ${clamp(g + 75)}, ${clamp(b + 75)}, 0.82)`);
+      dropletEl.style.setProperty('--drop-caustic', `rgba(${clamp(r + 115)}, ${clamp(g + 115)}, ${clamp(b + 115)}, 0.95)`);
+      dropletEl.style.setProperty('--drop-meniscus', `rgba(${clamp(r * 0.32)}, ${clamp(g * 0.32)}, ${clamp(b * 0.32)}, 0.74)`);
+      dropletEl.style.setProperty('--drop-border', `rgba(${clamp(r * 0.6)}, ${clamp(g * 0.6)}, ${clamp(b * 0.6)}, 0.35)`);
+      dropletEl.style.setProperty('--drop-shadow', `rgba(${clamp(r * 0.72)}, ${clamp(g * 0.72)}, ${clamp(b * 0.72)}, 0.34)`);
     }
 
     function clearDropletHexStyle(dropletEl) {
       if (!dropletEl) return;
-      ['--drop-core', '--drop-mid', '--drop-edge', '--drop-dark', '--drop-rim', '--drop-caustic', '--drop-shadow']
+      ['--drop-core', '--drop-mid', '--drop-edge', '--drop-dark', '--drop-glow', '--drop-rim', '--drop-caustic', '--drop-meniscus', '--drop-border', '--drop-shadow']
         .forEach(prop => dropletEl.style.removeProperty(prop));
     }
 
