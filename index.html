@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Little Explorers" />
-  <meta name="theme-color" content="#fef3c7" />
+  <meta id="meta-theme-color" name="theme-color" content="#38bdf8" />
   
   <!-- Cache-Busting so GitHub Pages always gets latest updates immediately -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -25,14 +25,16 @@
     html, body {
       width: 100%;
       height: 100%;
+      height: 100dvh;
       overflow: hidden;
-      background: #fdf6e2;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       touch-action: none;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       user-select: none;
       overscroll-behavior: none;
+      -webkit-font-smoothing: antialiased;
     }
 
     #app {
@@ -41,76 +43,10 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      background: linear-gradient(180deg, #fef8ee 0%, #f7ecd5 100%);
+      background: #f5f5f7;
     }
 
-    /* Top Navigation Header */
-    header {
-      width: 100%;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 100;
-    }
-
-    .brand-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #78350f;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      letter-spacing: -0.02em;
-    }
-    .brand-title span {
-      background: #fde68a;
-      color: #92400e;
-      font-size: 0.7rem;
-      padding: 2px 8px;
-      border-radius: 9999px;
-      font-weight: 700;
-    }
-
-    .game-tabs {
-      display: flex;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
-      border: 2px solid #fcd34d;
-      padding: 4px;
-      border-radius: 9999px;
-      gap: 4px;
-      box-shadow: 0 4px 12px rgba(180, 83, 9, 0.08);
-      overflow-x: auto;
-      max-width: 65%;
-      -webkit-overflow-scrolling: touch;
-    }
-    .game-tabs::-webkit-scrollbar { display: none; }
-
-    .tab-btn {
-      border: none;
-      background: transparent;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: #92400e;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .tab-btn.active {
-      background: #f59e0b;
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
-      transform: scale(1.04);
-    }
-
-    /* Main Stage */
+    /* Main Edge-to-Edge Stage */
     main {
       flex: 1;
       width: 100%;
@@ -120,34 +56,138 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 12px 12px;
+      padding: 0;
     }
 
     .game-view {
       position: absolute;
-      inset: 6px 10px;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       opacity: 0;
       pointer-events: none;
-      transform: scale(0.96);
-      transition: opacity 0.35s ease, transform 0.35s ease;
+      transform: scale(0.985);
+      transition: opacity 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       background: #ffffff;
-      border-radius: 32px;
-      border: 3px solid #fde68a;
-      box-shadow: 0 14px 36px rgba(120, 53, 15, 0.09);
-      padding: 16px 20px;
+      border-radius: 0;
+      border: none;
+      padding:
+        max(14px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        max(16px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
       overflow: hidden;
-      max-width: 640px;
-      max-height: 840px;
       margin: auto;
     }
     .game-view.active {
       opacity: 1;
       pointer-events: auto;
       transform: scale(1);
+    }
+
+    /* Sleek iPhone-proportioned frameless canvas on wide desktop / tablet displays */
+    @media (min-width: 720px) {
+      main {
+        padding: 18px;
+        background: radial-gradient(circle at 50% 0%, #ffffff 0%, #eceef2 100%);
+      }
+      .game-view {
+        inset: 18px;
+        max-width: 520px;
+        max-height: 880px;
+        border-radius: 40px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12), 0 4px 16px rgba(15, 23, 42, 0.06);
+      }
+    }
+
+    /* Quiet, Apple-Style Minimal Top Action Bar */
+    .ios-top-bar {
+      width: 100%;
+      min-height: 44px;
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      align-items: center;
+      gap: 8px;
+      z-index: 30;
+      flex-shrink: 0;
+      margin-bottom: 6px;
+    }
+
+    .ios-icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.18s ease;
+    }
+    .ios-icon-btn:active {
+      transform: scale(0.9);
+      background: rgba(241, 245, 249, 0.95);
+    }
+    .ios-icon-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .ios-view-title {
+      text-align: center;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Full-Bleed Edge-to-Edge Color Mixing Lab */
+    #view-color-mixer {
+      padding: 0;
+      background: #ffffff;
+    }
+    #view-color-mixer .ios-floating-bar {
+      position: absolute;
+      top: max(12px, env(safe-area-inset-top));
+      left: max(14px, env(safe-area-inset-left));
+      right: max(14px, env(safe-area-inset-right));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 140;
+      pointer-events: none;
+    }
+    #view-color-mixer .ios-floating-bar .ios-icon-btn {
+      pointer-events: auto;
+    }
+    #view-color-mixer .color-playground-canvas {
+      border-radius: 0;
+      border: none;
+      margin: 0;
+      padding-top: calc(max(14px, env(safe-area-inset-top)) + 48px);
+      padding-bottom: max(18px, env(safe-area-inset-bottom));
+      padding-left: max(12px, env(safe-area-inset-left));
+      padding-right: max(12px, env(safe-area-inset-right));
+      box-shadow: none;
     }
 
     /* HOMEPAGE 2-COLUMN WIREFRAME VIEW */
@@ -159,10 +199,12 @@
       overflow-y: auto;
       touch-action: pan-y;
       -webkit-overflow-scrolling: touch;
-      padding: 16px 14px 24px;
+      padding:
+        max(22px, calc(env(safe-area-inset-top) + 12px))
+        max(16px, env(safe-area-inset-right))
+        max(26px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
       background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
-      border: 3.5px solid #ffffff;
-      box-shadow: 0 16px 40px rgba(2, 132, 199, 0.35);
     }
     #view-home::-webkit-scrollbar { display: none; }
 
@@ -922,47 +964,14 @@
 <body>
 
   <div id="app">
-    <!-- Top Bar with Home & Instant Game Switchers -->
-    <header>
-      <div class="brand-title" onclick="switchGame('home')">
-        🌱 Little Explorers
-        <span>Ages 3–5</span>
-      </div>
-
-      <nav class="game-tabs">
-        <button id="tab-home" class="tab-btn active" onclick="switchGame('home')">
-          <span>🏠</span> Home
-        </button>
-        <button id="tab-colors" class="tab-btn" onclick="switchGame('colors')">
-          <span>🎨</span> Colours
-        </button>
-        <button id="tab-lola" class="tab-btn" onclick="switchGame('lola')">
-          <span>🔢</span> Maths
-        </button>
-        <button id="tab-pip" class="tab-btn" onclick="switchGame('pip')">
-          <span>🔷</span> Shapes
-        </button>
-        <button id="tab-penny" class="tab-btn" onclick="switchGame('penny')">
-          <span>🐷</span> Puddles
-        </button>
-        <button id="tab-animals" class="tab-btn" onclick="switchGame('animals')">
-          <span>🐶</span> Sounds
-        </button>
-        <button id="tab-scribble" class="tab-btn" onclick="switchGame('scribble')">
-          <span>✨</span> Scribbles
-        </button>
-      </nav>
-    </header>
-
-    <!-- Main Game Staging -->
+    <!-- Main Edge-to-Edge Stage (No Web Nav Bar Chrome) -->
     <main>
 
       <!-- HOMEPAGE 2-COLUMN WIREFRAME WIDGETS (EXACT FORMAT FROM WIREFRAME) -->
       <section id="view-home" class="game-view active">
         
         <div class="home-header-banner">
-          <h2>Little Explorers 🌟</h2>
-          <p>Tap a world to start playing!</p>
+          <h2>Little Explorers</h2>
         </div>
 
         <div class="wireframe-grid">
@@ -1091,16 +1100,13 @@
       </section>
 
       <!-- LEVEL SELECTION INSIDE PLAY WITH COLOURS WIDGET -->
-      <section id="view-color-levels" class="game-view">
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Play with Colours 🎨</h3>
-              <p style="font-size:0.85rem; color:#92400e;">Choose a level to start playing!</p>
-            </div>
-          </div>
-          <button onclick="switchGame('home')" style="border:none; background:#fef3c7; color:#92400e; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">🏠 Home</button>
+      <section id="view-color-levels" class="game-view" style="justify-content:flex-start;">
+        <div class="ios-top-bar">
+          <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <h3 class="ios-view-title">Play with Colours</h3>
+          <div></div>
         </div>
 
         <div style="width:100%; display:flex; flex-direction:column; gap:12px; margin-top:8px;">
@@ -1160,26 +1166,14 @@
 
       <!-- GAME 1: MILO'S COLOR GARDEN (COLORS & ART - LEVEL 1) -->
       <section id="view-milo" class="game-view">
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Milo’s Colors</h3>
-              <p style="font-size:0.85rem; color:#92400e;">Level 1 • Match drops to wake the flowers!</p>
-            </div>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <button onclick="switchGame('color-levels')" style="border:none; background:#fef3c7; color:#92400e; padding:8px 12px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;" title="All Levels">☰ Levels</button>
-            <button onclick="resetMilo()" style="border:none; background:#fef3c7; color:#92400e; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">↺ Reset</button>
-          </div>
-        </div>
-
-        <!-- Level Switcher -->
-        <div class="level-pill-bar">
-          <button onclick="switchGame('color-levels')" class="level-pill" style="border:1.5px dashed #f59e0b; background:#fffbeb;">☰ All Levels</button>
-          <button class="level-pill active">🌸 Level 1: Flowers</button>
-          <button onclick="switchGame('color-fruits')" class="level-pill">🍎 Level 2: Fruits & Veggies</button>
-          <button onclick="switchGame('color-mixer')" class="level-pill">🧪 Level 3: Color Mixing</button>
+        <div class="ios-top-bar">
+          <button class="ios-icon-btn" onclick="switchGame('color-levels')" aria-label="Back to Levels">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <h3 class="ios-view-title">Flower Garden</h3>
+          <button class="ios-icon-btn" onclick="resetMilo()" aria-label="Reset">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+          </button>
         </div>
 
         <!-- Flowers Stage -->
@@ -1263,27 +1257,14 @@
 
       <!-- GAME 1B: COLOR FRUITS & VEGETABLES (COLORS LEVEL 2) -->
       <section id="view-color-fruits" class="game-view">
-        <!-- Top Game Header -->
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Fruit & Veggie Colors 🎨</h3>
-              <p style="font-size:0.85rem; color:#92400e;">Level 2 • Pick & drag the right color!</p>
-            </div>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <button onclick="switchGame('color-levels')" style="border:none; background:#fef3c7; color:#92400e; padding:8px 12px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;" title="All Levels">☰ Levels</button>
-            <button onclick="resetColorFruits()" style="border:none; background:#fef3c7; color:#92400e; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">↺ Reset</button>
-          </div>
-        </div>
-
-        <!-- Level Switcher -->
-        <div class="level-pill-bar">
-          <button onclick="switchGame('color-levels')" class="level-pill" style="border:1.5px dashed #f59e0b; background:#fffbeb;">☰ All Levels</button>
-          <button onclick="switchGame('milo')" class="level-pill">🌸 Level 1: Flowers</button>
-          <button class="level-pill active">🍎 Level 2: Fruits & Veggies</button>
-          <button onclick="switchGame('color-mixer')" class="level-pill">🧪 Level 3: Color Mixing</button>
+        <div class="ios-top-bar">
+          <button class="ios-icon-btn" onclick="switchGame('color-levels')" aria-label="Back to Levels">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <h3 class="ios-view-title">Fruit & Veggie Colors</h3>
+          <button class="ios-icon-btn" onclick="resetColorFruits()" aria-label="Reset">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+          </button>
         </div>
 
         <!-- Progress Tracker & Prompt Bar -->
@@ -1407,24 +1388,19 @@
         </div>
       </section>
 
-      <!-- GAME 1C: COLOR MIXING MAGIC (COLORS LEVEL 3 - PRACTICE LAB) -->
+      <!-- GAME 1C: COLOR MIXING MAGIC (COLORS LEVEL 3 - FULL-BLEED PRACTICE LAB) -->
       <section id="view-color-mixer" class="game-view">
-        <!-- Top Game Header (No Pill Bar) -->
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Color Mixing Lab 🧪</h3>
-              <p style="font-size:0.85rem; color:#92400e;">Free Practice • Drag colors into each other!</p>
-            </div>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <button onclick="switchGame('color-levels')" style="border:none; background:#fef3c7; color:#92400e; padding:8px 12px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;" title="All Levels">☰ Levels</button>
-            <button onclick="resetColorMixer()" style="border:none; background:#fef3c7; color:#92400e; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">↺ Reset</button>
-          </div>
+        <!-- Quiet Floating Apple-Style Back & Reset Controls -->
+        <div class="ios-floating-bar">
+          <button class="ios-icon-btn" onclick="switchGame('color-levels')" aria-label="Back to Levels">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="ios-icon-btn" onclick="resetColorMixer()" aria-label="Reset">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+          </button>
         </div>
 
-        <!-- Blank White Watercolor Paper Canvas with Round Liquid Paint Droplets & Splash -->
+        <!-- Full-Bleed White Watercolor Paper Canvas with Round Liquid Paint Droplets & Splash -->
         <div id="color-playground" class="color-playground-canvas">
           <!-- Watery Paint Trail Canvas (marks left behind while dragging) -->
           <canvas id="mixer-trail-canvas" class="mixer-trail-canvas"></canvas>
@@ -1499,15 +1475,14 @@
 
       <!-- GAME 2: PIP'S TREEHOUSE (SHAPES & PUZZLES) -->
       <section id="view-pip" class="game-view">
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Pip’s Shapes</h3>
-              <p style="font-size:0.85rem; color:#92400e;">Fit shapes into tree hollows!</p>
-            </div>
-          </div>
-          <button onclick="resetPip()" style="border:none; background:#fef3c7; color:#92400e; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">↺ Reset</button>
+        <div class="ios-top-bar">
+          <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <h3 class="ios-view-title">Find Shapes</h3>
+          <button class="ios-icon-btn" onclick="resetPip()" aria-label="Reset">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+          </button>
         </div>
 
         <!-- Tree Hollow Puzzle Board with Visible Shapes -->
@@ -1571,15 +1546,14 @@
 
       <!-- GAME 3: LOLA'S BERRY PICNIC (EARLY MATHEMATICS & NUMBERS) -->
       <section id="view-lola" class="game-view">
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Lola’s Numbers</h3>
-              <p style="font-size:0.85rem; color:#92400e;">Tap to count 1, 2, 3 delicious berries!</p>
-            </div>
-          </div>
-          <button onclick="resetLola()" style="border:none; background:#fef3c7; color:#92400e; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">↺ Reset</button>
+        <div class="ios-top-bar">
+          <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <h3 class="ios-view-title">Do the Maths</h3>
+          <button class="ios-icon-btn" onclick="resetLola()" aria-label="Reset">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+          </button>
         </div>
 
         <!-- Picnic Riverbank Stage with 3 Number Plates -->
@@ -1612,15 +1586,17 @@
 
       <!-- GAME 4: PENNY'S MUDDY PUDDLES (PRETEND PLAY & HABITS) -->
       <section id="view-penny" class="game-view">
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Penny’s Puddles</h3>
-              <p id="penny-status" style="font-size:0.85rem; color:#92400e;">Step 1: Put on the yellow boots!</p>
-            </div>
+        <div class="ios-top-bar">
+          <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div style="text-align:center;">
+            <h3 class="ios-view-title">Muddy Puddles</h3>
+            <p id="penny-status" style="font-size:0.74rem; font-weight:700; color:#64748b; margin-top:1px;">Put on the yellow boots!</p>
           </div>
-          <button onclick="resetPenny()" style="border:none; background:#fef3c7; color:#92400e; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">↺ Reset</button>
+          <button class="ios-icon-btn" onclick="resetPenny()" aria-label="Reset">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+          </button>
         </div>
 
         <div id="penny-stage" onclick="jumpPenny(event)" style="flex:1; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; background:linear-gradient(180deg, #bae6fd 0%, #a7f3d0 100%); border-radius:24px; border:3px dashed #38bdf8; margin:14px 0; position:relative; overflow:hidden; cursor:pointer;">
@@ -1682,15 +1658,14 @@
 
       <!-- GAME 5: ANIMAL SOUNDS (MUSICAL DISCOVERY) -->
       <section id="view-animals" class="game-view">
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Animal Sounds 🐾</h3>
-              <p style="font-size:0.85rem; color:#92400e;">Tap animals to hear their friendly sounds!</p>
-            </div>
-          </div>
-          <button onclick="resetAnimals()" style="border:none; background:#fef3c7; color:#92400e; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">↺ Reset</button>
+        <div class="ios-top-bar">
+          <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <h3 class="ios-view-title">Animal Sounds</h3>
+          <button class="ios-icon-btn" onclick="resetAnimals()" aria-label="Reset">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+          </button>
         </div>
 
         <div style="flex:1; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:12px 6px; align-content:center; background:linear-gradient(180deg, #fdf4ff 0%, #fae8ff 100%); border-radius:24px; border:3px dashed #d8b4fe; margin:14px 0;">
@@ -1727,15 +1702,14 @@
 
       <!-- GAME 6: MAGIC SCRIBBLES (CREATIVE DRAWING) -->
       <section id="view-scribble" class="game-view">
-        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="switchGame('home')" style="border:none; background:#fef3c7; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer;" title="Back to Home">🏠</button>
-            <div>
-              <h3 style="font-size:1.2rem; color:#78350f; font-weight:800;">Magic Scribbles ✨</h3>
-              <p style="font-size:0.85rem; color:#92400e;">Draw glowing rainbow lines with your finger!</p>
-            </div>
-          </div>
-          <button onclick="clearScribbleCanvas()" style="border:none; background:#fee2e2; color:#b91c1c; padding:8px 14px; border-radius:9999px; font-weight:800; font-size:0.85rem; cursor:pointer;">🧹 Clear</button>
+        <div class="ios-top-bar">
+          <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <h3 class="ios-view-title">Magic Scribbles</h3>
+          <button class="ios-icon-btn" onclick="clearScribbleCanvas()" aria-label="Clear">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+          </button>
         </div>
 
         <div style="flex:1; width:100%; background:#ffffff; border-radius:24px; border:3px dashed #c084fc; margin:12px 0; position:relative; overflow:hidden;">
@@ -1905,7 +1879,7 @@
       } catch(e) {}
     }
 
-    // --- Tab Switcher & Navigation ---
+    // --- View Navigation ---
     let currentGame = 'home';
 
     function switchGame(gameId) {
@@ -1914,17 +1888,16 @@
       currentGame = gameId;
       playNote(440, 0.2, 'triangle');
 
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.game-view').forEach(view => view.classList.remove('active'));
-
-      let tabId = gameId;
-      if (gameId === 'milo' || gameId === 'color-fruits' || gameId === 'color-mixer' || gameId === 'color-levels') tabId = 'colors';
-
-      const activeTab = document.getElementById(`tab-${tabId}`);
-      if (activeTab) activeTab.classList.add('active');
 
       const activeView = document.getElementById(`view-${gameId}`);
       if (activeView) activeView.classList.add('active');
+
+      // Blend iOS status bar / theme-color seamlessly with active canvas
+      const themeMeta = document.getElementById('meta-theme-color');
+      if (themeMeta) {
+        themeMeta.setAttribute('content', gameId === 'home' ? '#38bdf8' : '#ffffff');
+      }
 
       if (gameId === 'color-levels') updateAllLevelStarsUI();
       if (gameId === 'milo') shuffleMiloDrops();
