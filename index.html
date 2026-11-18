@@ -609,13 +609,13 @@
     .color-playground-canvas {
       flex: 1;
       width: 100%;
-      background-color: #f9f8f5;
+      background-color: #ffffff;
       background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E"),
-        radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 0);
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E"),
+        radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 0);
       background-size: 120px 120px, 18px 18px;
       border-radius: 28px;
-      border: 2.5px solid #e5e2dc;
+      border: 2.5px solid #e2e0da;
       box-shadow: inset 0 2px 18px rgba(0, 0, 0, 0.05);
       position: relative;
       overflow: hidden;
@@ -702,18 +702,18 @@
       height: clamp(94px, 24.5vw, 120px);
       border-radius: 51% 49% 49% 51% / 48% 52% 49% 51%;
       background:
-        radial-gradient(ellipse 58% 54% at 68% 66%, var(--drop-glow) 0%, transparent 66%),
-        radial-gradient(circle at 42% 38%, var(--drop-core) 0%, var(--drop-mid) 56%, var(--drop-edge) 85%, var(--drop-dark) 100%);
-      backdrop-filter: blur(0.8px) saturate(1.25);
-      -webkit-backdrop-filter: blur(0.8px) saturate(1.25);
-      border: 1px solid var(--drop-border);
+        radial-gradient(ellipse 56% 52% at 68% 68%, var(--drop-glow) 0%, transparent 64%),
+        radial-gradient(circle at 42% 38%, var(--drop-core) 0%, var(--drop-mid) 54%, var(--drop-edge) 84%, var(--drop-dark) 100%);
+      backdrop-filter: blur(0.8px) saturate(1.55) contrast(1.1);
+      -webkit-backdrop-filter: blur(0.8px) saturate(1.55) contrast(1.1);
+      border: 1.5px solid var(--drop-border);
       box-shadow:
-        0 8px 13px -3px rgba(0, 0, 0, 0.34),
+        0 10px 16px -3px rgba(0, 0, 0, 0.46),
         0 4px 12px 0px var(--drop-shadow),
-        inset 0 -8px 12px -2px var(--drop-meniscus),
-        inset 4px 5px 10px -3px rgba(0, 0, 0, 0.24),
+        inset 0 -10px 14px -2px var(--drop-meniscus),
+        inset 4px 6px 12px -2px rgba(0, 0, 0, 0.34),
         inset -6px -4px 11px var(--drop-rim),
-        inset 0 2px 5px rgba(255, 255, 255, 0.45);
+        inset 0 2px 5px rgba(255, 255, 255, 0.52);
       transition: transform 0.2s ease, background 0.35s ease, box-shadow 0.35s ease;
     }
     /* Crisp hollow white ring-light specular reflection on liquid dome */
@@ -725,26 +725,26 @@
       width: 28%;
       height: 13%;
       border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.94);
-      background: rgba(255, 255, 255, 0.08);
+      border: 3.2px solid #ffffff;
+      background: rgba(255, 255, 255, 0.12);
       transform: rotate(-10deg);
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.65);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.85);
     }
     /* Luminous refracted caustic light crescent along right/lower-right curve */
     .water-droplet::after {
       content: '';
       position: absolute;
       top: 15%;
-      right: 8%;
+      right: 7%;
       width: 66%;
       height: 70%;
       border-radius: 50%;
-      border-right: 4px solid var(--drop-caustic);
-      border-bottom: 2.5px solid var(--drop-caustic);
+      border-right: 4.5px solid var(--drop-caustic);
+      border-bottom: 2.8px solid var(--drop-caustic);
       border-top: 2px solid transparent;
       border-left: 2px solid transparent;
-      filter: blur(1.4px);
-      opacity: 0.95;
+      filter: blur(1.2px);
+      opacity: 0.98;
     }
 
     /* Fluid liquid surface-tension slosh while dragging */
@@ -758,81 +758,81 @@
 
     .droplet-red {
       border-radius: 51% 49% 48% 52% / 48% 52% 49% 51%;
-      --drop-core: rgba(245, 38, 22, 0.56);
-      --drop-mid: rgba(215, 16, 10, 0.72);
-      --drop-edge: rgba(155, 8, 6, 0.86);
-      --drop-dark: rgba(82, 4, 4, 0.92);
-      --drop-glow: rgba(255, 118, 72, 0.62);
-      --drop-rim: rgba(255, 120, 82, 0.78);
-      --drop-caustic: rgba(255, 175, 130, 0.94);
-      --drop-meniscus: rgba(70, 2, 2, 0.75);
-      --drop-border: rgba(130, 10, 10, 0.35);
-      --drop-shadow: rgba(190, 24, 24, 0.34);
+      --drop-core: rgba(235, 0, 12, 0.72);
+      --drop-mid: rgba(190, 0, 8, 0.86);
+      --drop-edge: rgba(128, 0, 4, 0.94);
+      --drop-dark: rgba(58, 0, 2, 0.98);
+      --drop-glow: rgba(255, 65, 55, 0.65);
+      --drop-rim: rgba(255, 78, 62, 0.82);
+      --drop-caustic: rgba(255, 130, 110, 0.98);
+      --drop-meniscus: rgba(55, 0, 0, 0.88);
+      --drop-border: rgba(110, 0, 0, 0.55);
+      --drop-shadow: rgba(185, 0, 12, 0.42);
     }
     .droplet-yellow {
       border-radius: 48% 52% 51% 49% / 52% 48% 50% 50%;
-      --drop-core: rgba(242, 224, 48, 0.44);
-      --drop-mid: rgba(212, 182, 8, 0.64);
-      --drop-edge: rgba(152, 122, 4, 0.82);
-      --drop-dark: rgba(88, 66, 2, 0.9);
-      --drop-glow: rgba(255, 252, 140, 0.78);
-      --drop-rim: rgba(255, 250, 135, 0.88);
-      --drop-caustic: rgba(255, 255, 190, 0.98);
-      --drop-meniscus: rgba(92, 68, 2, 0.72);
-      --drop-border: rgba(145, 112, 6, 0.34);
-      --drop-shadow: rgba(185, 135, 8, 0.32);
+      --drop-core: rgba(250, 222, 0, 0.68);
+      --drop-mid: rgba(212, 168, 0, 0.84);
+      --drop-edge: rgba(140, 104, 0, 0.94);
+      --drop-dark: rgba(66, 46, 0, 0.97);
+      --drop-glow: rgba(255, 250, 75, 0.85);
+      --drop-rim: rgba(255, 245, 70, 0.92);
+      --drop-caustic: rgba(255, 255, 160, 1);
+      --drop-meniscus: rgba(74, 52, 0, 0.86);
+      --drop-border: rgba(126, 92, 0, 0.55);
+      --drop-shadow: rgba(175, 125, 0, 0.4);
     }
     .droplet-blue {
       border-radius: 52% 48% 49% 51% / 49% 51% 52% 48%;
-      --drop-core: rgba(48, 138, 255, 0.52);
-      --drop-mid: rgba(18, 86, 224, 0.7);
-      --drop-edge: rgba(10, 44, 148, 0.86);
-      --drop-dark: rgba(6, 22, 82, 0.92);
-      --drop-glow: rgba(125, 204, 255, 0.65);
-      --drop-rim: rgba(135, 208, 255, 0.82);
-      --drop-caustic: rgba(185, 232, 255, 0.95);
-      --drop-meniscus: rgba(8, 24, 88, 0.75);
-      --drop-border: rgba(16, 52, 150, 0.35);
-      --drop-shadow: rgba(29, 78, 216, 0.34);
+      --drop-core: rgba(0, 96, 255, 0.72);
+      --drop-mid: rgba(0, 56, 212, 0.87);
+      --drop-edge: rgba(0, 26, 138, 0.95);
+      --drop-dark: rgba(2, 12, 68, 0.98);
+      --drop-glow: rgba(64, 175, 255, 0.72);
+      --drop-rim: rgba(76, 185, 255, 0.86);
+      --drop-caustic: rgba(145, 222, 255, 0.98);
+      --drop-meniscus: rgba(2, 14, 72, 0.88);
+      --drop-border: rgba(0, 32, 135, 0.55);
+      --drop-shadow: rgba(0, 62, 210, 0.42);
     }
     .droplet-orange {
       border-radius: 49% 51% 52% 48% / 51% 49% 48% 52%;
-      --drop-core: rgba(255, 142, 34, 0.52);
-      --drop-mid: rgba(232, 88, 8, 0.7);
-      --drop-edge: rgba(162, 46, 4, 0.85);
-      --drop-dark: rgba(88, 22, 2, 0.92);
-      --drop-glow: rgba(255, 205, 110, 0.68);
-      --drop-rim: rgba(255, 198, 108, 0.82);
-      --drop-caustic: rgba(255, 228, 155, 0.95);
-      --drop-meniscus: rgba(94, 26, 2, 0.74);
-      --drop-border: rgba(155, 50, 6, 0.35);
-      --drop-shadow: rgba(217, 78, 12, 0.34);
+      --drop-core: rgba(255, 112, 0, 0.72);
+      --drop-mid: rgba(224, 68, 0, 0.87);
+      --drop-edge: rgba(146, 36, 0, 0.95);
+      --drop-dark: rgba(72, 14, 0, 0.98);
+      --drop-glow: rgba(255, 184, 52, 0.74);
+      --drop-rim: rgba(255, 172, 48, 0.86);
+      --drop-caustic: rgba(255, 216, 108, 0.98);
+      --drop-meniscus: rgba(76, 18, 0, 0.88);
+      --drop-border: rgba(142, 40, 0, 0.55);
+      --drop-shadow: rgba(215, 72, 0, 0.42);
     }
     .droplet-green {
       border-radius: 50% 50% 48% 52% / 53% 47% 51% 49%;
-      --drop-core: rgba(18, 165, 52, 0.54);
-      --drop-mid: rgba(8, 118, 28, 0.74);
-      --drop-edge: rgba(4, 68, 14, 0.88);
-      --drop-dark: rgba(2, 36, 8, 0.94);
-      --drop-glow: rgba(98, 245, 124, 0.62);
-      --drop-rim: rgba(90, 242, 120, 0.82);
-      --drop-caustic: rgba(155, 255, 168, 0.96);
-      --drop-meniscus: rgba(2, 38, 8, 0.78);
-      --drop-border: rgba(6, 76, 18, 0.36);
-      --drop-shadow: rgba(16, 112, 36, 0.36);
+      --drop-core: rgba(0, 152, 34, 0.74);
+      --drop-mid: rgba(0, 102, 18, 0.88);
+      --drop-edge: rgba(0, 56, 8, 0.96);
+      --drop-dark: rgba(0, 26, 3, 0.98);
+      --drop-glow: rgba(58, 240, 88, 0.7);
+      --drop-rim: rgba(62, 242, 92, 0.86);
+      --drop-caustic: rgba(120, 255, 135, 0.98);
+      --drop-meniscus: rgba(0, 30, 4, 0.9);
+      --drop-border: rgba(0, 62, 12, 0.56);
+      --drop-shadow: rgba(0, 102, 24, 0.44);
     }
     .droplet-purple {
       border-radius: 48% 52% 50% 50% / 48% 52% 49% 51%;
-      --drop-core: rgba(176, 82, 255, 0.52);
-      --drop-mid: rgba(118, 28, 198, 0.72);
-      --drop-edge: rgba(68, 10, 128, 0.86);
-      --drop-dark: rgba(36, 4, 72, 0.92);
-      --drop-glow: rgba(220, 168, 255, 0.62);
-      --drop-rim: rgba(218, 162, 255, 0.8);
-      --drop-caustic: rgba(242, 206, 255, 0.94);
-      --drop-meniscus: rgba(42, 4, 82, 0.76);
-      --drop-border: rgba(78, 16, 140, 0.35);
-      --drop-shadow: rgba(126, 34, 206, 0.34);
+      --drop-core: rgba(154, 24, 255, 0.72);
+      --drop-mid: rgba(102, 8, 192, 0.87);
+      --drop-edge: rgba(56, 2, 118, 0.95);
+      --drop-dark: rgba(26, 0, 62, 0.98);
+      --drop-glow: rgba(208, 120, 255, 0.7);
+      --drop-rim: rgba(206, 122, 255, 0.85);
+      --drop-caustic: rgba(236, 182, 255, 0.98);
+      --drop-meniscus: rgba(30, 0, 68, 0.88);
+      --drop-border: rgba(66, 6, 132, 0.55);
+      --drop-shadow: rgba(108, 16, 200, 0.42);
     }
 
     /* WATERCOLOR SPLASH OVERLAY */
@@ -2523,12 +2523,12 @@
     };
 
     const colorPotsInfo = {
-      red: { name: 'Red', hex: '#ef4444', emoji: '🔴' },
-      yellow: { name: 'Yellow', hex: '#facc15', emoji: '🟡' },
-      blue: { name: 'Blue', hex: '#3b82f6', emoji: '🔵' },
-      orange: { name: 'Orange', hex: '#f97316', emoji: '🟠' },
-      green: { name: 'Green', hex: '#22c55e', emoji: '🟢' },
-      purple: { name: 'Purple', hex: '#a855f7', emoji: '🟣' }
+      red: { name: 'Red', hex: '#dc000c', emoji: '🔴' },
+      yellow: { name: 'Yellow', hex: '#f0c800', emoji: '🟡' },
+      blue: { name: 'Blue', hex: '#0055ff', emoji: '🔵' },
+      orange: { name: 'Orange', hex: '#ff6600', emoji: '🟠' },
+      green: { name: 'Green', hex: '#009624', emoji: '🟢' },
+      purple: { name: 'Purple', hex: '#8c1aff', emoji: '🟣' }
     };
 
     let selectedTapBlob = null;
@@ -2580,16 +2580,16 @@
       if (!dropletEl || !hex) return;
       const { r, g, b } = hexToRgb(hex);
       const clamp = (v) => Math.max(0, Math.min(255, Math.round(v)));
-      dropletEl.style.setProperty('--drop-core', `rgba(${clamp(r + 25)}, ${clamp(g + 25)}, ${clamp(b + 25)}, 0.50)`);
-      dropletEl.style.setProperty('--drop-mid', `rgba(${r}, ${g}, ${b}, 0.70)`);
-      dropletEl.style.setProperty('--drop-edge', `rgba(${clamp(r * 0.65)}, ${clamp(g * 0.65)}, ${clamp(b * 0.65)}, 0.85)`);
-      dropletEl.style.setProperty('--drop-dark', `rgba(${clamp(r * 0.34)}, ${clamp(g * 0.34)}, ${clamp(b * 0.34)}, 0.92)`);
-      dropletEl.style.setProperty('--drop-glow', `rgba(${clamp(r + 75)}, ${clamp(g + 75)}, ${clamp(b + 75)}, 0.68)`);
-      dropletEl.style.setProperty('--drop-rim', `rgba(${clamp(r + 75)}, ${clamp(g + 75)}, ${clamp(b + 75)}, 0.82)`);
-      dropletEl.style.setProperty('--drop-caustic', `rgba(${clamp(r + 115)}, ${clamp(g + 115)}, ${clamp(b + 115)}, 0.95)`);
-      dropletEl.style.setProperty('--drop-meniscus', `rgba(${clamp(r * 0.32)}, ${clamp(g * 0.32)}, ${clamp(b * 0.32)}, 0.74)`);
-      dropletEl.style.setProperty('--drop-border', `rgba(${clamp(r * 0.6)}, ${clamp(g * 0.6)}, ${clamp(b * 0.6)}, 0.35)`);
-      dropletEl.style.setProperty('--drop-shadow', `rgba(${clamp(r * 0.72)}, ${clamp(g * 0.72)}, ${clamp(b * 0.72)}, 0.34)`);
+      dropletEl.style.setProperty('--drop-core', `rgba(${clamp(r + 14)}, ${clamp(g + 14)}, ${clamp(b + 14)}, 0.72)`);
+      dropletEl.style.setProperty('--drop-mid', `rgba(${clamp(r * 0.85)}, ${clamp(g * 0.85)}, ${clamp(b * 0.85)}, 0.87)`);
+      dropletEl.style.setProperty('--drop-edge', `rgba(${clamp(r * 0.56)}, ${clamp(g * 0.56)}, ${clamp(b * 0.56)}, 0.95)`);
+      dropletEl.style.setProperty('--drop-dark', `rgba(${clamp(r * 0.24)}, ${clamp(g * 0.24)}, ${clamp(b * 0.24)}, 0.98)`);
+      dropletEl.style.setProperty('--drop-glow', `rgba(${clamp(r + 68)}, ${clamp(g + 68)}, ${clamp(b + 68)}, 0.72)`);
+      dropletEl.style.setProperty('--drop-rim', `rgba(${clamp(r + 72)}, ${clamp(g + 72)}, ${clamp(b + 72)}, 0.86)`);
+      dropletEl.style.setProperty('--drop-caustic', `rgba(${clamp(r + 120)}, ${clamp(g + 120)}, ${clamp(b + 120)}, 0.98)`);
+      dropletEl.style.setProperty('--drop-meniscus', `rgba(${clamp(r * 0.24)}, ${clamp(g * 0.24)}, ${clamp(b * 0.24)}, 0.88)`);
+      dropletEl.style.setProperty('--drop-border', `rgba(${clamp(r * 0.48)}, ${clamp(g * 0.48)}, ${clamp(b * 0.48)}, 0.56)`);
+      dropletEl.style.setProperty('--drop-shadow', `rgba(${clamp(r * 0.78)}, ${clamp(g * 0.78)}, ${clamp(b * 0.78)}, 0.42)`);
     }
 
     function clearDropletHexStyle(dropletEl) {
@@ -2669,7 +2669,7 @@
       ctx.lineJoin = 'round';
 
       // Outer translucent wet watercolor bleed on paper
-      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.12)`;
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.17)`;
       ctx.lineWidth = Math.max(22, Math.min(40, 36 - dist * 0.2));
       ctx.beginPath();
       ctx.moveTo(x1, y1);
@@ -2677,7 +2677,7 @@
       ctx.stroke();
 
       // Inner watery pigment streak
-      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.22)`;
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.30)`;
       ctx.lineWidth = Math.max(10, Math.min(20, 18 - dist * 0.12));
       ctx.beginPath();
       ctx.moveTo(x1 + 1.5, y1 + 1);
@@ -2685,7 +2685,7 @@
       ctx.stroke();
 
       // Subtle glossy wet sheen along the streak
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.34)';
       ctx.lineWidth = 3;
       ctx.beginPath();
       ctx.moveTo(x1 - 3, y1 - 3);
@@ -2700,7 +2700,7 @@
         const my = y2 + Math.sin(angle) * spread;
         const radius = 2.2 + Math.random() * 4.5;
 
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.3)`;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.42)`;
         ctx.beginPath();
         ctx.arc(mx, my, radius, 0, Math.PI * 2);
         ctx.fill();

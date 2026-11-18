@@ -1,5 +1,5 @@
 // Network-First Service Worker for Little Explorers PWA
-const CACHE_NAME = 'explorers-v13';
+const CACHE_NAME = 'explorers-v14';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
