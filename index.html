@@ -119,6 +119,7 @@
     }
 
     .ios-icon-btn {
+      position: relative;
       width: 42px;
       height: 42px;
       border-radius: 50%;
@@ -133,13 +134,14 @@
       cursor: pointer;
       box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
       -webkit-tap-highlight-color: transparent;
+      touch-action: none;
       transition: transform 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.18s ease;
     }
     .ios-icon-btn:active {
-      transform: scale(0.9);
+      transform: scale(0.92);
       background: rgba(241, 245, 249, 0.95);
     }
-    .ios-icon-btn svg {
+    .ios-icon-btn svg:not(.hold-ring) {
       width: 20px;
       height: 20px;
       stroke: currentColor;
@@ -147,6 +149,45 @@
       stroke-linecap: round;
       stroke-linejoin: round;
       fill: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Toddler-Proof Hold-to-Reset Progress Ring */
+    .ios-icon-btn .hold-ring {
+      position: absolute;
+      inset: -3px;
+      width: calc(100% + 6px);
+      height: calc(100% + 6px);
+      transform: rotate(-90deg);
+      pointer-events: none;
+      z-index: 3;
+    }
+    .ios-icon-btn .hold-ring circle {
+      fill: none;
+      stroke: #f59e0b;
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-dasharray: 126;
+      stroke-dashoffset: 126;
+      opacity: 0;
+      transition: stroke-dashoffset 0.12s ease, opacity 0.18s ease;
+    }
+    .ios-icon-btn.holding .hold-ring circle {
+      opacity: 1;
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 0.65s linear, opacity 0.1s ease;
+    }
+    .ios-icon-btn.hold-hint {
+      animation: holdHintBump 0.32s ease;
+    }
+    .ios-icon-btn.hold-hint .hold-ring circle {
+      opacity: 0.7;
+      stroke-dashoffset: 96;
+    }
+    @keyframes holdHintBump {
+      0%, 100% { transform: scale(1); }
+      45% { transform: scale(1.12); }
     }
 
     .ios-view-title {
@@ -1311,7 +1352,8 @@
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <h3 class="ios-view-title">Flower Garden</h3>
-          <button class="ios-icon-btn" onclick="resetMilo()" aria-label="Reset">
+          <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetMilo" aria-label="Hold to Reset" title="Hold to Reset">
+            <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
@@ -1402,7 +1444,8 @@
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <h3 class="ios-view-title">Fruit & Veggie Colors</h3>
-          <button class="ios-icon-btn" onclick="resetColorFruits()" aria-label="Reset">
+          <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetColorFruits" aria-label="Hold to Reset" title="Hold to Reset">
+            <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
@@ -1535,7 +1578,8 @@
           <button class="ios-icon-btn" onclick="switchGame('color-levels')" aria-label="Back to Levels">
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <button class="ios-icon-btn" onclick="resetColorMixer()" aria-label="Reset">
+          <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetColorMixer" aria-label="Hold to Reset" title="Hold to Reset">
+            <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
@@ -1620,7 +1664,8 @@
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <h3 class="ios-view-title">Find Shapes</h3>
-          <button class="ios-icon-btn" onclick="resetPip()" aria-label="Reset">
+          <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetPip" aria-label="Hold to Reset" title="Hold to Reset">
+            <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
@@ -1691,7 +1736,8 @@
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <h3 class="ios-view-title">Do the Maths</h3>
-          <button class="ios-icon-btn" onclick="resetLola()" aria-label="Reset">
+          <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetLola" aria-label="Hold to Reset" title="Hold to Reset">
+            <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
@@ -1734,7 +1780,8 @@
             <h3 class="ios-view-title">Muddy Puddles</h3>
             <p id="penny-status" style="font-size:0.74rem; font-weight:700; color:#64748b; margin-top:1px;">Put on the yellow boots!</p>
           </div>
-          <button class="ios-icon-btn" onclick="resetPenny()" aria-label="Reset">
+          <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetPenny" aria-label="Hold to Reset" title="Hold to Reset">
+            <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
@@ -1803,7 +1850,8 @@
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <h3 class="ios-view-title">Animal Sounds</h3>
-          <button class="ios-icon-btn" onclick="resetAnimals()" aria-label="Reset">
+          <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetAnimals" aria-label="Hold to Reset" title="Hold to Reset">
+            <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
@@ -1847,7 +1895,8 @@
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <h3 class="ios-view-title">Magic Scribbles</h3>
-          <button class="ios-icon-btn" onclick="clearScribbleCanvas()" aria-label="Clear">
+          <button class="ios-icon-btn hold-reset-btn" data-hold-action="clearScribbleCanvas" aria-label="Hold to Clear" title="Hold to Clear">
+            <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
@@ -1916,19 +1965,121 @@
       if (audioCtx.state === 'suspended') audioCtx.resume();
     }
 
-    function playNote(freq, decay=0.35, type='sine') {
+    // --- Organic Acoustic Foley Engine (Warm Wooden Marimba, Water Plops, Wet Paper Wash, Wood Clack) ---
+    let cachedNoiseBuffer = null;
+    function getNoiseBuffer() {
+      if (cachedNoiseBuffer) return cachedNoiseBuffer;
+      const sampleRate = audioCtx.sampleRate;
+      const length = Math.floor(sampleRate * 0.4);
+      const buffer = audioCtx.createBuffer(1, length, sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < length; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+      cachedNoiseBuffer = buffer;
+      return buffer;
+    }
+
+    // Warm acoustic wooden marimba tone (fundamental + soft 4th overtone mallet strike)
+    function playNote(freq, decay = 0.38, type = 'sine') {
       try {
         initAudio();
-        const osc = audioCtx.createOscillator();
+        const now = audioCtx.currentTime;
+
+        const fundamental = audioCtx.createOscillator();
+        const fundGain = audioCtx.createGain();
+        fundamental.type = 'sine';
+        fundamental.frequency.setValueAtTime(freq, now);
+        fundGain.gain.setValueAtTime(0.001, now);
+        fundGain.gain.linearRampToValueAtTime(0.22, now + 0.008);
+        fundGain.gain.exponentialRampToValueAtTime(0.001, now + decay);
+        fundamental.connect(fundGain);
+        fundGain.connect(audioCtx.destination);
+        fundamental.start(now);
+        fundamental.stop(now + decay + 0.02);
+
+        // Soft rosewood marimba overtone (4th harmonic decays quickly like a wooden bar)
+        const overtone = audioCtx.createOscillator();
+        const overGain = audioCtx.createGain();
+        overtone.type = 'sine';
+        overtone.frequency.setValueAtTime(freq * 3.98, now);
+        overGain.gain.setValueAtTime(0.001, now);
+        overGain.gain.linearRampToValueAtTime(type === 'triangle' ? 0.06 : 0.045, now + 0.004);
+        overGain.gain.exponentialRampToValueAtTime(0.001, now + Math.min(0.09, decay * 0.35));
+        overtone.connect(overGain);
+        overGain.connect(audioCtx.destination);
+        overtone.start(now);
+        overtone.stop(now + 0.11);
+      } catch (e) {}
+    }
+
+    // Realistic water droplet plop (Minnaert bubble pitch glide + soft wet micro-transient)
+    function playWaterPlop(pitch = 1.0, volume = 0.24) {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+
+        const bubble = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + decay);
-        osc.connect(gain);
+        bubble.type = 'sine';
+        bubble.frequency.setValueAtTime(290 * pitch, now);
+        bubble.frequency.exponentialRampToValueAtTime(860 * pitch, now + 0.072);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(volume, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.095);
+        bubble.connect(gain);
         gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + decay);
+        bubble.start(now);
+        bubble.stop(now + 0.1);
+      } catch (e) {}
+    }
+
+    // Wet watercolor bloom swoosh on paper (filtered pink-ish liquid wash)
+    function playWetPaperWash(volume = 0.13) {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const src = audioCtx.createBufferSource();
+        src.buffer = getNoiseBuffer();
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.Q.setValueAtTime(1.8, now);
+        filter.frequency.setValueAtTime(750, now);
+        filter.frequency.exponentialRampToValueAtTime(2200, now + 0.09);
+        filter.frequency.exponentialRampToValueAtTime(980, now + 0.26);
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(volume, now + 0.035);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+
+        src.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+        src.start(now);
+        src.stop(now + 0.3);
+      } catch (e) {}
+    }
+
+    // Crisp tactile wooden toy block clack
+    function playWoodClack(pitch = 1.0) {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        [580 * pitch, 1140 * pitch].forEach((f, idx) => {
+          const osc = audioCtx.createOscillator();
+          const g = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(f, now);
+          osc.frequency.exponentialRampToValueAtTime(f * 0.72, now + 0.045);
+          g.gain.setValueAtTime(idx === 0 ? 0.16 : 0.09, now);
+          g.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+          osc.connect(g);
+          g.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.06);
+        });
       } catch (e) {}
     }
 
@@ -1956,7 +2107,7 @@
     function playCelebrationFanfare() {
       const melody = [523.25, 659.25, 783.99, 1046.50];
       melody.forEach((freq, idx) => {
-        setTimeout(() => playNote(freq, 0.45, 'sine'), idx * 110);
+        setTimeout(() => playNote(freq, 0.52, 'sine'), idx * 105);
       });
     }
 
@@ -2181,7 +2332,9 @@
         bloom.style.display = 'block';
         bloom.classList.add('pop-in');
 
-        playNote(523 + miloBloomed * 120, 0.5);
+        playWaterPlop(1.2, 0.28);
+        playWetPaperWash(0.12);
+        setTimeout(() => playNote(523 + miloBloomed * 110, 0.45, 'sine'), 40);
 
         if (miloBloomed === 3) {
           setLevelStars('milo', 3);
@@ -2198,6 +2351,7 @@
         initAudio(); active = true; drop.setPointerCapture(e.pointerId);
         startX = e.clientX; startY = e.clientY;
         drop.style.transition = 'none'; drop.style.zIndex = '50';
+        playWaterPlop(0.9, 0.16);
       });
       drop.addEventListener('pointermove', (e) => {
         if (!active) return;
@@ -2651,26 +2805,19 @@
       initAudio();
       if (!audioCtx) return;
       try {
-        const now = audioCtx.currentTime;
-        // Bouncy bubble pop
-        const osc1 = audioCtx.createOscillator();
-        const gain1 = audioCtx.createGain();
-        osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(160, now);
-        osc1.frequency.exponentialRampToValueAtTime(580, now + 0.12);
-        osc1.frequency.exponentialRampToValueAtTime(320, now + 0.32);
-        gain1.gain.setValueAtTime(0.4, now);
-        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
-        osc1.connect(gain1);
-        gain1.connect(audioCtx.destination);
-        osc1.start(now);
-        osc1.stop(now + 0.32);
+        // 1. Organic liquid coalesce plop + secondary splash droplets
+        playWaterPlop(0.82, 0.3);
+        setTimeout(() => playWaterPlop(1.38, 0.16), 65);
+        setTimeout(() => playWaterPlop(1.75, 0.11), 125);
 
-        // Bright celebratory chime
-        playNote(523.25, 0.22, 'sine');
-        setTimeout(() => playNote(659.25, 0.22, 'sine'), 80);
-        setTimeout(() => playNote(783.99, 0.32, 'triangle'), 150);
-        setTimeout(() => playNote(1046.50, 0.42, 'sine'), 220);
+        // 2. Soft wet watercolor bloom across paper
+        playWetPaperWash(0.14);
+
+        // 3. Delicate warm wooden marimba sparkle
+        setTimeout(() => playNote(523.25, 0.34, 'sine'), 40);
+        setTimeout(() => playNote(659.25, 0.34, 'sine'), 115);
+        setTimeout(() => playNote(783.99, 0.42, 'sine'), 190);
+        setTimeout(() => playNote(1046.50, 0.52, 'sine'), 265);
       } catch (e) {}
     }
 
@@ -3304,7 +3451,7 @@
           st.el.style.transition = 'none';
           st.el.classList.add('dragging');
           st.el.style.zIndex = String(80 + activePointers.size);
-          playNote(380, 0.08, 'triangle');
+          playWaterPlop(0.96, 0.22);
 
           const pointerArenaX = e.clientX - m.cRect.left;
           const pointerArenaY = e.clientY - m.cRect.top;
@@ -3383,7 +3530,7 @@
           if (info.lastTarget) info.lastTarget.el.classList.remove('pulse-target');
           if (currentTarget) {
             currentTarget.el.classList.add('pulse-target');
-            playNote(520, 0.06, 'sine');
+            playWaterPlop(1.45, 0.12);
           }
           info.lastTarget = currentTarget;
         }
@@ -3430,12 +3577,12 @@
         if (!selectedTapBlob) {
           selectedTapBlob = st.el;
           st.el.classList.add('selected-tap');
-          playNote(440, 0.15, 'sine');
+          playWaterPlop(1.08, 0.22);
           speakPraise(st.name);
         } else if (selectedTapBlob === st.el) {
           selectedTapBlob.classList.remove('selected-tap');
           selectedTapBlob = null;
-          playNote(260, 0.1, 'triangle');
+          playWaterPlop(0.78, 0.16);
         } else {
           const sourceSt = dropletStates.find(d => d.el === selectedTapBlob);
           selectedTapBlob.classList.remove('selected-tap');
@@ -3521,7 +3668,8 @@
           animal.style.display = 'block';
           animal.classList.add('pop-in');
         }
-        playNote(659 + pipSolved * 80, 0.4);
+        playWoodClack(0.95 + pipSolved * 0.14);
+        setTimeout(() => playNote(587.33 + pipSolved * 75, 0.44, 'sine'), 35);
 
         const praises = {
           circle: "Bunny found a home! 🐰",
@@ -3561,7 +3709,7 @@
         initAudio(); active = true; moved = false; block.setPointerCapture(e.pointerId);
         startX = e.clientX; startY = e.clientY;
         block.style.transition = 'none'; block.style.zIndex = '50';
-        playNote(300, 0.1, 'triangle');
+        playWoodClack(1.15);
       });
       block.addEventListener('pointermove', (e) => {
         if (!active) return;
@@ -3589,7 +3737,7 @@
           }
         });
         if (!matched) {
-          playNote(180, 0.15, 'triangle');
+          playWoodClack(0.72);
           block.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
           block.style.transform = 'translate(0, 0) scale(1)';
         }
@@ -3871,6 +4019,70 @@
       playNote(659.25, 0.35);
       triggerConfetti();
     }
+
+    // --- Toddler-Proof Hold-to-Reset System ---
+    const resetActionMap = {
+      resetMilo,
+      resetColorFruits,
+      resetColorMixer,
+      resetPip,
+      resetLola,
+      resetPenny,
+      resetAnimals,
+      clearScribbleCanvas
+    };
+
+    document.querySelectorAll('.hold-reset-btn').forEach(btn => {
+      let holdTimer = null;
+      let holdStartTime = 0;
+      const actionName = btn.dataset.holdAction;
+      const actionFn = resetActionMap[actionName];
+
+      const startHold = (e) => {
+        if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+        e.preventDefault();
+        initAudio();
+        holdStartTime = Date.now();
+        btn.classList.add('holding');
+        btn.classList.remove('hold-hint');
+        playWaterPlop(1.4, 0.12);
+
+        try { btn.setPointerCapture(e.pointerId); } catch (err) {}
+
+        holdTimer = setTimeout(() => {
+          holdTimer = null;
+          btn.classList.remove('holding');
+          playWaterPlop(0.85, 0.28);
+          if (navigator.vibrate) {
+            try { navigator.vibrate(50); } catch (vErr) {}
+          }
+          if (actionFn) actionFn();
+        }, 620);
+      };
+
+      const cancelHold = (e) => {
+        if (holdTimer) {
+          clearTimeout(holdTimer);
+          holdTimer = null;
+          btn.classList.remove('holding');
+          try { btn.releasePointerCapture(e.pointerId); } catch (err) {}
+
+          const duration = Date.now() - holdStartTime;
+          // If toddler quickly tapped, show gentle bounce hint so they understand to press & hold
+          if (duration < 450) {
+            btn.classList.remove('hold-hint');
+            void btn.offsetWidth;
+            btn.classList.add('hold-hint');
+            playWaterPlop(1.75, 0.1);
+            setTimeout(() => btn.classList.remove('hold-hint'), 450);
+          }
+        }
+      };
+
+      btn.addEventListener('pointerdown', startHold);
+      btn.addEventListener('pointerup', cancelHold);
+      btn.addEventListener('pointercancel', cancelHold);
+    });
 
     // Initialize level stars UI & randomize colors on page load
     updateAllLevelStarsUI();
