@@ -673,6 +673,29 @@
       100% { transform: scale(1.12) translateY(-5px); }
     }
 
+    /* Watery Drag Trail Canvas on Paper Surface */
+    .mixer-trail-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 4;
+      transition: opacity 0.65s ease;
+    }
+
+    /* Liquid Merge Squish Animation when two droplets become ONE */
+    .canvas-paint-blob.merged-droplet .water-droplet {
+      animation: dropletMergeSquish 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    @keyframes dropletMergeSquish {
+      0%   { transform: scale(1); }
+      28%  { transform: scale(1.34, 0.84); }
+      56%  { transform: scale(0.92, 1.24); }
+      80%  { transform: scale(1.22, 1.12); }
+      100% { transform: scale(1.16); }
+    }
+
     /* Realistic 3D Translucent Round Water Paint Droplets on Paper */
     .water-droplet {
       position: relative;
@@ -1365,7 +1388,9 @@
 
         <!-- Blank White Watercolor Paper Canvas with Round Liquid Paint Droplets & Splash -->
         <div id="color-playground" class="color-playground-canvas">
-          
+          <!-- Watery Paint Trail Canvas (marks left behind while dragging) -->
+          <canvas id="mixer-trail-canvas" class="mixer-trail-canvas"></canvas>
+
           <!-- Watercolor Splash Overlay (Only Created Color Name) -->
           <div id="color-splash-overlay" class="color-splash-overlay">
             <div style="position:relative; width:310px; height:310px; display:flex; align-items:center; justify-content:center;">
@@ -1393,7 +1418,7 @@
           </div>
 
           <!-- The 6 Big Round Water Paint Droplets on White Paper -->
-          <div id="canvas-blobs-container" style="width:100%; flex:1; display:grid; grid-template-columns:repeat(2, 1fr); grid-template-rows:repeat(3, 1fr); align-items:center; justify-items:center; gap:14px 18px; padding:12px 10px; touch-action:none;">
+          <div id="canvas-blobs-container" style="position:relative; z-index:6; width:100%; flex:1; display:grid; grid-template-columns:repeat(2, 1fr); grid-template-rows:repeat(3, 1fr); align-items:center; justify-items:center; gap:14px 18px; padding:12px 10px; touch-action:none;">
             <!-- Red -->
             <div id="blob-red" data-color="red" class="canvas-paint-blob">
               <div class="water-droplet droplet-red"></div>
@@ -2498,19 +2523,43 @@
       } catch (e) {}
     }
 
-    function triggerColorSplash(color1, color2) {
-      if (!color1 || !color2) return;
-      initAudio();
-      playSplashSound();
-      triggerConfetti();
+    let mergeRestoreTimeout = null;
+    let splashDelayTimeout = null;
+    let trailFadeTimeout = null;
+    let trailClearTimeout = null;
 
-      if (navigator.vibrate) {
-        try { navigator.vibrate([40, 60, 40]); } catch (e) {}
-      }
+    function hexToRgb(hex) {
+      const clean = (hex || '#f97316').replace('#', '');
+      const num = parseInt(clean.length === 3 ? clean.split('').map(c => c + c).join('') : clean, 16);
+      return {
+        r: (num >> 16) & 255,
+        g: (num >> 8) & 255,
+        b: num & 255
+      };
+    }
 
+    function applyDropletHexStyle(dropletEl, hex) {
+      if (!dropletEl || !hex) return;
+      const { r, g, b } = hexToRgb(hex);
+      const clamp = (v) => Math.max(0, Math.min(255, Math.round(v)));
+      dropletEl.style.setProperty('--drop-core', `rgba(${clamp(r + 42)}, ${clamp(g + 42)}, ${clamp(b + 42)}, 0.84)`);
+      dropletEl.style.setProperty('--drop-mid', `rgba(${r}, ${g}, ${b}, 0.93)`);
+      dropletEl.style.setProperty('--drop-edge', `rgba(${clamp(r * 0.6)}, ${clamp(g * 0.6)}, ${clamp(b * 0.6)}, 0.98)`);
+      dropletEl.style.setProperty('--drop-dark', `rgb(${clamp(r * 0.25)}, ${clamp(g * 0.25)}, ${clamp(b * 0.25)})`);
+      dropletEl.style.setProperty('--drop-rim', `rgba(${clamp(r + 65)}, ${clamp(g + 65)}, ${clamp(b + 65)}, 0.8)`);
+      dropletEl.style.setProperty('--drop-caustic', `rgba(${clamp(r + 105)}, ${clamp(g + 105)}, ${clamp(b + 105)}, 0.92)`);
+      dropletEl.style.setProperty('--drop-shadow', `rgba(${clamp(r * 0.58)}, ${clamp(g * 0.58)}, ${clamp(b * 0.58)}, 0.45)`);
+    }
+
+    function clearDropletHexStyle(dropletEl) {
+      if (!dropletEl) return;
+      ['--drop-core', '--drop-mid', '--drop-edge', '--drop-dark', '--drop-rim', '--drop-caustic', '--drop-shadow']
+        .forEach(prop => dropletEl.style.removeProperty(prop));
+    }
+
+    function getMixRecipe(color1, color2) {
       const key = [color1, color2].sort().join('+');
       let recipe = colorMixRecipes[key];
-
       if (!recipe) {
         if (color1 === color2) {
           const info = colorPotsInfo[color1];
@@ -2531,6 +2580,227 @@
           };
         }
       }
+      return recipe;
+    }
+
+    // --- Watery Paint Trail Helpers ---
+    function prepareTrailCanvas() {
+      const canvas = document.getElementById('mixer-trail-canvas');
+      const playground = document.getElementById('color-playground');
+      if (!canvas || !playground) return null;
+
+      if (trailFadeTimeout) { clearTimeout(trailFadeTimeout); trailFadeTimeout = null; }
+      if (trailClearTimeout) { clearTimeout(trailClearTimeout); trailClearTimeout = null; }
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = playground.clientWidth;
+      const h = playground.clientHeight;
+      if (w === 0 || h === 0) return null;
+
+      if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+      } else if (parseFloat(canvas.style.opacity || '1') < 0.99) {
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      canvas.style.transition = 'none';
+      canvas.style.opacity = '1';
+
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return ctx;
+    }
+
+    function drawWaterySegment(x1, y1, x2, y2, hex) {
+      const canvas = document.getElementById('mixer-trail-canvas');
+      if (!canvas || !canvas.width) return;
+      const ctx = canvas.getContext('2d');
+      const { r, g, b } = hexToRgb(hex);
+
+      const dist = Math.hypot(x2 - x1, y2 - y1);
+      if (dist < 1) return;
+
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      // Outer translucent wet watercolor bleed on paper
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.12)`;
+      ctx.lineWidth = Math.max(22, Math.min(40, 36 - dist * 0.2));
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+
+      // Inner watery pigment streak
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.22)`;
+      ctx.lineWidth = Math.max(10, Math.min(20, 18 - dist * 0.12));
+      ctx.beginPath();
+      ctx.moveTo(x1 + 1.5, y1 + 1);
+      ctx.lineTo(x2 + 1.5, y2 + 1);
+      ctx.stroke();
+
+      // Subtle glossy wet sheen along the streak
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(x1 - 3, y1 - 3);
+      ctx.lineTo(x2 - 3, y2 - 3);
+      ctx.stroke();
+
+      // Tiny watery micro-droplets left along the table surface
+      if (Math.random() < 0.5) {
+        const spread = 14 + Math.random() * 14;
+        const angle = Math.random() * Math.PI * 2;
+        const mx = x2 + Math.cos(angle) * spread;
+        const my = y2 + Math.sin(angle) * spread;
+        const radius = 2.2 + Math.random() * 4.5;
+
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.3)`;
+        ctx.beginPath();
+        ctx.arc(mx, my, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Pinpoint glossy water glint on each micro-droplet
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
+        ctx.beginPath();
+        ctx.arc(mx - radius * 0.3, my - radius * 0.3, Math.max(0.8, radius * 0.3), 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+
+    function fadeOutWateryTrail(delayMs = 80) {
+      const canvas = document.getElementById('mixer-trail-canvas');
+      if (!canvas) return;
+      if (trailFadeTimeout) clearTimeout(trailFadeTimeout);
+      if (trailClearTimeout) clearTimeout(trailClearTimeout);
+
+      trailFadeTimeout = setTimeout(() => {
+        canvas.style.transition = 'opacity 0.65s ease';
+        canvas.style.opacity = '0';
+        trailClearTimeout = setTimeout(() => {
+          const ctx = canvas.getContext('2d');
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          canvas.style.transition = 'none';
+          canvas.style.opacity = '1';
+        }, 680);
+      }, delayMs);
+    }
+
+    function clearWateryTrailNow() {
+      const canvas = document.getElementById('mixer-trail-canvas');
+      if (!canvas) return;
+      if (trailFadeTimeout) { clearTimeout(trailFadeTimeout); trailFadeTimeout = null; }
+      if (trailClearTimeout) { clearTimeout(trailClearTimeout); trailClearTimeout = null; }
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.style.transition = 'none';
+      canvas.style.opacity = '1';
+    }
+
+    function restoreAllDroplets(silent = false) {
+      if (mergeRestoreTimeout) { clearTimeout(mergeRestoreTimeout); mergeRestoreTimeout = null; }
+      const blobs = document.querySelectorAll('.canvas-paint-blob');
+      blobs.forEach(b => {
+        b.dataset.absorbed = 'false';
+        b.classList.remove('pulse-target', 'dragging', 'merged-droplet', 'selected-tap');
+        b.style.transition = 'transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.32s ease';
+        b.style.transform = 'translate3d(0px, 0px, 0) scale(1)';
+        b.style.opacity = '1';
+        b.style.pointerEvents = '';
+        b.style.zIndex = '10';
+
+        const droplet = b.querySelector('.water-droplet');
+        clearDropletHexStyle(droplet);
+
+        const label = b.querySelector('span');
+        if (label && b.dataset.origLabel) {
+          label.textContent = b.dataset.origLabel;
+          label.style.color = b.dataset.origLabelColor || '';
+        }
+      });
+      if (!silent) playNote(300, 0.15, 'triangle');
+    }
+
+    function mergeDroplets(sourceBlob, targetBlob, homeCenter) {
+      if (!sourceBlob || !targetBlob || sourceBlob === targetBlob) return;
+      const c1 = sourceBlob.dataset.color;
+      const c2 = targetBlob.dataset.color;
+      const recipe = getMixRecipe(c1, c2);
+
+      // Compute exact center offset so sourceBlob glides right into targetBlob and fuses
+      const tRect = targetBlob.getBoundingClientRect();
+      const tCenterX = tRect.left + tRect.width / 2;
+      const tCenterY = tRect.top + tRect.height / 2;
+
+      let mergeDx = 0;
+      let mergeDy = 0;
+      if (homeCenter) {
+        mergeDx = tCenterX - homeCenter.x;
+        mergeDy = tCenterY - homeCenter.y;
+      } else {
+        const sRect = sourceBlob.getBoundingClientRect();
+        mergeDx = tCenterX - (sRect.left + sRect.width / 2);
+        mergeDy = tCenterY - (sRect.top + sRect.height / 2);
+      }
+
+      // 1. Source droplet fuses into target droplet and vanishes
+      sourceBlob.dataset.absorbed = 'true';
+      sourceBlob.style.pointerEvents = 'none';
+      sourceBlob.style.zIndex = '60';
+      sourceBlob.style.transition = 'transform 0.26s ease-in, opacity 0.24s ease-in';
+      sourceBlob.style.transform = `translate3d(${mergeDx}px, ${mergeDy}px, 0) scale(0.18)`;
+      sourceBlob.style.opacity = '0';
+
+      // 2. Target droplet becomes ONE unified droplet of the resulting mixed color!
+      const targetDroplet = targetBlob.querySelector('.water-droplet');
+      const targetLabel = targetBlob.querySelector('span');
+
+      applyDropletHexStyle(targetDroplet, recipe.hex);
+      if (targetLabel) {
+        targetLabel.textContent = recipe.name;
+        targetLabel.style.color = recipe.hex;
+      }
+
+      targetBlob.classList.remove('merged-droplet');
+      void targetBlob.offsetWidth;
+      targetBlob.classList.add('merged-droplet');
+
+      // 3. Watery paint marks left on the table smoothly fade away and disappear!
+      fadeOutWateryTrail(60);
+
+      // 4. Trigger watercolor splash (showing ONLY the created color name) right as they fuse
+      if (splashDelayTimeout) clearTimeout(splashDelayTimeout);
+      splashDelayTimeout = setTimeout(() => {
+        triggerColorSplash(c1, c2);
+      }, 220);
+
+      // 5. After the splash finishes and child sees the single transformed color droplet,
+      //    smoothly restore all 6 droplets so they can keep mixing freely!
+      if (mergeRestoreTimeout) clearTimeout(mergeRestoreTimeout);
+      mergeRestoreTimeout = setTimeout(() => {
+        restoreAllDroplets(true);
+      }, 2750);
+    }
+
+    function triggerColorSplash(color1, color2) {
+      if (!color1 || !color2) return;
+      initAudio();
+      playSplashSound();
+      triggerConfetti();
+
+      if (navigator.vibrate) {
+        try { navigator.vibrate([40, 60, 40]); } catch (e) {}
+      }
+
+      const recipe = getMixRecipe(color1, color2);
 
       // Voice praise with Siri
       speakPraise(recipe.phrase);
@@ -2582,25 +2852,29 @@
         selectedTapBlob.classList.remove('selected-tap');
         selectedTapBlob = null;
       }
+      if (splashDelayTimeout) { clearTimeout(splashDelayTimeout); splashDelayTimeout = null; }
+      if (splashTimeout) { clearTimeout(splashTimeout); splashTimeout = null; }
       const overlay = document.getElementById('color-splash-overlay');
       if (overlay) {
         overlay.classList.remove('active');
         overlay.classList.remove('fade-out');
       }
-      const blobs = document.querySelectorAll('.canvas-paint-blob');
-      blobs.forEach(b => {
-        b.classList.remove('pulse-target');
-        b.classList.remove('dragging');
-        b.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-        b.style.transform = 'translate3d(0px, 0px, 0) scale(1)';
-        b.style.zIndex = '10';
-      });
-      playNote(300, 0.15, 'triangle');
+      clearWateryTrailNow();
+      restoreAllDroplets(false);
     }
 
-    // Bulletproof Drag-any-droplet-into-another + Tap-to-mix
+    // Bulletproof Drag-any-droplet-into-another + Watery Drag Marks + Liquid Merge + Tap-to-mix
     function initBlobDrag() {
       const blobs = Array.from(document.querySelectorAll('.canvas-paint-blob'));
+
+      // Store original label text & color so merged droplets restore cleanly
+      blobs.forEach(blob => {
+        const label = blob.querySelector('span');
+        if (label) {
+          blob.dataset.origLabel = label.textContent;
+          blob.dataset.origLabelColor = label.style.color;
+        }
+      });
 
       const findOverlappingBlob = (draggedBlob) => {
         const bRect = draggedBlob.getBoundingClientRect();
@@ -2612,7 +2886,7 @@
         let minDist = Infinity;
 
         blobs.forEach(other => {
-          if (other === draggedBlob) return;
+          if (other === draggedBlob || other.dataset.absorbed === 'true') return;
           const oRect = other.getBoundingClientRect();
           const oCenterX = oRect.left + oRect.width / 2;
           const oCenterY = oRect.top + oRect.height / 2;
@@ -2630,8 +2904,21 @@
         let activePointerId = null;
         let startX = 0;
         let startY = 0;
+        let homeCenter = null;
+        let prevTrailPt = null;
         let moved = false;
         let lastTarget = null;
+
+        const getCanvasPointFromBlob = () => {
+          const playground = document.getElementById('color-playground');
+          if (!playground) return null;
+          const pRect = playground.getBoundingClientRect();
+          const bRect = blob.getBoundingClientRect();
+          return {
+            x: (bRect.left + bRect.width / 2) - pRect.left,
+            y: (bRect.top + bRect.height / 2) - pRect.top - 10
+          };
+        };
 
         const onPointerMove = (e) => {
           if (!active || e.pointerId !== activePointerId) return;
@@ -2640,6 +2927,16 @@
           if (Math.hypot(dx, dy) > 8) moved = true;
 
           blob.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(1.14)`;
+
+          // Leave watery color marks behind on the paper table while dragging
+          if (moved) {
+            const curPt = getCanvasPointFromBlob();
+            if (curPt && prevTrailPt) {
+              const hex = (colorPotsInfo[blob.dataset.color] && colorPotsInfo[blob.dataset.color].hex) || '#ef4444';
+              drawWaterySegment(prevTrailPt.x, prevTrailPt.y, curPt.x, curPt.y, hex);
+            }
+            prevTrailPt = curPt;
+          }
 
           const currentTarget = findOverlappingBlob(blob);
           if (currentTarget !== lastTarget) {
@@ -2663,7 +2960,7 @@
 
           try { blob.releasePointerCapture(e.pointerId); } catch (err) {}
 
-          // Re-check overlap right before resetting transform
+          // Re-check overlap right before resolving drop
           const dropTarget = moved ? (findOverlappingBlob(blob) || lastTarget) : null;
 
           blob.classList.remove('dragging');
@@ -2675,43 +2972,75 @@
             dropTarget.classList.remove('pulse-target');
           }
 
-          // Smoothly return dragged droplet to its paper spot
+          // Case 1: Dragged onto another droplet -> fuse into ONE resulting color droplet!
+          if (moved && dropTarget) {
+            mergeDroplets(blob, dropTarget, homeCenter);
+            return;
+          }
+
+          // Smoothly return dragged droplet to its paper spot & fade out any drag marks
           blob.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
           blob.style.transform = 'translate3d(0px, 0px, 0) scale(1)';
           blob.style.zIndex = '10';
 
-          // Case 1: Dragged onto another droplet -> merge with watercolor splash!
-          if (moved && dropTarget) {
-            triggerColorSplash(blob.dataset.color, dropTarget.dataset.color);
+          if (moved) {
+            fadeOutWateryTrail(180);
             return;
           }
 
           // Case 2: Simple tap-to-mix fallback (zero double-selection bug)
-          if (!moved) {
-            const color = blob.dataset.color;
-            if (!selectedTapBlob) {
-              selectedTapBlob = blob;
-              blob.classList.add('selected-tap');
-              playNote(440, 0.15, 'sine');
-              speakPraise(colorPotsInfo[color].name);
-            } else if (selectedTapBlob === blob) {
-              selectedTapBlob.classList.remove('selected-tap');
-              selectedTapBlob = null;
-              playNote(260, 0.1, 'triangle');
-            } else {
-              const c1 = selectedTapBlob.dataset.color;
-              const c2 = color;
-              selectedTapBlob.classList.remove('selected-tap');
-              selectedTapBlob = null;
-              triggerColorSplash(c1, c2);
+          const color = blob.dataset.color;
+          if (!selectedTapBlob) {
+            selectedTapBlob = blob;
+            blob.classList.add('selected-tap');
+            playNote(440, 0.15, 'sine');
+            speakPraise(colorPotsInfo[color].name);
+          } else if (selectedTapBlob === blob) {
+            selectedTapBlob.classList.remove('selected-tap');
+            selectedTapBlob = null;
+            playNote(260, 0.1, 'triangle');
+          } else {
+            const source = selectedTapBlob;
+            source.classList.remove('selected-tap');
+            selectedTapBlob = null;
+
+            // Draw a quick watery paint streak from source to target on tap-to-mix
+            const playground = document.getElementById('color-playground');
+            if (playground) {
+              prepareTrailCanvas();
+              const pRect = playground.getBoundingClientRect();
+              const sRect = source.getBoundingClientRect();
+              const tRect = blob.getBoundingClientRect();
+              const sx = (sRect.left + sRect.width / 2) - pRect.left;
+              const sy = (sRect.top + sRect.height / 2) - pRect.top - 10;
+              const tx = (tRect.left + tRect.width / 2) - pRect.left;
+              const ty = (tRect.top + tRect.height / 2) - pRect.top - 10;
+              const hex = (colorPotsInfo[source.dataset.color] && colorPotsInfo[source.dataset.color].hex) || '#ef4444';
+              const steps = 8;
+              for (let i = 0; i < steps; i++) {
+                const f1 = i / steps;
+                const f2 = (i + 1) / steps;
+                drawWaterySegment(
+                  sx + (tx - sx) * f1, sy + (ty - sy) * f1,
+                  sx + (tx - sx) * f2, sy + (ty - sy) * f2,
+                  hex
+                );
+              }
             }
+            mergeDroplets(source, blob, null);
           }
         };
 
         blob.addEventListener('pointerdown', (e) => {
           if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+          if (blob.dataset.absorbed === 'true') return;
           e.preventDefault();
           initAudio();
+
+          // If a previous merge is still waiting to restore, restore cleanly right away
+          if (mergeRestoreTimeout) {
+            restoreAllDroplets(true);
+          }
 
           active = true;
           activePointerId = e.pointerId;
@@ -2719,6 +3048,17 @@
           lastTarget = null;
           startX = e.clientX;
           startY = e.clientY;
+
+          // Record exact home center before dragging
+          const bRect = blob.getBoundingClientRect();
+          homeCenter = {
+            x: bRect.left + bRect.width / 2,
+            y: bRect.top + bRect.height / 2
+          };
+
+          // Prepare watery paint trail canvas
+          prepareTrailCanvas();
+          prevTrailPt = getCanvasPointFromBlob();
 
           try { blob.setPointerCapture(e.pointerId); } catch (err) {}
           blob.style.transition = 'none';
