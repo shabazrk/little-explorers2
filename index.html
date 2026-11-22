@@ -1340,6 +1340,114 @@
       filter: drop-shadow(0 6px 12px rgba(0,0,0,0.18));
     }
 
+  
+    /* --- CHARACTER COMEDY & EMOTE ANIMATIONS --- */
+    .lola-picnic-scene {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      flex: 1;
+      position: relative;
+    }
+    .lola-character-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .lola-character-wrap:hover {
+      transform: scale(1.05);
+    }
+    .lola-full-svg {
+      width: clamp(140px, 34vw, 175px);
+      height: clamp(150px, 36vw, 185px);
+      filter: drop-shadow(0 8px 18px rgba(120, 53, 15, 0.22));
+    }
+    .lola-tail-anim {
+      transform-origin: 115px 130px;
+      animation: tailWag 1.8s ease-in-out infinite alternate;
+    }
+    @keyframes tailWag {
+      0% { transform: rotate(-8deg); }
+      100% { transform: rotate(18deg); }
+    }
+    .lola-head-group {
+      transform-origin: 80px 75px;
+      transition: transform 0.2s ease;
+    }
+    .lola-bubble {
+      background: rgba(255, 255, 255, 0.96);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 2px solid #a7f3d0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #065f46;
+      margin-top: -6px;
+      text-align: center;
+      max-width: 200px;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    /* Tickle & Chomp Animations */
+    .character-tickled {
+      animation: tickleWiggle 0.45s ease-in-out;
+    }
+    @keyframes tickleWiggle {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      20% { transform: rotate(-10deg) scale(1.1); }
+      40% { transform: rotate(10deg) scale(1.1); }
+      60% { transform: rotate(-6deg) scale(1.05); }
+      80% { transform: rotate(6deg) scale(1.05); }
+    }
+
+    .character-chomp {
+      animation: chompBounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes chompBounce {
+      0% { transform: scale(1); }
+      35% { transform: scale(1.22, 0.82) translateY(8px); }
+      65% { transform: scale(0.88, 1.18) translateY(-14px); }
+      100% { transform: scale(1); }
+    }
+
+    /* Penny Mud Splatters & Hilarious Mustache */
+    .penny-mud-spot {
+      position: absolute;
+      background: #54260a;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    /* Solved Animal Slapstick Tricks */
+    .animal-trick-anim {
+      animation: animalTrick 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes animalTrick {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.28) rotate(-12deg); }
+      60% { transform: scale(1.28) rotate(12deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    /* Magic Scribble Jelly Wobble */
+    .canvas-wobble {
+      animation: jellyWobble 0.75s ease-in-out;
+    }
+    @keyframes jellyWobble {
+      0%, 100% { transform: scale(1, 1); }
+      25% { transform: scale(1.06, 0.94); }
+      50% { transform: scale(0.95, 1.05); }
+      75% { transform: scale(1.03, 0.97); }
+    }
+
   </style>
 </head>
 <body>
@@ -1942,7 +2050,7 @@
           <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <h3 class="ios-view-title">Find Shapes</h3>
+          <h3 class="ios-view-title">Pip's Treehouse Friends</h3>
           <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetPip" aria-label="Hold to Reset" title="Hold to Reset">
             <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
@@ -1950,6 +2058,20 @@
         </div>
 
         <!-- Tree Hollow Puzzle Board (Artisan Wood Grain Plank) -->
+        <!-- Pip Bluebird Host -->
+        <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:2px;">
+          <svg viewBox="0 0 60 50" style="width:48px; height:40px; cursor:pointer;" onclick="chirpPip()" id="pip-bird" title="Tap Pip to chirp!">
+            <ellipse cx="30" cy="28" rx="16" ry="14" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+            <path d="M14 26 C8 24 6 32 14 36 Z" fill="#0284c7"/>
+            <polygon points="46,26 56,29 46,33" fill="#f59e0b"/>
+            <circle cx="38" cy="22" r="3" fill="#0f172a"/><circle cx="39" cy="21" r="1" fill="#fff"/>
+            <path d="M26 14 C28 8 32 10 30 15" stroke="#0284c7" stroke-width="2.5" fill="none"/>
+          </svg>
+          <span id="pip-speech-bubble" style="background:#fff; border:1.5px solid #fde68a; padding:4px 14px; border-radius:9999px; font-size:0.86rem; font-weight:800; color:#92400e; box-shadow:0 2px 8px rgba(0,0,0,0.05); cursor:pointer;" onclick="chirpPip()">
+            "Peek in the hollows to wake my friends! Chirp!" 🐦
+          </span>
+        </div>
+
         <div class="wood-board-stage">
           <!-- Circle Hollow (Bunny's Den) -->
           <div id="pip-socket-circle" data-shape="circle" onclick="handleSocketClick('circle')" class="pip-socket" title="Circle hollow">
@@ -1965,7 +2087,7 @@
               <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(146, 64, 14, 0.28)" stroke-width="2" stroke-dasharray="4 4"/>
             </svg>
             <!-- Handcrafted Bunny Reveal -->
-            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal">
+            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal" onclick="triggerAnimalTrick(this.parentElement.dataset.shape)" style="cursor:pointer;" title="Tap to see trick!">
               <ellipse cx="38" cy="22" rx="7" ry="20" fill="#fdf2e9" stroke="#d97706" stroke-width="2" transform="rotate(-10 38 22)"/>
               <ellipse cx="38" cy="22" rx="3.5" ry="14" fill="#fbcfe8" transform="rotate(-10 38 22)"/>
               <ellipse cx="62" cy="22" rx="7" ry="20" fill="#fdf2e9" stroke="#d97706" stroke-width="2" transform="rotate(10 62 22)"/>
@@ -1995,7 +2117,7 @@
               <polygon points="50,30 26,76 74,76" fill="none" stroke="rgba(146, 64, 14, 0.28)" stroke-width="2" stroke-dasharray="4 4" stroke-linejoin="round"/>
             </svg>
             <!-- Handcrafted Fox Reveal -->
-            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal">
+            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal" onclick="triggerAnimalTrick(this.parentElement.dataset.shape)" style="cursor:pointer;" title="Tap to see trick!">
               <polygon points="26,44 32,16 46,38" fill="#ea580c" stroke="#c2410c" stroke-width="2"/>
               <polygon points="30,40 33,22 42,36" fill="#431407"/>
               <polygon points="74,44 68,16 54,38" fill="#ea580c" stroke="#c2410c" stroke-width="2"/>
@@ -2024,7 +2146,7 @@
               <rect x="24" y="24" width="52" height="52" rx="12" fill="none" stroke="rgba(146, 64, 14, 0.28)" stroke-width="2" stroke-dasharray="4 4"/>
             </svg>
             <!-- Handcrafted Owl Reveal -->
-            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal">
+            <svg viewBox="0 0 100 100" class="pip-animal-reveal pip-animal" onclick="triggerAnimalTrick(this.parentElement.dataset.shape)" style="cursor:pointer;" title="Tap to see trick!">
               <ellipse cx="50" cy="54" rx="26" ry="30" fill="#78350f" stroke="#451a03" stroke-width="2.5"/>
               <ellipse cx="50" cy="58" rx="16" ry="20" fill="#fef3c7"/>
               <polygon points="28,32 36,16 42,32" fill="#78350f"/>
@@ -2098,49 +2220,113 @@
           <button class="ios-icon-btn" onclick="switchGame('home')" aria-label="Back to Home">
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <h3 class="ios-view-title">Berry Picnic</h3>
+          <h3 class="ios-view-title">Lola's Berry Picnic</h3>
           <button class="ios-icon-btn hold-reset-btn" data-hold-action="resetLola" aria-label="Hold to Reset" title="Hold to Reset">
             <svg class="hold-ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"/></svg>
             <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
 
-        <!-- Picnic Meadow Stage -->
+        <!-- Picnic Meadow Stage with Animated Lola Character -->
         <div class="meadow-picnic-stage">
-          <!-- Lola Otter Mascot Prompt -->
-          <div style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.92); padding:6px 18px; border-radius:9999px; border:1.5px solid #d1fae5; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-            <svg viewBox="0 0 50 50" style="width:36px; height:36px; flex-shrink:0;">
-              <circle cx="14" cy="18" r="6" fill="#92400e"/>
-              <circle cx="36" cy="18" r="6" fill="#92400e"/>
-              <ellipse cx="25" cy="27" rx="17" ry="15" fill="#b45309"/>
-              <ellipse cx="25" cy="30" rx="10" ry="8" fill="#fef3c7"/>
-              <circle cx="19" cy="24" r="2.5" fill="#1f2937"/><circle cx="19.5" cy="23" r="0.8" fill="#ffffff"/>
-              <circle cx="31" cy="24" r="2.5" fill="#1f2937"/><circle cx="31.5" cy="23" r="0.8" fill="#ffffff"/>
-              <ellipse cx="25" cy="28" rx="3.5" ry="2.2" fill="#1f2937"/>
-              <path d="M22 31 Q25 34 28 31" stroke="#92400e" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-            </svg>
-            <span id="lola-speech" style="font-size:0.92rem; font-weight:800; color:#065f46; letter-spacing:-0.01em;">Count 3 sweet berries into Lola’s basket!</span>
-          </div>
+          
+          <div class="lola-picnic-scene">
+            <!-- Lola the Expressive Hungry Otter -->
+            <div id="lola-interactive-character" class="lola-character-wrap" onclick="tickleLola()" title="Tap Lola to tickle!">
+              <svg id="lola-svg" viewBox="0 0 160 170" class="lola-full-svg">
+                <!-- Tail wagging -->
+                <path id="lola-tail" class="lola-tail-anim" d="M120 140 C145 140 155 110 140 95 C130 85 115 110 115 130 Z" fill="#92400e" stroke="#78350f" stroke-width="3"/>
+                <!-- Otter Body -->
+                <ellipse cx="80" cy="115" rx="42" ry="48" fill="#b45309" stroke="#78350f" stroke-width="3.5"/>
+                <!-- Ticklish Cream Belly -->
+                <ellipse id="lola-belly" cx="80" cy="120" rx="26" ry="32" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                
+                <!-- Paws -->
+                <ellipse id="lola-paw-left" cx="50" cy="118" rx="9" ry="7" fill="#92400e" stroke="#78350f" stroke-width="2" transform="rotate(-15 50 118)"/>
+                <ellipse id="lola-paw-right" cx="110" cy="118" rx="9" ry="7" fill="#92400e" stroke="#78350f" stroke-width="2" transform="rotate(15 110 118)"/>
+                
+                <!-- Feet -->
+                <ellipse cx="54" cy="158" rx="14" ry="8" fill="#92400e" stroke="#78350f" stroke-width="2.5"/>
+                <ellipse cx="106" cy="158" rx="14" ry="8" fill="#92400e" stroke="#78350f" stroke-width="2.5"/>
+                
+                <!-- Head -->
+                <g id="lola-head" class="lola-head-group">
+                  <!-- Ears with wiggle -->
+                  <circle cx="46" cy="42" r="11" fill="#92400e" stroke="#78350f" stroke-width="2.5"/>
+                  <circle cx="46" cy="42" r="5" fill="#fbcfe8"/>
+                  <circle cx="114" cy="42" r="11" fill="#92400e" stroke="#78350f" stroke-width="2.5"/>
+                  <circle cx="114" cy="42" r="5" fill="#fbcfe8"/>
+                  
+                  <!-- Face -->
+                  <ellipse cx="80" cy="58" rx="36" ry="32" fill="#b45309" stroke="#78350f" stroke-width="3"/>
+                  <ellipse cx="80" cy="68" rx="22" ry="16" fill="#fef3c7"/>
+                  
+                  <!-- Expressive Tracking Eyes -->
+                  <g id="lola-eyes">
+                    <ellipse cx="66" cy="52" rx="7" ry="9" fill="#ffffff" stroke="#78350f" stroke-width="1.5"/>
+                    <circle id="lola-pupil-left" cx="66" cy="52" r="4.5" fill="#1f2937"/>
+                    <circle cx="68" cy="50" r="1.5" fill="#ffffff"/>
+                    
+                    <ellipse cx="94" cy="52" rx="7" ry="9" fill="#ffffff" stroke="#78350f" stroke-width="1.5"/>
+                    <circle id="lola-pupil-right" cx="94" cy="52" r="4.5" fill="#1f2937"/>
+                    <circle cx="96" cy="50" r="1.5" fill="#ffffff"/>
+                  </g>
+                  
+                  <!-- Rosy Cheeks -->
+                  <circle cx="56" cy="65" r="6" fill="#f43f5e" opacity="0.45"/>
+                  <circle cx="104" cy="65" r="6" fill="#f43f5e" opacity="0.45"/>
+                  
+                  <!-- Nose -->
+                  <ellipse cx="80" cy="64" rx="6" ry="4.5" fill="#1f2937"/>
+                  
+                  <!-- Mouth: Closed vs Open Chomp -->
+                  <path id="lola-mouth-closed" d="M74 72 Q80 77 86 72" stroke="#78350f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                  <g id="lola-mouth-open" style="display:none;">
+                    <ellipse cx="80" cy="74" rx="10" ry="12" fill="#881337" stroke="#78350f" stroke-width="2"/>
+                    <ellipse cx="80" cy="79" rx="6" ry="4" fill="#f43f5e"/>
+                  </g>
+                  
+                  <!-- Whiskers -->
+                  <line x1="52" y1="64" x2="36" y2="61" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="52" y1="68" x2="34" y2="71" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="108" y1="64" x2="124" y2="61" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="108" y1="68" x2="126" y2="71" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+                  
+                  <!-- Silly Strawberry Hat (Eaten 3 Berries!) -->
+                  <g id="lola-berry-hat" style="display:none;">
+                    <path d="M80 16 C68 16 62 26 64 36 C66 44 74 48 80 50 C86 48 94 44 96 36 C98 26 92 16 80 16 Z" fill="#e11d48" stroke="#991b1b" stroke-width="2"/>
+                    <path d="M80 14 C76 7 70 11 76 16 C70 18 72 23 78 18 C80 24 84 23 82 18 C86 22 88 17 84 16 C88 13 84 8 80 14 Z" fill="#22c55e"/>
+                    <ellipse cx="74" cy="25" rx="3" ry="6" fill="rgba(255,255,255,0.7)" transform="rotate(-20 74 25)"/>
+                  </g>
+                </g>
+              </svg>
+              <div id="lola-speech-bubble" class="lola-bubble">
+                <span id="lola-speech">Feed me sweet berries! 🍓</span>
+              </div>
+            </div>
 
-          <!-- The Handcrafted Woven Wicker Basket -->
-          <div id="lola-basket" onclick="tapAddBerry()" class="wicker-picnic-basket" title="Tap or drop berries here">
-            <svg viewBox="0 0 220 140" class="basket-svg-container">
-              <path d="M50 70 C50 14 170 14 170 70" stroke="#78350f" stroke-width="8" stroke-linecap="round" fill="none"/>
-              <path d="M50 70 C50 14 170 14 170 70" stroke="#b45309" stroke-width="4" stroke-dasharray="8 6" stroke-linecap="round" fill="none"/>
-              <path d="M30 68 Q110 82 190 68 L182 82 Q110 94 38 82 Z" fill="#fee2e2"/>
-              <path d="M30 68 Q110 82 190 68 L182 82 Q110 94 38 82 Z" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="6 6"/>
-              <path d="M28 72 L44 126 C46 132 54 136 62 136 L158 136 C166 136 174 132 176 126 L192 72 Z" fill="#b45309" stroke="#78350f" stroke-width="4" stroke-linejoin="round"/>
-              <path d="M34 86 Q110 98 186 86 M38 102 Q110 114 182 102 M42 118 Q110 130 178 118" stroke="#78350f" stroke-width="2.5" fill="none"/>
-              <path d="M60 76 L66 132 M85 78 L90 134 M110 79 L110 135 M135 78 L130 134 M160 76 L154 132" stroke="rgba(120,53,15,0.35)" stroke-width="2.5" stroke-dasharray="5 5" fill="none"/>
-              <rect x="22" y="66" width="176" height="12" rx="6" fill="#d97706" stroke="#78350f" stroke-width="3"/>
-            </svg>
-            <div class="basket-content-area">
-              <div id="basket-berries" class="basket-berries-slot"></div>
-              <span id="basket-count" class="basket-count-badge">0 / 3</span>
+            <!-- Handcrafted Woven Wicker Basket -->
+            <div id="lola-basket" onclick="tapAddBerry()" class="wicker-picnic-basket" title="Tap or drop berries here">
+              <svg viewBox="0 0 220 140" class="basket-svg-container">
+                <path d="M50 70 C50 14 170 14 170 70" stroke="#78350f" stroke-width="8" stroke-linecap="round" fill="none"/>
+                <path d="M50 70 C50 14 170 14 170 70" stroke="#b45309" stroke-width="4" stroke-dasharray="8 6" stroke-linecap="round" fill="none"/>
+                <path d="M30 68 Q110 82 190 68 L182 82 Q110 94 38 82 Z" fill="#fee2e2"/>
+                <path d="M30 68 Q110 82 190 68 L182 82 Q110 94 38 82 Z" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="6 6"/>
+                <path d="M28 72 L44 126 C46 132 54 136 62 136 L158 136 C166 136 174 132 176 126 L192 72 Z" fill="#b45309" stroke="#78350f" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M34 86 Q110 98 186 86 M38 102 Q110 114 182 102 M42 118 Q110 130 178 118" stroke="#78350f" stroke-width="2.5" fill="none"/>
+                <path d="M60 76 L66 132 M85 78 L90 134 M110 79 L110 135 M135 78 L130 134 M160 76 L154 132" stroke="rgba(120,53,15,0.35)" stroke-width="2.5" stroke-dasharray="5 5" fill="none"/>
+                <rect x="22" y="66" width="176" height="12" rx="6" fill="#d97706" stroke="#78350f" stroke-width="3"/>
+              </svg>
+              <div class="basket-content-area">
+                <div id="basket-berries" class="basket-berries-slot"></div>
+                <span id="basket-count" class="basket-count-badge">0 / 3</span>
+              </div>
             </div>
           </div>
 
-          <div style="font-size:0.86rem; font-weight:800; color:#065f46; letter-spacing:-0.01em;">Tap or drag a fresh berry into the basket!</div>
+          <div style="font-size:0.86rem; font-weight:800; color:#065f46; letter-spacing:-0.01em; margin-top:4px;">
+            Tap Lola's belly to tickle her, or drag berries to feed! 🍓
+          </div>
         </div>
 
         <!-- Fresh Plump Berry Tray -->
@@ -2209,7 +2395,8 @@
           <div id="penny-splatters" style="position:absolute; inset:0; pointer-events:none;"></div>
 
           <!-- Penny -->
-          <div id="penny-character" style="position:relative; z-index:2; margin-bottom:8px;">
+          <div id="penny-character" onclick="tapPennyCharacter()" style="position:relative; z-index:2; margin-bottom:8px; cursor:pointer;" title="Tap Penny to tickle or jump!">
+            <div id="penny-splat-overlay" style="position:absolute; inset:0; pointer-events:none; z-index:10;"></div>
             <svg viewBox="0 0 100 120" style="width:140px; height:165px;">
               <ellipse cx="62" cy="18" rx="7" ry="14" fill="#f472b6" stroke="#db2777" stroke-width="2.5"/>
               <ellipse cx="78" cy="20" rx="7" ry="14" fill="#f472b6" stroke="#db2777" stroke-width="2.5"/>
@@ -2453,6 +2640,10 @@
             </svg>
           </button>
           <!-- Star Tool Button -->
+          <!-- Wiggle Art Button -->
+          <button onclick="jellyWobbleCanvas()" class="crayon-tool-btn" title="Tickle Drawing" style="margin-left:4px; background:#fdf2f8; border:1.5px solid #fbcfe8; border-radius:9999px; padding:6px 12px; font-size:0.82rem; font-weight:900; color:#db2777; display:flex; flex-direction:row; gap:4px; align-items:center;">
+            <span>🪼</span><span>Wiggle!</span>
+          </button>
           <button onclick="addSparkleStar()" class="crayon-tool-btn" title="Golden Star Stamp" style="margin-left:4px;">
             <svg viewBox="0 0 44 44" style="width:38px; height:38px; filter:drop-shadow(0 4px 8px rgba(245,158,11,0.35));">
               <polygon points="22,2 26,16 40,16 29,25 33,39 22,30 11,39 15,25 4,16 18,16" fill="#facc15" stroke="#d97706" stroke-width="2.5" stroke-linejoin="round"/>
@@ -4186,13 +4377,92 @@
       }
     }
 
-    // --- FOLEY ACOUSTIC SYNTHESIS FOR TODDLER WORLDS ---
+    // --- FOLEY ACOUSTIC & CARTOON COMEDY SYNTHESIZERS ---
     function playBerryPlop(count) {
       initAudio();
       if (!audioCtx) return;
       try {
         playWaterPlop(1.1 + count * 0.15, 0.22);
         setTimeout(() => playNote(523.25 + count * 85, 0.35, 'sine'), 40);
+      } catch (e) {}
+    }
+
+    function playCartoonChomp() {
+      initAudio();
+      if (!audioCtx) return;
+      try {
+        const now = audioCtx.currentTime;
+        for (let i = 0; i < 3; i++) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(340 - i * 50, now + i * 0.08);
+          osc.frequency.exponentialRampToValueAtTime(110, now + i * 0.08 + 0.06);
+          gain.gain.setValueAtTime(0.26, now + i * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.08 + 0.07);
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          osc.start(now + i * 0.08); osc.stop(now + i * 0.08 + 0.08);
+        }
+        setTimeout(() => playWaterPlop(1.4, 0.28), 240);
+      } catch (e) {}
+    }
+
+    function playGiggleSound() {
+      initAudio();
+      if (!audioCtx) return;
+      try {
+        const now = audioCtx.currentTime;
+        const giggles = [587, 659, 783, 659, 783, 880];
+        giggles.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+          gain.gain.setValueAtTime(0.18, now + idx * 0.06);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.05);
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.06); osc.stop(now + idx * 0.06 + 0.06);
+        });
+      } catch (e) {}
+    }
+
+    function playSlideWhistle(dir) {
+      initAudio();
+      if (!audioCtx) return;
+      try {
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        if (dir === 'up') {
+          osc.frequency.setValueAtTime(260, now);
+          osc.frequency.exponentialRampToValueAtTime(820, now + 0.32);
+        } else {
+          osc.frequency.setValueAtTime(780, now);
+          osc.frequency.exponentialRampToValueAtTime(220, now + 0.32);
+        }
+        gain.gain.setValueAtTime(0.22, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.34);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(now); osc.stop(now + 0.35);
+      } catch (e) {}
+    }
+
+    function playCartoonBoing() {
+      initAudio();
+      if (!audioCtx) return;
+      try {
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.linearRampToValueAtTime(420, now + 0.12);
+        osc.frequency.linearRampToValueAtTime(240, now + 0.28);
+        gain.gain.setValueAtTime(0.28, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(now); osc.stop(now + 0.31);
       } catch (e) {}
     }
 
@@ -4213,7 +4483,6 @@
       try {
         const now = audioCtx.currentTime;
         if (name === 'dog') {
-          // Playful dog bark (dual downward pitch glide)
           [0, 0.16].forEach((delay) => {
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
@@ -4227,7 +4496,6 @@
           });
           playNote(440, 0.4, 'sine');
         } else if (name === 'cat') {
-          // Sweet melodic meow glide
           const osc = audioCtx.createOscillator();
           const gain = audioCtx.createGain();
           osc.type = 'sine';
@@ -4241,7 +4509,6 @@
           osc.start(now); osc.stop(now + 0.46);
           playNote(659.25, 0.45, 'sine');
         } else if (name === 'frog') {
-          // Resonant throaty ribbit with AM flutter
           const osc = audioCtx.createOscillator();
           const mod = audioCtx.createOscillator();
           const modGain = audioCtx.createGain();
@@ -4260,7 +4527,6 @@
           mod.stop(now + 0.3); osc.stop(now + 0.3);
           playNote(329.63, 0.35, 'triangle');
         } else if (name === 'chick') {
-          // High sweet dual chirp
           [0, 0.13].forEach((delay) => {
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
@@ -4303,28 +4569,70 @@
           animal.classList.add('pop-in');
         }
         playWoodClack(0.95 + pipSolved * 0.14);
+        playCartoonBoing();
         setTimeout(() => playNote(587.33 + pipSolved * 75, 0.44, 'sine'), 35);
 
         const praises = {
-          circle: "Bunny found a home! 🐰",
-          triangle: "Fox is safe! 🦊",
-          square: "Owl is cozy! 🦉"
+          circle: "Bunny found her cozy home! 🐰 Tap her to play peek-a-boo!",
+          triangle: "Fox is safe & snug! 🦊 Tap him to see a wink!",
+          square: "Owl is awake & happy! 🦉 Tap her to spin her head!"
         };
-        speakPraise(praises[shape] || "Super shape!");
+        const speech = document.getElementById('pip-speech-bubble');
+        if (speech) speech.textContent = praises[shape] || "Super shape! Tap them to play!";
 
         if (pipSolved === 3) {
           setTimeout(() => {
             showLevelAppraisal(
               'pip',
-              'Cozy Treehouse! 🌲',
-              'All three friends are safe & snug in their tree hollows!',
+              'Cozy Treehouse Party! 🌲',
+              'All three woodland friends are awake and having a party with Pip!',
               '🐦',
               'lola',
-              'Wonderful! All friends are happy!'
+              'Wonderful! All friends are happy and playing!'
             );
-          }, 450);
+          }, 550);
         }
       }
+    }
+
+    function triggerAnimalTrick(shape) {
+      initAudio();
+      playCartoonBoing();
+      const socket = document.getElementById(`pip-socket-${shape}`);
+      if (!socket) return;
+      const reveal = socket.querySelector('.pip-animal');
+      if (reveal) {
+        reveal.classList.remove('animal-trick-anim');
+        void reveal.offsetWidth;
+        reveal.classList.add('animal-trick-anim');
+      }
+      const quotes = {
+        circle: "Bunny twitches her ears and sneezes sparkles! Hehehe! 🐰✨",
+        triangle: "Fox winks and wiggles his bushy tail! 🦊💫",
+        square: "Owl spins her head in a full 360 circle! Whoa! 🦉🌀"
+      };
+      const speech = document.getElementById('pip-speech-bubble');
+      if (speech) speech.textContent = quotes[shape] || "Peek-a-boo!";
+      triggerConfetti();
+    }
+
+    function chirpPip() {
+      initAudio();
+      playAnimalVoice('chick');
+      playCartoonBoing();
+      const bird = document.getElementById('pip-bird');
+      if (bird) {
+        bird.classList.remove('character-tickled');
+        void bird.offsetWidth;
+        bird.classList.add('character-tickled');
+      }
+      const quotes = [
+        '"Chirp chirp! Tap Bunny, Fox, and Owl to see funny tricks!"',
+        '"Treehouse high-five! Flutter flutter!" 🐦✨',
+        '"You are the greatest explorer! Chirp!"'
+      ];
+      const speech = document.getElementById('pip-speech-bubble');
+      if (speech) speech.textContent = quotes[Math.floor(Math.random() * quotes.length)];
     }
 
     function handleBlockClick(shape) {
@@ -4355,7 +4663,6 @@
         if (!active) return; active = false; block.releasePointerCapture(e.pointerId);
         let matched = false;
 
-        // If toddler tapped without dragging far, snap immediately
         if (!moved) {
           fitShape(block.dataset.shape);
           return;
@@ -4395,11 +4702,30 @@
           animal.classList.remove('pop-in');
         }
       });
+      const speech = document.getElementById('pip-speech-bubble');
+      if (speech) speech.textContent = '"Peek in the hollows to wake my friends! Chirp!" 🐦';
     }
 
     // --- GAME 3: LOLA (EARLY MATHEMATICS & NUMBERS) ---
     let lolaBerries = 0;
     const maxLolaBerries = 3;
+
+    function tickleLola() {
+      initAudio();
+      playGiggleSound();
+      const char = document.getElementById('lola-interactive-character');
+      if (char) {
+        char.classList.remove('character-tickled');
+        void char.offsetWidth;
+        char.classList.add('character-tickled');
+      }
+      const quotes = [
+        "Hehehe! That tickles my tummy! 😂",
+        "Giggle giggle! You're silly! ✨",
+        "Aww, tickles! More berries please! 🍓"
+      ];
+      document.getElementById('lola-speech').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    }
 
     function createBerryBasketSvg() {
       const wrapper = document.createElement('div');
@@ -4417,9 +4743,34 @@
     function tapAddBerry() {
       if (lolaBerries >= maxLolaBerries) return;
       lolaBerries++;
-      playBerryPlop(lolaBerries);
+      
+      // Animate Lola Eating
+      const mouthOpen = document.getElementById('lola-mouth-open');
+      const mouthClosed = document.getElementById('lola-mouth-closed');
+      const char = document.getElementById('lola-interactive-character');
+      
+      if (mouthOpen && mouthClosed) {
+        mouthOpen.style.display = 'block';
+        mouthClosed.style.display = 'none';
+        setTimeout(() => {
+          mouthOpen.style.display = 'none';
+          mouthClosed.style.display = 'block';
+        }, 420);
+      }
+      
+      if (char) {
+        char.classList.remove('character-chomp');
+        void char.offsetWidth;
+        char.classList.add('character-chomp');
+      }
+      
+      playCartoonChomp();
 
-      const countLabels = ["One sweet berry! 🍓", "Two sweet berries! 🍓🍓", "Three! Picnic time! 🧺"];
+      const countLabels = [
+        "CRUNCH! 1 berry! Super sweet! 🍓",
+        "SLURP! 2 berries! Round tummy! 🍓🍓",
+        "WOOHOO! 3 berries! Picnic Party! 🧺✨"
+      ];
       document.getElementById('lola-speech').textContent = countLabels[lolaBerries - 1];
       document.getElementById('basket-count').textContent = `${lolaBerries} / 3`;
 
@@ -4435,19 +4786,19 @@
       // Add visual berry to basket
       document.getElementById('basket-berries').appendChild(createBerryBasketSvg());
 
-      speakPraise(String(lolaBerries));
-
       if (lolaBerries === maxLolaBerries) {
+        const hat = document.getElementById('lola-berry-hat');
+        if (hat) hat.style.display = 'block';
         setTimeout(() => {
           showLevelAppraisal(
             'lola',
-            'Super Counting! 🍓',
-            'You counted 1, 2, 3 delicious berries for Lola’s picnic!',
+            'Lola is Super Full! 🍓',
+            'You fed Lola 3 delicious wild berries! She is wearing her silly strawberry hat!',
             '🦦',
             'penny',
-            'Super counter! Three berries ready for the picnic!'
+            'Delicious! Lola did a happy dance!'
           );
-        }, 400);
+        }, 550);
       }
     }
 
@@ -4461,24 +4812,53 @@
         startX = e.clientX; startY = e.clientY;
         el.style.transition = 'none'; el.style.zIndex = '50';
         playWaterPlop(1.4, 0.12);
+        
+        // Open Lola's mouth in anticipation
+        const mouthOpen = document.getElementById('lola-mouth-open');
+        const mouthClosed = document.getElementById('lola-mouth-closed');
+        if (mouthOpen && mouthClosed) {
+          mouthOpen.style.display = 'block';
+          mouthClosed.style.display = 'none';
+        }
       });
       el.addEventListener('pointermove', (e) => {
         if (!active) return;
         const dx = e.clientX - startX; const dy = e.clientY - startY;
         if (Math.hypot(dx, dy) > 8) moved = true;
         el.style.transform = `translate(${dx}px, ${dy}px) scale(1.2)`;
+        
+        // Eye tracking towards berry
+        const pl = document.getElementById('lola-pupil-left');
+        const pr = document.getElementById('lola-pupil-right');
+        if (pl && pr) {
+          const eyeShift = Math.max(-3, Math.min(3, dx * 0.05));
+          pl.setAttribute('cx', String(66 + eyeShift));
+          pr.setAttribute('cx', String(94 + eyeShift));
+        }
       });
       const endDrag = (e) => {
         if (!active) return; active = false; el.releasePointerCapture(e.pointerId);
+        const mouthOpen = document.getElementById('lola-mouth-open');
+        const mouthClosed = document.getElementById('lola-mouth-closed');
+        if (mouthOpen && mouthClosed) {
+          mouthOpen.style.display = 'none';
+          mouthClosed.style.display = 'block';
+        }
+        
         if (!moved) {
           tapAddBerry();
           return;
         }
         const bRect = el.getBoundingClientRect();
+        const lolaChar = document.getElementById('lola-interactive-character');
         const basket = document.getElementById('lola-basket');
+        const cRect = lolaChar ? lolaChar.getBoundingClientRect() : null;
         const kRect = basket ? basket.getBoundingClientRect() : null;
-        const overlap = kRect && !(bRect.right < kRect.left - 20 || bRect.left > kRect.right + 20 || bRect.bottom < kRect.top - 20 || bRect.top > kRect.bottom + 20);
-        if (overlap) {
+        
+        const overlapLola = cRect && !(bRect.right < cRect.left - 20 || bRect.left > cRect.right + 20 || bRect.bottom < cRect.top - 20 || bRect.top > cRect.bottom + 20);
+        const overlapBasket = kRect && !(bRect.right < kRect.left - 20 || bRect.left > kRect.right + 20 || bRect.bottom < kRect.top - 20 || bRect.top > kRect.bottom + 20);
+        
+        if (overlapLola || overlapBasket) {
           tapAddBerry();
         } else {
           el.style.transition = 'transform 0.3s ease';
@@ -4493,7 +4873,9 @@
       lolaBerries = 0;
       document.getElementById('basket-berries').innerHTML = '';
       document.getElementById('basket-count').textContent = '0 / 3';
-      document.getElementById('lola-speech').textContent = "Count 3 sweet berries into Lola’s basket!";
+      document.getElementById('lola-speech').textContent = "Feed me sweet berries! 🍓";
+      const hat = document.getElementById('lola-berry-hat');
+      if (hat) hat.style.display = 'none';
       [1, 2, 3].forEach(num => {
         const el = document.getElementById(`lola-tray-berry-${num}`);
         if (el) {
@@ -4512,10 +4894,27 @@
     const dragBoots = document.getElementById('penny-drag-boots');
     const dropZone = document.getElementById('penny-drop-zone');
 
+    function tapPennyCharacter() {
+      initAudio();
+      if (!pennyHasBoots) {
+        playGiggleSound();
+        playSnort();
+        const char = document.getElementById('penny-character');
+        if (char) {
+          char.classList.remove('character-tickled');
+          void char.offsetWidth;
+          char.classList.add('character-tickled');
+        }
+        document.getElementById('penny-status').textContent = "Eee! Cold mud tickles my toes! Yellow boots please! 🥾";
+      } else {
+        jumpPenny();
+      }
+    }
+
     function applyBootsDirectly() {
       if (pennyHasBoots) return;
       pennyHasBoots = true;
-      playWoodClack(1.35);
+      playCartoonBoing();
       setTimeout(() => playNote(587.33, 0.35, 'sine'), 40);
       document.getElementById('penny-bare-legs').style.display = 'none';
       document.getElementById('penny-boots').style.display = 'block';
@@ -4524,7 +4923,7 @@
       document.getElementById('penny-tray').style.display = 'none';
       document.getElementById('penny-progress').style.display = 'flex';
       document.getElementById('penny-tap-label').style.display = 'block';
-      document.getElementById('penny-status').textContent = "Step 2: Tap the puddle to jump!";
+      document.getElementById('penny-status').textContent = "Ready for MUD! Tap the puddle to jump! 💦";
     }
 
     let activeB = false, bx, by;
@@ -4568,13 +4967,34 @@
     function jumpPenny(e) {
       if (!pennyHasBoots || pennyJumps >= maxPennyJumps) return;
       pennyJumps++;
-      playMudSplash();
+      playSlideWhistle('up');
+      setTimeout(() => playMudSplash(), 140);
       triggerPuddleRipple();
 
       const char = document.getElementById('penny-character');
       char.classList.remove('jump-anim');
       void char.offsetWidth;
       char.classList.add('jump-anim');
+
+      // Add silly cartoon mud spots to Penny!
+      const splatOverlay = document.getElementById('penny-splat-overlay');
+      if (splatOverlay) {
+        if (pennyJumps === 1) {
+          splatOverlay.innerHTML += `<div class="penny-mud-spot" style="top:22px; left:82px; width:14px; height:14px;"></div>`;
+          document.getElementById('penny-status').textContent = "Splash! A mud spot on Penny's ear!";
+        } else if (pennyJumps === 2) {
+          splatOverlay.innerHTML += `<div class="penny-mud-spot" style="top:88px; left:48px; width:18px; height:16px;"></div>`;
+          document.getElementById('penny-status').textContent = "Splish! Mud on Penny's belly!";
+        } else if (pennyJumps === 3) {
+          splatOverlay.innerHTML += `<div class="penny-mud-spot" style="top:66px; left:32px; width:28px; height:10px; border-radius:12px;"></div>`;
+          document.getElementById('penny-status').textContent = "Giggle! Penny got a silly mud mustache! 😂";
+        } else if (pennyJumps === 4) {
+          splatOverlay.innerHTML += `<div class="penny-mud-spot" style="top:52px; left:26px; width:8px; height:8px;"></div><div class="penny-mud-spot" style="top:52px; left:56px; width:8px; height:8px;"></div>`;
+          document.getElementById('penny-status').textContent = "Mud freckles! 1 more mega jump!";
+        } else if (pennyJumps === 5) {
+          document.getElementById('penny-status').textContent = "MEGA SPLASH CHAMPION! 💦🐷";
+        }
+      }
 
       const dots = document.querySelectorAll('#penny-dots .pdot');
       if (dots[pennyJumps - 1]) {
@@ -4603,8 +5023,8 @@
 
       if (pennyJumps === maxPennyJumps) {
         setTimeout(() => {
-          showLevelAppraisal('penny', 'Splash Champion! 💦', 'Penny had so much fun jumping in the muddy puddles!', '🐷', 'home', 'Splash champion! You did it!');
-        }, 400);
+          showLevelAppraisal('penny', 'Muddy Splash Champion! 💦', 'Penny is covered in happy mud spots and giggling with joy!', '🐷', 'home', 'Splash champion! Penny loves her boots!');
+        }, 450);
       }
     }
 
@@ -4620,6 +5040,8 @@
       document.getElementById('penny-progress').style.display = 'none';
       document.getElementById('penny-tap-label').style.display = 'none';
       document.getElementById('penny-status').textContent = "Step 1: Put on the yellow boots!";
+      const splatOverlay = document.getElementById('penny-splat-overlay');
+      if (splatOverlay) splatOverlay.innerHTML = '';
 
       const dots = document.querySelectorAll('#penny-dots .pdot');
       dots.forEach(d => {
@@ -4634,20 +5056,28 @@
       initAudio();
       animalsTapped.add(name);
       playAnimalVoice(name);
+      playCartoonBoing();
 
-      document.getElementById('animal-speech').textContent = `${name.toUpperCase()}: ${soundText}`;
+      const animalCards = {
+        dog: "Puppy wags his tail so fast he spins around! Woof woof! 🐶",
+        cat: "Kitty purrs and bats a rolling yarn ball! Meow! 🐱🧶",
+        frog: "Froggy inflates a giant throat balloon! Ribbit! 🐸🎈",
+        chick: "Chick flutters wings and does a silly tap dance! Cheep! 🐥💃"
+      };
+
+      document.getElementById('animal-speech').textContent = animalCards[name] || `${name.toUpperCase()}: ${soundText}`;
       speakPraise(`${name} says ${soundText}`);
 
       if (animalsTapped.size === 4) {
         setTimeout(() => {
-          showLevelAppraisal('animals', 'Animal Friend! 🐾', 'You heard all the friendly animal songs!', '🐶', 'scribble', 'Hooray! Great animal explorer!');
+          showLevelAppraisal('animals', 'Animal Comedy Band! 🐾', 'You unlocked all the hilarious animal songs and silly tricks!', '🐶', 'scribble', 'Hooray! Great animal explorer!');
         }, 600);
       }
     }
 
     function resetAnimals() {
       animalsTapped.clear();
-      document.getElementById('animal-speech').textContent = 'Tap an animal to hear them sing!';
+      document.getElementById('animal-speech').textContent = 'Tap an animal to hear them sing & do silly tricks!';
     }
 
     // --- GAME 6: MAGIC SCRIBBLES (WATERCOLOR STUDIO) ---
@@ -4698,7 +5128,6 @@
         const dist = Math.hypot(pos.x - pt.lastX, pos.y - pt.lastY);
         const speed = dist / dt;
 
-        // Dynamic fluid watercolor stroke width: 14 to 26
         const strokeWidth = Math.max(12, Math.min(26, 26 - speed * 4));
 
         scribbleCtx.beginPath();
@@ -4756,6 +5185,20 @@
       playWetPaperWash(0.12);
     }
 
+    function jellyWobbleCanvas() {
+      initAudio();
+      playSlideWhistle('up');
+      setTimeout(() => playCartoonBoing(), 180);
+      const canvas = document.getElementById('scribbleCanvas');
+      if (canvas) {
+        canvas.classList.remove('canvas-wobble');
+        void canvas.offsetWidth;
+        canvas.classList.add('canvas-wobble');
+        setTimeout(() => canvas.classList.remove('canvas-wobble'), 760);
+      }
+      triggerConfetti();
+    }
+
     function addSparkleStar() {
       if (!scribbleCanvas || !scribbleCtx) return;
       document.getElementById('scribble-hint').style.display = 'none';
@@ -4789,6 +5232,7 @@
       scribbleCtx.stroke();
       scribbleCtx.restore();
 
+      playGiggleSound();
       playNote(783.99, 0.45, 'sine');
       setTimeout(() => playNote(1046.50, 0.45, 'sine'), 80);
       triggerConfetti();
