@@ -1,7 +1,7 @@
 {
-  "name": "Little Explorers • Play & Learn",
-  "short_name": "Explorers",
-  "description": "Montessori-inspired calm educational mini-games for ages 3-5",
+  "name": "Bumble's Silly Potion Cafe",
+  "short_name": "Potion Cafe",
+  "description": "Brew, mix and feed potions to Bumble the hungry monster in this hilarious children's educational game!",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
